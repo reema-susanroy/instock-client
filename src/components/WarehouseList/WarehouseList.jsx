@@ -45,8 +45,8 @@ function WarehouseList() {
         </section>
         <ul className="warehouse-list">
           <h3 className="">NEXT VIDEOS</h3>
-          {videos.map((video) => (
-            <VideoListItem key={video.id} video={video} />
+          {warehouses.map((warehouse) => (
+            <WarehouseListItem key={warehouse.id} warehouse={warehouse} />
           ))}
         </ul>
       </section>
