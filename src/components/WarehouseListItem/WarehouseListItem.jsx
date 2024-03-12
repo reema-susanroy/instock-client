@@ -1,8 +1,10 @@
 import "./WarehouseListItem.scss";
 import { Link } from "react-router-dom";
+import { ReactComponent as DeleteIcon} from "../../assets/icons/delete_outline-24px.svg"
+import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg"
 
 function WarehouseListItem({ warehouse }) {
-  const { title, image, channel } = video;
+  const { address, city, country, contact_name: contactName, contact_phone: contactPhone, } = warehouse;
   return (
     <li>
       <section>
@@ -15,15 +17,20 @@ function WarehouseListItem({ warehouse }) {
         </div>
         <div>
           <h4>CONTACT NAME</h4>
+          <p3>{contactName}</p3>
         </div>
         <div>
           <h4>ADDRESS</h4>
+          <p3>{address}{city}{country}</p3>
         </div>
         <div>
-          <h4>ADDRESS</h4>
+          <h4>CONTACT INFORMATION</h4>
+          <p3>{contactPhone}{contactEmail}</p3>
         </div>
+        <DeleteIcon />
+        <EditIcon />
       </section>
     </li>
   );
 }
-export default VideoListItem;
+export default WarehouseListItem;
