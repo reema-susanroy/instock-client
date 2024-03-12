@@ -1,0 +1,71 @@
+@use "./typography" as *;
+@use "./variables" as *;
+
+// mixins for media queries
+
+@mixin tablet {
+    @media (min-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop) {
+        @content;
+    }
+}
+
+// mixins for margins
+
+@mixin margin-mobile {
+    margin: 0 1rem;
+  }
+  
+  @mixin margin-tablet{
+    @media (min-width: $tablet) {
+      margin: 0 2rem;
+    }
+  }
+  
+  @mixin margin-desktop{
+    @media (min-width: $desktop) {
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+  }
+
+  // mixins for paddings
+
+  @mixin padding-mobile {
+    padding:0 1rem 0 0;
+  }
+  
+  @mixin padding-tablet {
+    @media (min-width: $tablet) {
+        padding:0 1.5rem 0 0;
+    }
+  }
+  
+  @mixin padding-desktop {
+    @media (min-width: $desktop) {
+        padding:0 1.5rem 0 0;
+    }
+  }
+
+  @mixin section-padding {
+    padding:0 0 1.5rem 0;
+  }
+
+  @mixin content-padding {
+    padding:0 0 1rem 0;
+  }
+
+  @mixin title-padding {
+    padding:0 0 0.25rem 0;
+  }
+
+
+
+
+
+
