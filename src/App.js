@@ -1,6 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 
 import NotFound from './pages/NotFound/NotFound';
 import WarehousePage from './pages/WarehousePage/WarehousePage'
@@ -16,6 +17,7 @@ function App() {
   return (
    <>
    <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/warehouses" element={<WarehousePage />} />
           <Route path="/warehouses/:warehouseId" element={<WarehouseDetailsPage />}/>
