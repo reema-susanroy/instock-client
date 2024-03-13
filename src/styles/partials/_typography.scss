@@ -1,4 +1,4 @@
-@use "./mixins" as *;
+// @import "mixins";
 
 @font-face {
     font-family: "Titillium Web", sans-serif;
@@ -14,7 +14,7 @@
     font-style: normal;
   }
 
-  h1 {
+  @mixin h1 {
     font-size: 1.75rem;
     line-height: 2.25rem;
 
@@ -24,7 +24,7 @@
     }
   }
 
-  h2 {
+  @mixin h2 {
     font-size: 1.25rem;
     line-height: 1.75rem;
 
@@ -34,7 +34,7 @@
     }
   }
 
-  h3 {
+  @mixin h3 {
     font-size: 0.8125rem;
     line-height: 1.25rem;
 
@@ -44,7 +44,7 @@
     }
   }
 
-  h4 {
+  @mixin h4 {
     font-size: 0.6875rem;
     line-height: 1rem;
 
@@ -53,8 +53,8 @@
       line-height: 1.125rem;
     }
   }
-
-  p1 {
+  
+  @mixin p1 {
     font-size: 0.9375rem;
     line-height: 1.625rem;
 
@@ -64,7 +64,7 @@
     }
   }
 
-  p2 {
+  @mixin p2 {
     font-size: 0.8125rem;
     line-height: 1.25rem;
 
@@ -74,7 +74,7 @@
     }
   }
 
-  p3 {
+  @mixin p3 {
     font-size: 0.6875rem;
     line-height: 1rem;
 

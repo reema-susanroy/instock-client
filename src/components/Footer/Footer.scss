@@ -1,0 +1,29 @@
+@import "../../styles/partials/global";
+
+
+.footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+        padding: 1.5rem;
+    }
+
+    @include desktop {
+        padding: 1.5rem 8rem;
+    }
+
+    &-copyright {
+        text-align: center;
+        color: $slate;
+        @include p1;
+        margin-top: 0.25rem;
+    }
+
+    &-copyright-icon {
+        padding-right: 0.5rem;
+        color: $slate;
+    }
+}
