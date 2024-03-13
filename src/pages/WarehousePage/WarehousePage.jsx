@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-import "./Home.scss";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 
 function WarehousePage() {
@@ -12,7 +10,7 @@ function WarehousePage() {
   useEffect(() => {
     const getWarehouses = async () => {
       try {
-        const response = await axios.get('/api/warehouses');
+        const response = await axios.get("http://localhost:5000/api/warehouses");
         setWarehouses(response.data);
         setIsLoading(false);
       } catch (error) {

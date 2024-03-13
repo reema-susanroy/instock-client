@@ -1,10 +1,17 @@
 import "./WarehouseListItem.scss";
 import { Link } from "react-router-dom";
-import { ReactComponent as DeleteIcon} from "../../assets/icons/delete_outline-24px.svg"
-import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg"
+import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
+import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 
 function WarehouseListItem({ warehouse }) {
-  const { address, city, country, contact_name: contactName, contact_phone: contactPhone, } = warehouse;
+  const {
+    address,
+    city,
+    country,
+    contact_name: contactName,
+    contact_phone: contactPhone,
+    contact_email: contactEmail,
+  } = warehouse;
   return (
     <li>
       <section>
@@ -25,7 +32,11 @@ function WarehouseListItem({ warehouse }) {
         </div>
         <div>
           <h4>CONTACT INFORMATION</h4>
-          <p>{contactPhone}{contactEmail}</p>
+          <p>
+            {contactPhone}
+            <br />
+            {contactEmail}
+          </p>
         </div>
         <DeleteIcon />
         <EditIcon />
