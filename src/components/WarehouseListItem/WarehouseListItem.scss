@@ -1,0 +1,84 @@
+@import "../../styles/partials/global";
+
+.warehouse-list-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+    border-bottom: 1px solid $cloud;
+    justify-content: left;
+    @include tablet {
+        padding: 1rem 2rem;
+        flex-wrap: nowrap;
+        align-items: center;
+      
+    }
+}
+
+.warehouse-item {
+    width: 45%;
+    margin-bottom: 1rem;
+    @include tablet {
+        width: 19%;
+        margin: 0;
+        margin-right: 2.75rem;
+    }
+    @include desktop {
+        margin-right: 1.5rem;
+        width: 24%;
+    }
+    &__contact {
+        margin-left: 1.5rem;
+        @include tablet {
+        margin: 0;
+        }
+        &--wide {
+            width: 27%;
+        }
+        // &--link {
+            
+        // }
+    }
+    &__link {
+        display: flex;
+        align-items: center;
+        @include tablet {
+            width: 90%;
+        }
+    }
+    &__buttons {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        @include tablet {
+            flex-direction: row;
+            width: 10%;
+            justify-content: center;
+        }
+    }
+    &__mobile {
+        @include tablet {
+            display: none;
+        }
+        
+    }
+    &__desktop {
+        display: none;
+        @include tablet {
+            display: block;
+        }
+        
+    }
+}
+
+.warehouse-item-title__mobile {
+    @include tablet {
+        display: none;
+    }
+}
+.warehouse-item__button {
+    @include tablet {
+        width: 24px;
+        height: 24px;
+    }
+}

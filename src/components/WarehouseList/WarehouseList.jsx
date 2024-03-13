@@ -1,10 +1,9 @@
 import "./WarehouseList.scss";
-import WarehouseListItem from "../WarehouseListItem/WarehouseListItem"
+import WarehouseListItem from "../WarehouseListItem/WarehouseListItem";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-24px.svg";
 import { ReactComponent as SortIcon } from "../../assets/icons/sort-24px.svg";
 
-
-function WarehouseList({warehouses}) {
+function WarehouseList({ warehouses }) {
   return (
     <section className="warehouse-list-body">
       <section className="warehouse-list-header">
@@ -27,21 +26,21 @@ function WarehouseList({warehouses}) {
         <section className="warehouse-list-titles__desktop">
           <div className="warehouse-list__title">
             <h4>WAREHOUSE</h4>
-            <SortIcon />
+            <SortIcon className="warehouse-list__sort-icon" />
           </div>
           <div className="warehouse-list__title">
             <h4>ADDRESS</h4>
-            <SortIcon />
+            <SortIcon className="warehouse-list__sort-icon" />
           </div>
           <div className="warehouse-list__title">
             <h4>CONTACT NAME</h4>
-            <SortIcon />
+            <SortIcon className="warehouse-list__sort-icon" />
           </div>
-          <div className="warehouse-list__title">
+          <div className="warehouse-list__title warehouse-list__title-contact-information">
             <h4>CONTACT INFORMATION</h4>
-            <SortIcon />
+            <SortIcon className="warehouse-list__sort-icon" />
           </div>
-          <div className="warehouse-list__title">
+          <div className="warehouse-list__title warehouse-list__title-actions">
             <h4>ACTIONS</h4>
           </div>
         </section>

@@ -17,35 +17,40 @@ function WarehouseListItem({ warehouse }) {
   return (
     <li>
       <section className="warehouse-list-item">
-        <div>
-          <h4>WAREHOUSE</h4>
-          <div>
-            <Link
-              to={`/warehouses/${warehouse.id}`}
-            >
-              {warehouseName}
+        <div className="warehouse-item warehouse-item__contact--link">
+          <h4 className="warehouse-item-title__mobile">WAREHOUSE</h4>
+          <div className="warehouse-item__link">
+            <Link to={`/warehouses/${warehouse.id}`}>
+              <h3>{warehouseName}</h3>
             </Link>
             <ChevronIcon />
           </div>
         </div>
-        <div>
-          <h4>CONTACT NAME</h4>
-          <p>{contactName}</p>
+        <div className="warehouse-item warehouse-item__desktop">
+          <h4 className="warehouse-item-title__mobile">ADDRESS</h4>
+          <p2>{`${address}, ${city}, ${country}`}</p2>
         </div>
-        <div>
-          <h4>ADDRESS</h4>
-          <p>{`${address}, ${city}, ${country}`}</p>
+        <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
+          <h4 className="warehouse-item-title__mobile">CONTACT NAME</h4>
+          <p2>{contactName}</p2>
         </div>
-        <div>
-          <h4>CONTACT INFORMATION</h4>
-          <p>
+        <div className="warehouse-item warehouse-item__mobile">
+          <h4 className="warehouse-item-title__mobile">ADDRESS</h4>
+          <p2>{`${address}, ${city}, ${country}`}</p2>
+        </div>
+        <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
+          <h4 className="warehouse-item-title__mobile">CONTACT INFORMATION</h4>
+          <p2>
             {contactPhone}
             <br />
             {contactEmail}
-          </p>
+          </p2>
         </div>
-        <DeleteIcon />
-        <EditIcon />
+        
+        <div className="warehouse-item__buttons">
+          <DeleteIcon className="warehouse-item__button" />
+          <EditIcon className="warehouse-item__button" />
+        </div>
       </section>
     </li>
   );
