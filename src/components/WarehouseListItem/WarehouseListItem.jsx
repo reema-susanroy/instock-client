@@ -1,4 +1,5 @@
 import "./WarehouseListItem.scss";
+import { ReactComponent as ChevronIcon } from "../../assets/icons/chevron_right-24px.svg"
 import { Link } from "react-router-dom";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
@@ -11,16 +12,18 @@ function WarehouseListItem({ warehouse }) {
     contact_name: contactName,
     contact_phone: contactPhone,
     contact_email: contactEmail,
+    warehouse_name: warehouseName
   } = warehouse;
   return (
     <li>
       <section>
         <div>
-          <h4>WAREHOUSE</h4>
+          <h4>{warehouseName}</h4>
           <Link
             to={`/warehouses/${warehouse.id}`}
             className="warehouse-list-item"
           ></Link>
+          <ChevronIcon />
         </div>
         <div>
           <h4>CONTACT NAME</h4>
