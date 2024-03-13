@@ -17,15 +17,15 @@ function WarehouseListItem({ warehouse }) {
         </div>
         <div>
           <h4>CONTACT NAME</h4>
-          <p3>{contactName}</p3>
+          <p>{contactName}</p>
         </div>
         <div>
           <h4>ADDRESS</h4>
-          <p3>{address}{city}{country}</p3>
+          <p>{`${address}, ${city}, ${country}`}</p>
         </div>
         <div>
           <h4>CONTACT INFORMATION</h4>
-          <p3>{contactPhone}{contactEmail}</p3>
+          <p>{contactPhone}{contactEmail}</p>
         </div>
         <DeleteIcon />
         <EditIcon />

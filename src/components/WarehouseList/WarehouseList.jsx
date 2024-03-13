@@ -1,8 +1,10 @@
 import "./WarehouseList.scss";
+import WarehouseListItem from "../WarehouseListItem/WarehouseListItem"
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-24px.svg";
 import { ReactComponent as SortIcon } from "../../assets/icons/sort-24px.svg";
 
-function WarehouseList() {
+
+function WarehouseList({warehouses}) {
   return (
     <section className="warehouse-list-body">
       <section className="warehouse-list-header">
@@ -44,7 +46,6 @@ function WarehouseList() {
           </div>
         </section>
         <ul className="warehouse-list">
-          <h3 className="">NEXT VIDEOS</h3>
           {warehouses.map((warehouse) => (
             <WarehouseListItem key={warehouse.id} warehouse={warehouse} />
           ))}
