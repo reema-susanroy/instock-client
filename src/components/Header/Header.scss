@@ -33,34 +33,39 @@
 
         &__items {
             text-decoration: none;
+            list-style: none;
             color: $white;
             @include content-padding;
 
             @include tablet {
-                padding: 0 0 0 2.5rem;
-            }
-                     
-
-            &:hover {
-                text-decoration: underline;
+                padding: 0 0 0 1.5rem;
             }
 
-            &::after {
-                content: "";
-                width: 130%;
-                height: 120%;
-                background-color: $black;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                z-index: -1;
-                transform: translate(-50%, -50%) scaleY(0);
-            }
-
-            &:active::after {
-                transform: translate(-50%, -50%) scaleY(1);
-            }
         }
     }
 
+}
+
+button {
+    color: $white;
+    background-color: $graphite;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &.active {
+        background-color: $black;
+        border: none;
+        padding: 0.5rem 2.5rem;
+        border-radius: 1rem;
+
+        @include tablet {
+            padding: 0.5rem 1rem;
+        }
+    }
+    
 }
