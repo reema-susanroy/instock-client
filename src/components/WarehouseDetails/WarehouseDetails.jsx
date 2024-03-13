@@ -21,8 +21,8 @@ function WarehouseDetails({ currentData }) {
             <div className='warehouse_details__content-cont'>
                 <div className='warehouse_details__content--address'>
                     <h3 className='warehouse_details__content--label'>WAREHOUSE ADDRESS:</h3>
-                    <div className='warehouse_details__content--address-data'> <p>{currentData.address} ,</p>
-                        <p> {currentData.city} , {currentData.country}</p> </div>
+                    <div className='warehouse_details__content--address-data'> <p> {`${currentData.address}, `}</p>
+                        <p> {`${currentData.city}, ${currentData.country} `}</p> </div>
                 </div>
                 <div className='warehouse_details__content--contact'>
 

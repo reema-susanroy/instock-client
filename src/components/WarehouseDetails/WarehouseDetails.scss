@@ -1,7 +1,7 @@
 @use '../../styles/partials/global' as*;
 
 .warehouse_details{
-    @include padding-mobile;
+    // @include padding-mobile;
 
     &__header-cont{
         display: flex;

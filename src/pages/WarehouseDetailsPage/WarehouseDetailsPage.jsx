@@ -18,7 +18,7 @@ function WarehouseDetailsPage() {
 
         fetchWarehouseDetails(warehouseId);
 
-    }, []);
+    }, [warehouseId]);
 
     return (
         <main className='page__background'>
