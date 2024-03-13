@@ -1,0 +1,5 @@
+@import "../../styles/partials/global";
+.warehouse-list-body {
+    background-color: $white;
+    @include margin-mobile;
+}
