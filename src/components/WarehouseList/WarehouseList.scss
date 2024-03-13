@@ -1,5 +1,50 @@
 @import "../../styles/partials/global";
 .warehouse-list-body {
-    background-color: $white;
-    @include margin-mobile;
+  background-color: $white;
+  @include margin-mobile;
+  border-radius: 4px;
+}
+
+.warehouse-list-title {
+  font-weight: 600;
+}
+
+.warehouse-list-header {
+  border-bottom: 1px solid $cloud;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  &__search-bar-container {
+    position: relative;
+    margin-top: 1rem;
+    
+  }
+
+  &__search-bar {
+    
+    appearance: none;
+    border: none;
+    outline: none;
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    padding: 0.6rem;
+    position: relative;
+    width: 100%;
+  }
+  &__search-bar-icon {
+    position: absolute;
+      left: 12.5rem;
+      top: 0.3rem;
+      margin: 0 auto
+  }
+  &__add-button {
+    margin-top: 1rem;
+    background-color: $indigo;
+    height: 2.25rem;
+  }
+}
+
+.warehouse-list-titles__desktop {
+    display: none;
 }

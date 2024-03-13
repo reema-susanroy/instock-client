@@ -8,7 +8,7 @@ function WarehouseList({warehouses}) {
   return (
     <section className="warehouse-list-body">
       <section className="warehouse-list-header">
-        <h1>Warehouses</h1>
+        <h1 className="warehouse-list-title">Warehouses</h1>
         <div className="warehouse-list-header__search-bar-container">
           <input
             className="warehouse-list-header__search-bar"

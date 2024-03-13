@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
+import './WarehousePage.scss';
 
 function WarehousePage() {
-  const [ warehouses, setWarehouses ] = useState([]);
-  const [ isLoading, setIsLoading ] = useState(true);
-  const [ error, setError ] = useState(null);
+  const [warehouses, setWarehouses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getWarehouses = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/warehouses");
+        const response = await axios.get(
+          "http://localhost:5000/api/warehouses"
+        );
         setWarehouses(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -31,8 +34,9 @@ function WarehousePage() {
   }
 
   return (
-  
-  <WarehouseList warehouses={warehouses} />
+    <div className="warehouse-list-container">
+      <WarehouseList warehouses={warehouses} />
+    </div>
   );
 }
 
