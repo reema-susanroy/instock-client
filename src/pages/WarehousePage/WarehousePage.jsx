@@ -9,19 +9,6 @@ function WarehousePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // const getWarehouses = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       "http://localhost:3000/api/warehouses"
-    //     );
-    //     setWarehouses(response.data);
-    //     setIsLoading(false);
-    //   } catch (error) {
-    //     setError(error.message);
-    //     setIsLoading(false);
-    //   }
-    // };
-
     getWarehouses();
   }, []);
 

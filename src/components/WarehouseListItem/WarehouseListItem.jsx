@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 import { useState } from "react";
-// import DeleteWarehouse from '../../components/DeleteWarehouse/DeleteWarehouse'
 
 function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
   const {
@@ -18,7 +17,6 @@ function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
   } = warehouse;
 
   const [delWarehouse, setDelWarehouse] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
 
   const deleteWarehouse = () => {
     setDelWarehouse(true);
@@ -26,12 +24,9 @@ function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
 
   const updateWarehouse = () => {
     handleDeleteWarehouse(warehouse.id);
-    // setShowPopup(false);
   }
   const cancelDelete = () => {
-    setShowPopup(false);
     setDelWarehouse(false);
-    // setWarehouseData(warehouse)
 }
 
   return (
@@ -76,13 +71,11 @@ function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
         </section>
       </li>
       {delWarehouse &&
-        // <DeleteWarehouse warehouseId={warehouse.id} warehouse={warehouse} warehouseName={warehouse.warehouse_name} handleDeleteWarehouse={handleDeleteWarehouse} />
         <div className="modal-overlay">
           <div className="modal">
             <section className='modal__title-cont'>
               <h2 className='modal__title--title'>Delete {warehouseName} Warehouse ?</h2>
               <p2 className='modal__title'>Please confirm that you'd like to delete the {warehouseName} from the list of warehouses. You won't be able to undo this action.</p2>
-
             </section>
             <section className='modal__button'>
               <button onClick={cancelDelete} className='modal__button--cancel'>Cancel</button>

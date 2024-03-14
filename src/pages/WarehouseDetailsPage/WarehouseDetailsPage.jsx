@@ -16,7 +16,6 @@ function WarehouseDetailsPage() {
         const fetchWarehouseDetails = async (id) => {
             try {
                 const response = await axios.get(`${base_url}/api/warehouses/${id}`)
-                console.log(response.data);
                 setCurrentData(response.data);
                 setIsLoading(false);
             }
