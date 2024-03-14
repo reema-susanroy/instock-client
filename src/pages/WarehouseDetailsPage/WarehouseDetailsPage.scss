@@ -1,0 +1,14 @@
+@use '../../styles/partials/global' as *;
+
+.page__background{
+    background-color: $lightGrey;
+}
+
+.page__allignment{
+    background-color: $white;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    bottom:2rem;
+    border-radius: 4px; //add padding-bottom: 2rem; for heade-navbar fr thsi to work
+}
