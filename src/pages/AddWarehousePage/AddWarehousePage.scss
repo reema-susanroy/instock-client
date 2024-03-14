@@ -66,8 +66,15 @@
     padding: 0.6rem 1rem;
     width: 100%;
     height: 2.25rem;
+    color: $slate;
     &::placeholder {
       font-family: "Titillium Web";
+    }
+    &.active {
+        @include active-input;
+    }
+    &.error {
+        @include error-input;
     }
   }
   &--bottom {
