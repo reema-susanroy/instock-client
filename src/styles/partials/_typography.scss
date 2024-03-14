@@ -53,6 +53,9 @@ h3 {
 h4 {
   font-size: 0.6875rem;
   line-height: 1rem;
+  font-weight: 400;
+  color: $slate;
+
 
   @include tablet {
     font-size: 0.75rem;
@@ -70,7 +73,7 @@ h4 {
   }
 }
 
-@mixin p2 {
+ p2 {
   font-size: 0.8125rem;
   line-height: 1.25rem;
 
@@ -90,6 +93,11 @@ h4 {
   }
 }
 
-li {
+li, a {
   list-style-type: none;
+  text-decoration: none;
 }
+
+a {
+  color: $indigo;
+  
