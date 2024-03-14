@@ -6,6 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 3rem;
+    flex-wrap: nowrap;
 
     @include tablet {
         padding: 1.5rem;
@@ -16,14 +18,15 @@
     }
 
     &-copyright {
+        font-family: "Titillium Web";
         text-align: center;
         color: $slate;
-        @include p1;
+        @include p3;
         margin-top: 0.25rem;
     }
 
     &-copyright-icon {
-        padding-right: 0.5rem;
+        padding-right: 0.3rem;
         color: $slate;
     }
 }
