@@ -9,21 +9,46 @@ function WarehousePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getWarehouses = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/warehouses"
-        );
-        setWarehouses(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setIsLoading(false);
-      }
-    };
+    // const getWarehouses = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //       "http://localhost:3000/api/warehouses"
+    //     );
+    //     setWarehouses(response.data);
+    //     setIsLoading(false);
+    //   } catch (error) {
+    //     setError(error.message);
+    //     setIsLoading(false);
+    //   }
+    // };
 
     getWarehouses();
   }, []);
+
+  const getWarehouses = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/api/warehouses"
+      );
+      setWarehouses(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+    }
+  };
+
+
+  const handleDeleteWarehouse = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/warehouses/${id}`);
+      getWarehouses();
+    }
+    catch (error) {
+      console.log("Unable to Delete warehouse : " + error);
+    }
+
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -35,7 +60,7 @@ function WarehousePage() {
 
   return (
     <div className="warehouse-list-container">
-      <WarehouseList warehouses={warehouses} />
+      <WarehouseList warehouses={warehouses} handleDeleteWarehouse={handleDeleteWarehouse}/>
     </div>
   );
 }
