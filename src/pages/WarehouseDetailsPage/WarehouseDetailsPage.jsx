@@ -1,52 +1,67 @@
-import './WarehouseDetailsPage.scss'
-import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails'
+import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
+import './WarehouseDetailsPage.scss';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import NotFound from '../NotFound/NotFound';
 
 function WarehouseDetailsPage() {
-    const base_url = 'http://localhost:5000';
+    const server_url= 'http://localhost:5000';
     const { warehouseId } = useParams();
-    const [currentData, setCurrentData] = useState();
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+    console.log("test", warehouseId);
 
+    const [inventoryData, setInventoryData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [currentData, setCurrentData] =useState();
+    
     useEffect(() => {
         const fetchWarehouseDetails = async (id) => {
-            try {
-                const response = await axios.get(`${base_url}/api/warehouses/${id}`)
-                setCurrentData(response.data);
-                setIsLoading(false);
-            }
-            catch (error) {
-                setIsLoading(true);
-                setError(true);
-            }
+            const response = await axios.get(`${server_url}/api/warehouses/${id}`)
+            console.log(response.data);
+            setCurrentData(response.data);
         }
 
         fetchWarehouseDetails(warehouseId);
 
     }, [warehouseId]);
 
+    useEffect(() => {
+        const fetchWarehouseInventory = async () => {
+            try {
+                console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
+                const response = await axios.get(`${server_url}/api/warehouses/${warehouseId}/inventories/`)
+                console.log("inventoryData", response.data);
+                setInventoryData(response.data);
+                setIsLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setIsLoading(false);
+            }
+        }
+        fetchWarehouseInventory(warehouseId);
+    }, [warehouseId]);
+
     if (isLoading) {
         return <div>Loading...</div>;
-      }
+    }
     
-      if (error) {
-        return (<NotFound />);
-      }
-    
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
-    return (
+    console.log("test2", inventoryData)
+
+
+    return(
+        <>
         <main className='page__background'>
-            <div className='page__allignment'>
-                <WarehouseDetails currentData={currentData} />
-
-
-
-            </div>
+        <div className='page__allignment'> 
+        <WarehouseDetails currentData={currentData}/>
+        <InventoryList inventories={inventoryData}/>
+        </div>
         </main>
+        </>
     )
 }
 
