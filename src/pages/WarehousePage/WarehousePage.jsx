@@ -4,6 +4,7 @@ import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import './WarehousePage.scss';
 
 function WarehousePage() {
+  const base_url = 'http://localhost:5000';
   const [warehouses, setWarehouses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,7 +16,7 @@ function WarehousePage() {
   const getWarehouses = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/warehouses"
+        "http://localhost:5000/api/warehouses"
       );
       setWarehouses(response.data);
       setIsLoading(false);
@@ -28,7 +29,7 @@ function WarehousePage() {
 
   const handleDeleteWarehouse = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/warehouses/${id}`);
+      await axios.delete(`${base_url}/api/warehouses/${id}`);
       getWarehouses();
     }
     catch (error) {

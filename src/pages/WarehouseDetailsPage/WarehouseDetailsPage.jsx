@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import NotFound from '../NotFound/NotFound';
 
 function WarehouseDetailsPage() {
-    const base_url = 'http://localhost:3000';
+    const base_url = 'http://localhost:5000';
     const { warehouseId } = useParams();
     const [currentData, setCurrentData] = useState();
     const [isLoading, setIsLoading] = useState(true);

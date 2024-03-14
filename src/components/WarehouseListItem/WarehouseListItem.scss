@@ -116,7 +116,7 @@
         margin-top: 28vh;
     }
     @include desktop{
-        width: 65%;
+        width: 60%;
     }
 
     &__title-cont {
@@ -143,7 +143,7 @@
         @include desktop {
             line-height: 2.5rem;
             padding-top: 2rem;
-            font-size: 25px;        
+            font-size: 1.2rem;        
         }
     }
 
