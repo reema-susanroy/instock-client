@@ -7,12 +7,14 @@ function InventoryList({ inventories }) {
 
     return(
        <main className='inventory-list-wrapper'>
+
+         {/* hardcoded the warehouse name ONLY so I could test it. 
+         We need the code from another code to fill the warehouse's name. */}
             <section className='inventory-list-header'>
                 <h1>Washington</h1>
                 <button className='inventory-list-header__edit-button'>Edit</button>
                 <EditIcon />
             </section>
-
             <section className='inventory-list'>
                 <div className='inventory-list__title'>
                     <h4>INVENTORY ITEM</h4><SortIcon />
