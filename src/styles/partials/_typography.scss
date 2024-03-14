@@ -43,7 +43,6 @@ h2 {
 h3 {
   font-size: 0.8125rem;
   line-height: 1.25rem;
-  font-weight: 400;
 
   @include tablet {
     font-size: 0.875rem;
@@ -56,6 +55,7 @@ h4 {
   line-height: 1rem;
   font-weight: 400;
   color: $slate;
+
 
   @include tablet {
     font-size: 0.75rem;
@@ -73,7 +73,7 @@ h4 {
   }
 }
 
-p2 {
+ p2 {
   font-size: 0.8125rem;
   line-height: 1.25rem;
 
@@ -101,4 +101,3 @@ li, a {
 a {
   color: $indigo;
   
-}
