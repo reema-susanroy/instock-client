@@ -1,0 +1,86 @@
+@use '../../styles/partials/global' as*;
+
+.warehouse_details{
+    // @include padding-mobile;
+
+    &__header-cont{
+        display: flex;
+        border-bottom: 1px solid $cloud;
+        padding: 1rem;
+        justify-content: space-between;
+
+        @include tablet{
+            @include margin-tablet;
+        }
+        @include desktop{
+            padding-top: 2rem;
+            @include margin-desktop;
+        }
+    }
+    &__header{
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+        align-items: center;
+        @include tablet{
+            gap: .5rem;
+        }
+
+        &--edit{
+            // flex: 1;
+            height: 1.5rem;
+            align-self: center;
+        }
+        &--back-arrow{
+            height: 1.5rem;
+            display: flex;
+            align-self: center;
+        }
+    }
+    &__header-edit{
+        display: flex;
+    }
+    &__content--address{
+        padding: 1rem;
+        @include tablet{
+            width: 40%;
+            border-right: 1px solid $slate;
+        }
+    
+    }
+    &__content--label{
+        color: $slate;
+        font-weight: 600;
+       
+    }
+    &__content--address-data{
+        display: flex;
+        flex-direction: row;
+        @include tablet{
+            flex-direction: column;
+        }
+    }
+    &__content--contact{
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        @include tablet{
+            // flex: 1;
+            width: 60%;
+            justify-content: space-around;}
+            @include desktop{
+                width: 55%;
+            }
+    }
+}
+
+.warehouse_details__content-cont{
+    @include tablet{
+        display: flex;
+        padding-top: 1.5rem;
+        @include margin-tablet;
+    }
+    @include desktop{
+        @include margin-desktop;
+    }
+}
