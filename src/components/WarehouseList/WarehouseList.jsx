@@ -3,7 +3,7 @@ import WarehouseListItem from "../WarehouseListItem/WarehouseListItem";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-24px.svg";
 import { ReactComponent as SortIcon } from "../../assets/icons/sort-24px.svg";
 
-function WarehouseList({ warehouses }) {
+function WarehouseList({ warehouses , handleDeleteWarehouse}) {
   return (
     <section className="warehouse-list-body">
       <section className="warehouse-list-header">
@@ -46,7 +46,7 @@ function WarehouseList({ warehouses }) {
         </section>
         <ul className="warehouse-list">
           {warehouses.map((warehouse) => (
-            <WarehouseListItem key={warehouse.id} warehouse={warehouse} />
+            <WarehouseListItem key={warehouse.id} warehouse={warehouse} handleDeleteWarehouse={handleDeleteWarehouse}/>
           ))}
         </ul>
       </section>

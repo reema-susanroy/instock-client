@@ -1,9 +1,9 @@
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
+import InventoryList from '../../components/WarehouseInventoryList/WarehouseInventoryList'
 import './WarehouseDetailsPage.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import InventoryList from '../../components/WarehouseInventoryList/WarehouseInventoryList';
 
 function WarehouseDetailsPage() {
     const server_url= 'http://localhost:5000';
