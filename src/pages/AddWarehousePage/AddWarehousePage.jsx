@@ -2,8 +2,8 @@ import './AddWarehousePage.scss';
 
 function AddWarehousePage(){
     return(
-        <>
-        </>
+        <></>
+
     )
 }
 

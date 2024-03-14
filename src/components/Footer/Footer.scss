@@ -8,6 +8,7 @@
     align-items: center;
     height: 3rem;
     flex-wrap: nowrap;
+    background-color: $lightGrey;
 
     @include tablet {
         padding: 1.5rem;
