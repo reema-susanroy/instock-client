@@ -1,4 +1,5 @@
 import "./AddWarehousePage.scss";
+import FormErrorMessage from "../../components/FormErrorMessage/FormErrorMessage";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow_back-24px.svg";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -136,6 +137,7 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("warehouse-name")}
               onBlur={handleBlur}
             ></input>
+            <FormErrorMessage />
             <label
               htmlFor="street-address"
               className="new-warehouse-details__label"
