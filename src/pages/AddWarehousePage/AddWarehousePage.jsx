@@ -1,7 +1,89 @@
 import "./AddWarehousePage.scss";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow_back-24px.svg";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 function AddWarehousePage() {
+  const [warehouses, setWarehouses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const formRef = useRef();
+  const navigate = useNavigate();
+
+  // Set page title
+  useEffect(() => {
+    document.title = "New Warehouse";
+  }, []);
+
+  // Fetch warehouses list from database
+  useEffect(() => {
+    const getWarehouses = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/warehouses"
+        );
+        setWarehouses(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
+    };
+
+    getWarehouses();
+  }, []);
+
+  // Get data from user through form
+  const addWarehouse = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(formRef.current);
+    const warehousesData = {
+      warehousName: formData.get("warehouse-name"),
+      streetAddress: formData.get("street-address"),
+      city: formData.get("city"),
+      country: formData.get("country"),
+      contactName: formData.get("contact-name"),
+      position: formData.get("position"),
+      phoneNumber: formData.get("phone-number"),
+      email: formData.get("email"),
+    };
+
+    try {
+      const warehouse = await axios.post("http://localhost:5000/api/warehouses", warehousesData);
+      setWarehouses([...warehouses, warehouse.data]);
+      //   setSubmitSuccess(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    const formData = new FormData(formRef.current);
+    try {
+      const warehouse = await addWarehouse(formData);
+      // Handle successful submission ?? do we need something upon submit
+      navigate("/warehouses");
+      setIsLoading(false)
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+
+  const cancelUpload = (event) => {
+    event.preventDefault();
+    navigate("/warehouses");
+    // setSubmitSuccess(false);
+  };
+
+//  
+
   return (
     <section className="new-warehouse-page">
       <section className="new-warehouse-body">
@@ -9,7 +91,11 @@ function AddWarehousePage() {
           <ArrowIcon />
           <h1 className="new-warehouse-header__title">Add New Warehouse</h1>
         </section>
-        <form className="new-warehouse-form">
+        <form
+          className="new-warehouse-form"
+          onSubmit={handleSubmit}
+          ref={formRef}
+        >
           <section className="new-warehouse-details">
             <h2 className="new-warehouse-details__title">Warehouse Details</h2>
             <label
@@ -110,8 +196,8 @@ function AddWarehousePage() {
           </section>
         </form>
         <section className="button-section">
-          <button className="button-section__cancel">Cancel</button>
-          <button className="button-section__add">+ Add Warehouse</button>
+          <button className="button-section__cancel" onClick={cancelUpload}>Cancel</button>
+          <button className="button-section__add" type="submit">+ Add Warehouse</button>
         </section>
       </section>
     </section>
