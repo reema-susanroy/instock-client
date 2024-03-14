@@ -4,26 +4,39 @@ import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import './WarehousePage.scss';
 
 function WarehousePage() {
+  const base_url = 'http://localhost:5000';
   const [warehouses, setWarehouses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getWarehouses = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/warehouses"
-        );
-        setWarehouses(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setIsLoading(false);
-      }
-    };
-
     getWarehouses();
   }, []);
+
+  const getWarehouses = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/warehouses"
+      );
+      setWarehouses(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+    }
+  };
+
+
+  const handleDeleteWarehouse = async (id) => {
+    try {
+      await axios.delete(`${base_url}/api/warehouses/${id}`);
+      getWarehouses();
+    }
+    catch (error) {
+      console.log("Unable to Delete warehouse : " + error);
+    }
+
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -35,7 +48,7 @@ function WarehousePage() {
 
   return (
     <div className="warehouse-list-container">
-      <WarehouseList warehouses={warehouses} />
+      <WarehouseList warehouses={warehouses} handleDeleteWarehouse={handleDeleteWarehouse}/>
     </div>
   );
 }
