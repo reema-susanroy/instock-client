@@ -2,6 +2,7 @@ import "./WarehouseList.scss";
 import WarehouseListItem from "../WarehouseListItem/WarehouseListItem";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-24px.svg";
 import { ReactComponent as SortIcon } from "../../assets/icons/sort-24px.svg";
+import { Link } from "react-router-dom";
 
 function WarehouseList({ warehouses , handleDeleteWarehouse}) {
   return (
@@ -18,9 +19,11 @@ function WarehouseList({ warehouses , handleDeleteWarehouse}) {
           ></input>
           <SearchIcon className="warehouse-list-header__search-bar-icon" />
         </div>
-        <button className="warehouse-list-header__add-button">
-          + Add New Warehouse
-        </button>
+        <Link to={"/warehouses/add"}>
+          <button className="warehouse-list-header__add-button">
+            + Add New Warehouse
+          </button>
+        </Link>
       </section>
       <section className="warehouse-list">
         <section className="warehouse-list-titles__desktop">
