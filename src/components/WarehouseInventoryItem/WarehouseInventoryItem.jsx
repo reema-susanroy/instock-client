@@ -24,28 +24,36 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
     return (
         <>
         <li>
-            <section className="inventory-item__wrapper">
-                <div className="inventory-item__item">
-                    <h4 className="inventory-item__title">INVENTORY ITEM</h4>
-                    <Link to={`/inventory/${item_name}`} className="inventory-item-name">
-                    {item_name}
-                    </Link>
-                    <ChevronIcon />
+            <section className="warehouse-list-item">
+                <div className="warehouse-item warehouse-item__contact--link">
+                    <h4 className="warehouse-item-title__mobile">INVENTORY ITEM</h4>
+                    <div className="warehouse-item__link">
+                        <Link to={`/inventory/${item_name}`}>
+                        <h3>{item_name}</h3>
+                        </Link>
+                        <ChevronIcon />
+                    </div>  
                 </div>
-                <div>
-                    <h4 className="inventory-item__title">CATEGORY</h4>
-                    <p>{category}</p>
+                <div className="warehouse-item warehouse-item__desktop">
+                    <h4 className="warehouse-item-title__mobile">CATEGORY</h4>
+                    <p2>{category}</p2>
                 </div>
-                <div>
-                    <h4 className="inventory-item__title">STATUS</h4>
-                    <p>{status}</p>
+                <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
+                    <h4 className="warehouse-item-title__mobile">STATUS</h4>
+                    <p2 className={ status === "In Stock" ? "inStock" : "outStock"}>{status}</p2>
                 </div>
-                <div>
-                    <h4 className="inventory-item__title">QUANTITY</h4>
-                    <p>{quantity}</p>
+                <div className="warehouse-item warehouse-item__mobile">
+                    <h4 className="warehouse-item-title__mobile">CATEGORY</h4>
+                    <p2>{category}</p2>
                 </div>
-                <div>
-                    <h4 className="inventory-item__title">ACTIONS</h4>
+                <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
+                    <h4 className="warehouse-item-title__mobile">QUANTITY</h4>
+                    <p2>{quantity}</p2>
+                </div>
+               
+                <div className="warehouse-item__buttons">
+                    <DeleteIcon className="warehouse-item__button"/>
+                    <EditIcon className="warehouse-item__button"/>
                 </div>
                 <DeleteIcon />
                 <EditIcon onClick={handleEditInventory}/>

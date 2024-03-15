@@ -1,0 +1,202 @@
+@import "../../styles/partials/global";
+
+.edit-warehouse {
+    font-family: "Titillium Web";
+    margin: 0 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+    background-color: $white;
+    position: absolute;
+    top: 8.125rem; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    @include tablet {
+        height: 40rem;
+        top: 6rem;
+        margin-left: 2.25rem;
+        margin-right: 2.25rem;
+    }
+
+    @include desktop {
+        margin-left: 8.125rem;
+        margin-right: 8.125rem;
+    }
+
+    &__title {
+        display: flex;
+        padding: 2rem 0;
+        border-bottom: 1px solid $cloud;
+
+        &-icon {
+            padding: 0.5rem 0.5rem 0 1.5rem;
+        }
+
+        &-display {
+            font-size: h1;
+        }
+
+    }
+
+    &__details {
+        font-size: h2;
+        @include tablet {
+            padding-top: 1.5rem;
+        }
+    }
+
+    &__form {
+
+        &-input-wrapper {
+            @include tablet {
+                display: flex;
+                padding-bottom: 1.5rem;
+            }
+        }
+        
+        &-group-one {
+            display: flex;
+            flex-direction: column;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            @include tablet {
+                flex-grow: 1;
+                border-right: 1px solid $cloud;
+            }
+            
+            &-subtitle {
+                padding-top: 1.5rem;
+                padding-bottom: 2rem;
+            }
+
+            &-label {
+                @include title-padding;
+                font-size: h3;
+                font-weight: 600;
+            }
+
+            &-input {
+                margin-bottom: 1rem;
+                border: 1px solid $cloud;
+                border-radius: 1.25rem;
+                font-size: p2;
+                font-weight: 400;
+                height: 2.25rem;
+                padding-left: 1rem;
+                &::placeholder {
+                    color: $black;
+                }
+            }
+        }
+
+        &-group-two {
+            display: flex;
+            flex-direction: column;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            @include tablet {
+                flex-grow: 1;
+            }
+
+            &-subtitle {
+                padding-top: 1.5rem;
+                padding-bottom: 2rem;
+            }
+
+            &-label {
+                @include title-padding;
+                font-size: h3;
+                font-weight: 600;
+            }
+
+            &-input {
+                margin-bottom: 1rem;
+                border: 1px solid $cloud;
+                border-radius: 1.25rem;
+                font-size: p2;
+                font-weight: 400;
+                height: 2.25rem;
+                padding-left: 1rem;
+                &::placeholder {
+                    color: $black;
+                }
+            }
+        }
+    }
+
+    &__button {
+        background-color: $lightGrey;
+        text-align: center;
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0 0 3px 3px;
+        
+
+        @include tablet {
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 0.7rem;
+            height: 5rem;
+            
+        }
+
+        &-cancel {
+            background-color: $white;
+            border: 1px solid $cloud;
+            margin-left: 1.5rem;
+            color: $slate;
+            @include tablet {
+                margin-right: 1.5rem;
+                height: 2.375rem;
+                width: 4.5rem;
+            }
+
+            &:hover {
+                background-color: $white;
+                border: 1px solid $indigo;
+                margin-left: 1.5rem;
+                color: $indigo;
+                text-decoration: none;
+            }
+        }
+
+        &-save {
+            background-color: $indigo;
+            color: $white;
+            margin-right: 1.5rem;
+
+            @include tablet {
+                height: 2.375rem;
+                width: 4.5rem;
+            }
+
+            &:hover {
+                background-color: $indigo;
+                color: $white;
+                margin-right: 1.5rem;
+                text-decoration: none;
+            }
+        }
+
+       
+    }
+
+}
+
+body {
+    background-color: $lightGrey;
+    font-family: "Titillium Web";
+}
+
+.error {
+    display: flex;
+    &-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+    &-text {
+        font-size: 0.625rem;
+        color: #C94515;
+    }
+}

@@ -66,7 +66,9 @@ function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
 
           <div className="warehouse-item__buttons">
             <DeleteIcon className="warehouse-item__button" onClick={deleteWarehouse} />
-            <EditIcon className="warehouse-item__button" />
+            <Link to={`/warehouses/${warehouse.id}/edit`}>
+              <EditIcon className="warehouse-item__button" />
+            </Link>
           </div>
         </section>
       </li>
