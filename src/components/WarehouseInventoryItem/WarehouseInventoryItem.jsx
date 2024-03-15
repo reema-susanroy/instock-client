@@ -1,18 +1,29 @@
 import "./WarehouseInventoryItem.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ChevronIcon } from "../../assets/icons/chevron_right-24px.svg";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
+import { useState } from "react";
+import EditInventory from "../EditInventory/EditInventory";
 
-function InventoryItem({ inventory }) {
+function InventoryItem({ inventory}) {
     const {
         item_name,
         category,
         status,
         quantity
     } = inventory;
+    console.log(inventory);
+    const navigate = useNavigate();
+    // const [editInventory, setEditInventory] =useState(false);
+    // const [inventoryItem, setInventoryItem] = useState(inventory);
 
+    const handleEditInventory =() =>{
+        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory } });
+
+    }
     return (
+        <>
         <li>
             <section className="inventory-item__wrapper">
                 <div className="inventory-item__item">
@@ -38,10 +49,13 @@ function InventoryItem({ inventory }) {
                     <h4 className="inventory-item__title">ACTIONS</h4>
                 </div>
                 <DeleteIcon />
-                <EditIcon />
+                <EditIcon onClick={handleEditInventory}/>
             </section>
         </li>
-
+        {/* {editInventory &&
+            <EditInventory inventory={inventory}/>
+        } */}
+    </>
     )
 }
 
