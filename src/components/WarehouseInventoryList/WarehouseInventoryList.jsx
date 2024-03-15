@@ -6,31 +6,34 @@ import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 function InventoryList({ inventories }) {
 
     return(
-       <main className='inventory-list-wrapper'>
-            <section className='inventory-list'>
-                <div className='inventory-list__title'>
-                    <h4>INVENTORY ITEM</h4><SortIcon />
+       <section className='warehouse-list'>
+            <section className="warehouse-list-titles__desktop">
+                <div className='warehouse-list__title'>
+                    <h4>INVENTORY ITEM</h4>
+                    <SortIcon className="warehouse-list__sort-icon" />
                 </div>
-                <div className='inventory-list__title'>
-                    <h4>CATEGORY</h4><SortIcon />
+                <div className='warehouse-list__title'>
+                    <h4>CATEGORY</h4>
+                    <SortIcon className="warehouse-list__sort-icon" />
                 </div>
-                <div className='inventory-list__title'>
-                    <h4>STATUS</h4><SortIcon />
+                <div className='warehouse-list__title'>
+                    <h4>STATUS</h4>
+                    <SortIcon className="warehouse-list__sort-icon" />
                 </div>
-                <div className='inventory-list__title'>
-                    <h4>QUANTITY</h4><SortIcon />
+                <div className='warehouse-list__title warehouse-list__title-contact-information'>
+                    <h4>QUANTITY</h4>
+                    <SortIcon className="warehouse-list__sort-icon" />
                 </div>
-                <div className='inventory-list__title'>
+                <div className="warehouse-list__title warehouse-list__title-actions">
                     <h4>ACTIONS</h4>
                 </div>
             </section>
-             <ul className='inventory-list'>
-                {inventories.map((inventory) =>(
-                    <InventoryItem key={inventory.id} inventory={inventory} />
-                ))}
-             </ul>
-
-       </main>
+                <ul className='warehouse-list'>
+                    {inventories.map((inventory) =>(
+                        <InventoryItem key={inventory.id} inventory={inventory} />
+                    ))}
+                </ul>
+       </section>
     );
 }
 
