@@ -27,13 +27,19 @@
         margin-right: 1.5rem;
         width: 24%;
     }
+    &__content {
+        @include p2;
+    }
     &__contact {
         margin-left: 1.5rem;
         @include tablet {
         margin: 0;
         }
         &--wide {
-            width: 27%;
+            @include tablet {
+               width: 27%; 
+            }
+            
         }
         // &--link {
             
@@ -72,6 +78,7 @@
 }
 
 .warehouse-item-title__mobile {
+    margin-bottom: 0.2rem;
     @include tablet {
         display: none;
     }
