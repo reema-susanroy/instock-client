@@ -15,7 +15,9 @@ function WarehouseDetails({ currentData }) {
                     <h1>{currentData.warehouse_name}</h1>
                 </div>
                 <div className='warehouse_details__header-edit'>
-                    <img className='warehouse_details__header--edit' src={edit} alt="edit" />
+                    <Link to={`/warehouses/${currentData.id}/edit`}>
+                        <img className='warehouse_details__header--edit' src={edit} alt="edit" />
+                    </Link>
                 </div>
             </div>
             <div className='warehouse_details__content-cont'>

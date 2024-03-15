@@ -1,5 +1,5 @@
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
-import InventoryList from '../../components/WarehouseInventoryList/WarehouseInventoryList'
+import InventoryList from '../../components/WarehouseInventoryList/WarehouseInventoryList';
 import './WarehouseDetailsPage.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -14,7 +14,9 @@ function WarehouseDetailsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentData, setCurrentData] =useState();
-    
+
+    console.log(currentData);
+
     useEffect(() => {
         const fetchWarehouseDetails = async (id) => {
             const response = await axios.get(`${server_url}/api/warehouses/${id}`)
