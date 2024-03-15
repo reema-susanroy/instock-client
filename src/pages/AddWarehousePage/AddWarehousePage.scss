@@ -4,9 +4,13 @@
     background-color: $lightGrey;
     display: flex;
     justify-content: center;
+    margin-top: 8rem;
 }
 .new-warehouse-body {
   background-color: $white;
+  z-index: 2;
+  height: 57.625rem;
+  
   @include margin-mobile;
   border-radius: 4px;
   box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
@@ -126,5 +130,8 @@
 }
 
 .form-inputs {
+  @include tablet {
     display: flex;
+  }
+    
 }
