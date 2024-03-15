@@ -53,8 +53,8 @@ function WarehouseDetailsPage() {
 
     return(
         <>
-        <main className='page__background'>
-        <div className='page__allignment'> 
+        <main className=''>
+        <div className='edit-warehouse'> 
         <WarehouseDetails currentData={currentData}/>
         <InventoryList inventories={inventoryData} warehouseName={currentData.warehouse_name} warehouseId={currentData.id}/>
         </div>

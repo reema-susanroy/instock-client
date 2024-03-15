@@ -27,9 +27,19 @@
         }
 
         &--edit{
-            // flex: 1;
-            height: 1.5rem;
-            align-self: center;
+            position: absolute;
+            left: 4px;
+            bottom: 5px;            
+
+            &__span{
+                display: none;
+                @include tablet{
+                    display: flex;
+                    z-index: 1;
+                    color: white;
+
+                }
+            }
         }
         &--back-arrow{
             height: 1.5rem;
@@ -39,6 +49,17 @@
     }
     &__header-edit{
         display: flex;
+        flex-direction: column;
+    }
+    &__header-edit-cont{
+        height: 2rem;
+        width: 2rem;
+        background-color: $indigo;
+        border-radius: 50%;
+        position: relative;
+        @include tablet{
+            width: 5rem;
+        }
     }
     &__content--address{
         padding: 1rem;
@@ -50,7 +71,7 @@
     }
     &__content--label{
         color: $slate;
-        font-weight: 600;
+        font-size: .8rem;
        
     }
     &__content--address-data{
@@ -78,9 +99,14 @@
     @include tablet{
         display: flex;
         padding-top: 1.5rem;
-        @include margin-tablet;
+        // @include margin-tablet;
+        padding: 1rem 1rem;
     }
-    @include desktop{
-        @include margin-desktop;
-    }
+    // @include desktop{
+    //     @include margin-desktop;
+    // }
+}
+
+.set-height{
+    height: fit-content;
 }

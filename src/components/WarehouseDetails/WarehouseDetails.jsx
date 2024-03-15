@@ -1,7 +1,7 @@
 import './WarehouseDetails.scss'
 
 import backIcon from '../../assets/icons/arrow_back-24px.svg'
-import edit from '../../assets/icons/edit-24px.svg'
+import edit from '../../assets/icons/edit-white-24px.svg'
 import { Link } from 'react-router-dom'
 
 function WarehouseDetails({ currentData }) {
@@ -15,25 +15,25 @@ function WarehouseDetails({ currentData }) {
                     </Link>
                     <h1>{currentData.warehouse_name}</h1>
                 </div>
-                <div className='warehouse_details__header-edit'>
-                    <Link to={`/warehouses/${currentData.id}/edit`}>
-                        <img className='warehouse_details__header--edit' src={edit} alt="edit" />
+                <div className='warehouse_details__header-edit set-height'>
+                    <Link to={`/warehouses/${currentData.id}/edit`} className='warehouse_details__header-edit-cont'>
+                            <img className='warehouse_details__header--edit' src={edit} alt="edit" /> <span className='warehouse_details__header--edit__span'>Edit</span>
                     </Link>
                 </div>
             </div>
             <div className='warehouse_details__content-cont'>
                 <div className='warehouse_details__content--address'>
-                    <h3 className='warehouse_details__content--label'>WAREHOUSE ADDRESS:</h3>
+                    <p2 className='warehouse_details__content--label'>WAREHOUSE ADDRESS:</p2>
                     <div className='warehouse_details__content--address-data'> <p> {`${currentData.address}, `}</p>
                         <p> {`${currentData.city}, ${currentData.country} `}</p> </div>
                 </div>
                 <div className='warehouse_details__content--contact'>
 
-                    <div><h3 className='warehouse_details__content--label' >CONTACT NAME:</h3>
+                    <div><p2 className='warehouse_details__content--label' >CONTACT NAME:</p2>
                         <p>{currentData.contact_name}</p>
                         <p>{currentData.contact_position}</p>
                     </div>
-                    <div><h3 className='warehouse_details__content--label' >CONTACT INFORMATION:</h3>
+                    <div><p2 className='warehouse_details__content--label' >CONTACT INFORMATION:</p2>
                         <p>{currentData.contact_phone}</p>
                         <p>{currentData.contact_email}</p>
                     </div>
