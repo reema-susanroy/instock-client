@@ -5,10 +5,10 @@ import { useLocation } from "react-router-dom";
 
 function EditInventoryPage() {
     const location = useLocation();
-    const { inventory, warehouseName } = location.state;
+    const { inventory, warehouseName,warehouseId } = location.state;
     return (
         <>
-            <EditInventory inventory={inventory}  warehouseName={warehouseName}/>
+            <EditInventory inventory={inventory}  warehouseName={warehouseName} warehouseId={warehouseId}/>
         </>
     )
 }

@@ -6,25 +6,26 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './EditInventory.scss'
 
-function EditInventory({ inventory, warehouseName }) {
-    const navigate=useNavigate();
+function EditInventory({ inventory, warehouseName, warehouseId }) {
+    const navigate = useNavigate();
     const [itemName, setItemName] = useState(inventory.item_name);
     const [description, setDescription] = useState(inventory.description);
     // const [itemName, setItemName] = useState(inventory.item_name);
+    const [quantity, setQuantity] = useState(inventory.quantity);
 
 
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [warehouses, setWarehouses] = useState([]);
-    const [selectedWarehouse, setSelectedWarehouse] = useState('');
+    const [selectedWarehouse, setSelectedWarehouse] = useState(warehouseName);
 
-    const [quantity, setQuantity] = useState([]);
-    const [selectedOption, setSelectedOption] = useState('');
-    const [updateSuccess, setUpdateSuccess] = useState(false);
-
-
-
+    // const [quantity, setQuantity] = useState([]);
     // const [stock, setStock] = useState(inventory.item_name);
+    const [selectedOption, setSelectedOption] = useState(inventory.status);
+    const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [errorMesage, setErrorMessage] = useState(false);
+
+
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -49,8 +50,8 @@ function EditInventory({ inventory, warehouseName }) {
                 setCategories(responseCategories.data);
                 const responseWarehouses = await axios.get('http://localhost:5000/api/inventories/inventories/warehouses');
                 setWarehouses(responseWarehouses.data);
-                const responseQuantity = await axios.get(`http://localhost:5000/api/inventories/${inventory.id}/quantity`)
-                setQuantity(responseQuantity.data[0].quantity);
+                // const responseQuantity = await axios.get(`http://localhost:5000/api/inventories/${inventory.id}/quantity`)
+                // setQuantity(responseQuantity.data[0].quantity);
             } catch (error) {
                 console.error('Error fetching inventory details from server:', error);
             }
@@ -58,25 +59,41 @@ function EditInventory({ inventory, warehouseName }) {
         fetchCategories();
     }, []);
 
-    const updateWarehouse = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.put(`http://localhost:5000/api/inventories/${inventory.id}`, {
-                warehouse_id: inventory.id,
-                item_name: inventory.item_name,
-                description: inventory.description,
-                category: inventory.category,
-                status: selectedOption,
-                quantity: quantity
-            });
-            setUpdateSuccess(true);
-        }
-        catch (message) {
-            console.log('Unable to do Update inventory item : ' + message);
+
+    const validateInput = () => {
+        if (!warehouseId, !itemName, !description, !selectedCategory, !selectedOption, !quantity) {
+            return false;
         }
     }
 
-    const cancelEdit =() =>{
+
+    const updateWarehouse = async (e) => {
+        e.preventDefault();
+        const Validation = validateInput();
+
+        if (Validation) {
+            try {
+                await axios.put(`http://localhost:5000/api/inventories/${inventory.id}`, {
+                    warehouse_id: warehouseId,
+                    item_name: itemName,
+                    description: description,
+                    category: selectedCategory,
+                    status: selectedOption,
+                    quantity: quantity
+                });
+                setUpdateSuccess(true);
+            }
+            catch (message) {
+                console.log('Unable to do Update inventory item : ' + message);
+            }
+        }
+        else {
+            setErrorMessage(true);
+        }
+
+    }
+
+    const cancelEdit = () => {
         navigate(`/inventories/${inventory.id}`)
     }
     return (
@@ -90,7 +107,7 @@ function EditInventory({ inventory, warehouseName }) {
                 </div>
 
                 {/* <form onSubmit={handleSubmit}> */}
-                    <form>
+                <form>
                     <div className='editInventory__itemDetails'>
                         <h2>Item Details</h2>
                         <section className='editInventory__itemDetails__items'>
@@ -177,6 +194,9 @@ function EditInventory({ inventory, warehouseName }) {
                         <button onClick={updateWarehouse} className='modal__button--delete editInventory-save'>Save</button>
                         {/* onClick={() => updateWarehouse(inventory.id)} */}
                     </section>
+                    {errorMesage ? <p className='form_validation'>
+                        All fields are required
+                    </p> : " "}
 
                 </form>
             </div>

@@ -3,7 +3,7 @@ import './WarehouseInventoryList.scss';
 import { ReactComponent as SortIcon } from '../../assets/icons/sort-24px.svg';
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 
-function InventoryList({ inventories, warehouseName }) {
+function InventoryList({ inventories, warehouseName , warehouseId}) {
 
     return(
        <main className='inventory-list-wrapper'>
@@ -26,7 +26,7 @@ function InventoryList({ inventories, warehouseName }) {
             </section>
              <ul className='inventory-list'>
                 {inventories.map((inventory) =>(
-                    <InventoryItem key={inventory.id} inventory={inventory} warehouseName={warehouseName} />
+                    <InventoryItem key={inventory.id} inventory={inventory} warehouseName={warehouseName} warehouseId={warehouseId}/>
                 ))}
              </ul>
 
