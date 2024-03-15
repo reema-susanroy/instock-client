@@ -5,6 +5,23 @@
     margin: 0 1.5rem;
     box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
     background-color: $white;
+    position: absolute;
+    top: 8.125rem; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    @include tablet {
+        height: 40rem;
+        top: 6rem;
+        margin-left: 2.25rem;
+        margin-right: 2.25rem;
+    }
+
+    @include desktop {
+        margin-left: 8.125rem;
+        margin-right: 8.125rem;
+    }
 
     &__title {
         display: flex;
@@ -12,8 +29,7 @@
         border-bottom: 1px solid $cloud;
 
         &-icon {
-            padding-right: 0.5rem;
-            padding-left: 1.5rem;
+            padding: 0.5rem 0.5rem 0 1.5rem;
         }
 
         &-display {
@@ -24,16 +40,30 @@
 
     &__details {
         font-size: h2;
+        @include tablet {
+            padding-top: 1.5rem;
+        }
     }
 
     &__form {
+
+        &-input-wrapper {
+            @include tablet {
+                display: flex;
+                padding-bottom: 1.5rem;
+            }
+        }
         
         &-group-one {
             display: flex;
             flex-direction: column;
             padding-left: 1.5rem;
             padding-right: 1.5rem;
-
+            @include tablet {
+                flex-grow: 1;
+                border-right: 1px solid $cloud;
+            }
+            
             &-subtitle {
                 padding-top: 1.5rem;
                 padding-bottom: 2rem;
@@ -64,6 +94,9 @@
             flex-direction: column;
             padding-left: 1.5rem;
             padding-right: 1.5rem;
+            @include tablet {
+                flex-grow: 1;
+            }
 
             &-subtitle {
                 padding-top: 1.5rem;
@@ -95,22 +128,35 @@
         background-color: $lightGrey;
         text-align: center;
         padding: 1rem 0;
-        // opacity: 70%;
         display: flex;
         justify-content: space-between;
         border-radius: 0 0 3px 3px;
+        
+
+        @include tablet {
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 0.7rem;
+            height: 5rem;
+            
+        }
 
         &-cancel {
             background-color: $white;
             border: 1px solid $cloud;
             margin-left: 1.5rem;
             color: $slate;
+            @include tablet {
+                margin-right: 1.5rem;
+                height: 2.375rem;
+                width: 4.5rem;
+            }
 
             &:hover {
                 background-color: $white;
-                border: 1px solid $cloud;
+                border: 1px solid $indigo;
                 margin-left: 1.5rem;
-                color: $slate;
+                color: $indigo;
                 text-decoration: none;
             }
         }
@@ -119,6 +165,11 @@
             background-color: $indigo;
             color: $white;
             margin-right: 1.5rem;
+
+            @include tablet {
+                height: 2.375rem;
+                width: 4.5rem;
+            }
 
             &:hover {
                 background-color: $indigo;
@@ -135,4 +186,17 @@
 
 body {
     background-color: $lightGrey;
+    font-family: "Titillium Web";
+}
+
+.error {
+    display: flex;
+    &-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+    &-text {
+        font-size: 0.625rem;
+        color: #C94515;
+    }
 }
