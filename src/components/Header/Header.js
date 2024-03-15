@@ -1,6 +1,6 @@
 import "./Header.scss";
 import Logo from "../../assets/logo/InStock-Logo.svg";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 
 
@@ -16,7 +16,9 @@ function Header() {
 
     return (
         <header className="header">
-            <img className="header-logo" src={Logo} alt="Logo" />
+            <Link to="/warehouses">
+                <img className="header-logo" src={Logo} alt="Logo" />
+            </Link>
             <ul className="header-navbar">
                 <li className="header-navbar__items">
                     <button className={`nav-button ${activeButton === '/warehouses' ? 'active' : ''}`} onClick={() => goToPage('/warehouses')}>Warehouses</button>
