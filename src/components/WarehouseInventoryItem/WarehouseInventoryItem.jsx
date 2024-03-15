@@ -6,6 +6,7 @@ import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 
 function InventoryItem({ inventory }) {
     const {
+        id,
         item_name,
         category,
         status,
@@ -18,7 +19,7 @@ function InventoryItem({ inventory }) {
                 <div className="warehouse-item warehouse-item__contact--link">
                     <h4 className="warehouse-item-title__mobile">INVENTORY ITEM</h4>
                     <div className="warehouse-item__link">
-                        <Link to={`/inventory/${item_name}`}>
+                        <Link to={`/inventories/${id}`}>
                         <h3>{item_name}</h3>
                         </Link>
                         <ChevronIcon />
