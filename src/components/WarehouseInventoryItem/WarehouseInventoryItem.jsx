@@ -37,7 +37,7 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
                 </div>
                 <div className="warehouse-item warehouse-item__desktop">
                     <h4 className="warehouse-item-title__mobile">CATEGORY</h4>
-                    <p2>{category}</p2>
+                    <p className="inventory-item__content">{category}</p>
                 </div>
                 <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
                     <h4 className="warehouse-item-title__mobile">STATUS</h4>
@@ -45,11 +45,11 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
                 </div>
                 <div className="warehouse-item warehouse-item__mobile">
                     <h4 className="warehouse-item-title__mobile">CATEGORY</h4>
-                    <p2>{category}</p2>
+                    <p className="inventory-item__content">{category}</p>
                 </div>
                 <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
                     <h4 className="warehouse-item-title__mobile">QUANTITY</h4>
-                    <p2>{quantity}</p2>
+                    <p className="inventory-item__content">{quantity}</p>
                 </div>
                
                 <div className="warehouse-item__buttons">

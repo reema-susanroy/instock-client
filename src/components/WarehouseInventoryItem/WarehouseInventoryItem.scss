@@ -49,3 +49,9 @@
         height: 1.625rem;
     }
 }
+
+.inventory-item {
+    &__content {
+        @include p2;
+    }
+}
