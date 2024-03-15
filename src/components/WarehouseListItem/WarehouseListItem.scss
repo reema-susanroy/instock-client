@@ -96,6 +96,7 @@
     background-color: rgba(35, 41, 64, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .modal {
@@ -114,6 +115,7 @@
         height: 35%;
         margin: auto;
         margin-top: 28vh;
+        padding: 2rem;
     }
     @include desktop{
         width: 60%;
@@ -127,7 +129,7 @@
     }
 
     &__title--title {
-        width: 60%;
+        width: 65%;
 
         @include desktop{
             font-size: 32px;
@@ -137,8 +139,9 @@
     &__title {
         color: $black;
         letter-spacing: .5px;
-        padding-top: 1rem;
+        padding: 1.5rem 0;
         width: 85%;
+        font-size: 1rem;
 
         @include desktop {
             line-height: 2.5rem;
@@ -163,12 +166,16 @@
             height: 2rem;
             // border: none;
             background-color: $white;
-            color: $black;
+            color: $slate;
             border: 1px solid $cloud;
             font-weight: bolder;
-
+            &:hover{
+                color: $indigo;
+                border-color: $indigo;
+                text-decoration: none;
+            }
             @include tablet {
-                width: auto;
+                width: 15%;
             }
         }
         &--delete {
@@ -177,13 +184,19 @@
             width: 45%;
             height: 2rem;
             border: none;
-            background-color: $red;
             color: $white;
             font-weight: bolder;
 
+            &:hover{
+                background-color: $black;
+                text-decoration: none;
+            }
             @include tablet {
-                width: auto;
+                width: 15%;
             }
         }
     }
+}
+.delColor{
+    background-color: $red;
 }
