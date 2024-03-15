@@ -5,15 +5,12 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './EditInventory.scss'
-// import { useHistory } from 'react-router-dom';
 
 function EditInventory({ inventory, warehouseName, warehouseId }) {
     const navigate = useNavigate();
-    // const history = useHistory();
 
     const [itemName, setItemName] = useState(inventory.item_name);
     const [description, setDescription] = useState(inventory.description);
-    // const [itemName, setItemName] = useState(inventory.item_name);
     const [quantity, setQuantity] = useState(inventory.quantity);
 
 
@@ -21,17 +18,15 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
     const [selectedCategory, setSelectedCategory] = useState(inventory.category);
     const [warehouses, setWarehouses] = useState([]);
     const [selectedWarehouse, setSelectedWarehouse] = useState(warehouseName);
-
-    // const [quantity, setQuantity] = useState([]);
-    // const [stock, setStock] = useState(inventory.item_name);
     const [selectedOption, setSelectedOption] = useState(inventory.status);
     const [updateSuccess, setUpdateSuccess] = useState("");
     const [errorMesage, setErrorMessage] = useState(false);
 
-
-
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
+        if (event.target.value === 'Out of Stock') {
+            setQuantity(0);
+        }
     };
     const handleItemNameChange = (value) => {
         setItemName(value);
@@ -71,20 +66,14 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
         if (!warehouseId || !itemName || !description) {
             return false;
         }
-         else
+        else
             return true;
     }
     const validateQuantities = () => {
-        console.log('2')
-        if (selectedOption =='In Stock'){
+        if (selectedOption === 'In Stock') {
             if (!quantity) {
                 return false
-              }
-              return true;
-        }
-        else if (selectedOption == 'Out of Stock') {
-            console.log('3')
-            setQuantity(0);
+            }
             return true;
         }
     }
@@ -96,7 +85,6 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
         console.log(Validation, validateQuantity)
         if (Validation && validateQuantity) {
             setUpdateSuccess(false);
-            console.log('4')
             try {
                 await axios.put(`http://localhost:5000/api/inventories/${inventory.id}`, {
                     warehouse_id: warehouseId,
@@ -106,11 +94,7 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                     status: selectedOption,
                     quantity: String(quantity)
                 });
-                // setUpdateSuccess(true);
-                // console.log(updateSuccess)
-                // if(updateSuccess){
-                    navigate(`/warehouses/${warehouseId}`)
-                    // }
+                navigate(`/warehouses/${warehouseId}`)
             }
             catch (message) {
                 console.log('Unable to do Update inventory item : ' + message);
@@ -120,14 +104,11 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
         else {
             setErrorMessage(true);
         }
-
     }
 
     const cancelEdit = (event) => {
         event.preventDefault();
-
         navigate(`/warehouses/${warehouseId}`)
-        // history.goBack()
     }
     return (
         <>
@@ -140,7 +121,6 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                         </Link>
                         <h1>Edit Inventory Item</h1>
                     </div>
-
                     {/* <form onSubmit={handleSubmit}> */}
                     <form >
                         <section className='editInventory__form'>
@@ -165,9 +145,6 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                                                 <option className='checkbox__options' key={category} value={category}>{category}</option>
                                             ))}
                                         </select>
-
-
-
                                     </label>
                                 </section>
                             </div>
@@ -176,7 +153,6 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                                 <div className='warehouse_details__header-edit'>
                                     <h2 className='edit-warehouse__form-group-one-subtitle'>Item Availability</h2>
                                 </div>
-
                                 <label className='editInventory__itemDetails__items--label'>Status
 
                                     <div className='editInventory__itemDetails__items--radio'>
@@ -223,20 +199,16 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                                         ))}
                                     </select>
                                 </label>
-
-
                             </div>
                         </section>
 
                         <section className='modal__button editInventory--button'>
                             <button onClick={cancelEdit} className='modal__button--cancel editInventory--cancel'>Cancel</button>
                             <button onClick={updateWarehouse} className='modal__button--delete editInventory-save'>Save</button>
-                            {/* onClick={() => updateWarehouse(inventory.id)} */}
                         </section>
                         {errorMesage ? <p className='form_validation'>
                             All fields are required
                         </p> : " "}
-
                     </form>
                 </div>
             </section>
