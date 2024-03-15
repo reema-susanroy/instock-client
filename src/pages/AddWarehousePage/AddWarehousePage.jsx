@@ -4,11 +4,14 @@ import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow_back-24px.
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import validator from "validator";
 
 function AddWarehousePage() {
   const [warehouses, setWarehouses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [activeField, setActiveField] = useState(null);
   const formRef = useRef();
   const navigate = useNavigate();
@@ -38,21 +41,25 @@ function AddWarehousePage() {
 
   // Get data from user through form
   const addWarehouse = async (event) => {
+    console.log("addWareshouse is clicked!");
     event.preventDefault();
-
-    const formData = new FormData(formRef.current);
+    console.log("addWareshouse is clicked! After prevent default!");
+    const formData = formRef.current;
+    console.log(formData);
     const warehousesData = {
-      warehouse_name: formData.get("warehouse-name"),
-      address: formData.get("street-address"),
-      city: formData.get("city"),
-      country: formData.get("country"),
-      contact_name: formData.get("contact-name"),
-      contact_position: formData.get("position"),
-      contact_phone: formData.get("phone-number"),
-      contact_email: formData.get("email"),
+      warehouse_name: formData["warehouse-name"].value,
+      address: formData["street-address"].value,
+      city: formData["city"].value,
+      country: formData["country"].value,
+      contact_name: formData["contact-name"].value,
+      contact_position: formData["position"].value,
+      contact_phone: formData["phone-number"].value,
+      contact_email: formData["email"].value,
     };
 
+    console.log(warehousesData);
     try {
+      console.log("Sending warehouse data to server:", warehousesData);
       const warehouse = await axios.post(
         "http://localhost:5000/api/warehouses",
         JSON.stringify(warehousesData), // Convert to JSON,
@@ -62,7 +69,7 @@ function AddWarehousePage() {
           },
         }
       );
-
+      console.log("Warehouse data sent successfully:", warehouse.data);
       setWarehouses([...warehouses, warehouse.data]);
       //   setSubmitSuccess(true);
     } catch (error) {
@@ -70,28 +77,68 @@ function AddWarehousePage() {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-    const formData = new FormData(formRef.current);
-    try {
-      const warehouse = await addWarehouse(formData);
-      // Handle successful submission ?? do we need something upon submit
-      navigate("/warehouses");
-      setIsLoading(false);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
+  const formValidator = () => {
+    // Form validation
+    if (
+      !formData.warehouse_name ||
+      !formData.address ||
+      !formData.city ||
+      !formData.country ||
+      !formData.contact_name ||
+      !formData.contact_position ||
+      !formData.contact_phone ||
+      !formData.contact_email
+    ) {
+      setError("All fields are required");
+      return;
+    }
+
+    // Validate email using the validator library
+    if (!validator.isEmail(formData.contact_email)) {
+      setError("Invalid email format");
+      // setTimeout(() => {
+      //     setError('');
+      //     navigate(`/warehouses/${formData.id}/edit`);
+      // }, 2000);
+      return;
+    }
+
+    // Validate phone number using regular expression
+    const phoneRegex = /^\+\d{1,3}\s?\(\d{3}\)\s?\d{3}-\d{4}$/;
+    if (!phoneRegex.test(formData.contact_phone)) {
+      setError("Invalid phone number format");
+      // setTimeout(() => {
+      //     setErrorMessage('');
+      //     navigate(`/warehouses/${formData.id}/edit`);
+      // }, 2000);
+      return;
     }
   };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("Start of handleSubmit function!");
+    if (!formValidator) {
+      setError("Invalid form");
+    } else {
+      setIsLoading(true);
+      const formData = new FormData(formRef.current);
+      for (const pair of formData.entries()) {
+        console.log(pair[0] + ": " + pair[1]);
+      }
 
+      // Proceed with form submission
+      await addWarehouse(event);
+      event.target.reset();
+      setTimeout(() => {
+        navigate("/warehouses");
+      }, 1000);
+    }
+  };
   const cancelUpload = (event) => {
     event.preventDefault();
     navigate("/warehouses");
     // setSubmitSuccess(false);
   };
-
   // called when a field is receives focus, takes parameter 'field' which connects to the field name.
   // Then it sets the activeField state to the value of the field parameter
   const handleFocus = (field) => {
@@ -103,7 +150,6 @@ function AddWarehousePage() {
   const handleBlur = () => {
     setActiveField(null);
   };
-
   return (
     <section className="new-warehouse-page">
       <section className="new-warehouse-body">
@@ -132,12 +178,11 @@ function AddWarehousePage() {
                 activeField === "warehouse-name" ? "active" : ""
               }`}
               placeholder="Warehouse Name"
-              // When this input is focused on, handleFocus function is called with argument 
+              // When this input is focused on, handleFocus function is called with argument
               // 'warehouse-name' (field name) and updates state to show that this field is now active
               onFocus={() => handleFocus("warehouse-name")}
               onBlur={handleBlur}
             ></input>
-            <FormErrorMessage />
             <label
               htmlFor="street-address"
               className="new-warehouse-details__label"
@@ -233,7 +278,8 @@ function AddWarehousePage() {
               placeholder="Phone Number"
               onFocus={() => handleFocus("phone-number")}
               onBlur={handleBlur}
-            ></input>
+            />
+            {phoneError && <FormErrorMessage message={phoneError} />}
             <label htmlFor="email" className="new-warehouse-details__label">
               Email
             </label>
@@ -248,20 +294,21 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("email")}
               onBlur={handleBlur}
             ></input>
+            {emailError && <FormErrorMessage message={emailError} />}
+          </section>
+          <section className="button-section">
+            <button className="button-section__cancel" onClick={cancelUpload}>
+              Cancel
+            </button>
+            <button
+              className="button-section__add"
+              // onClick={handleSubmit}
+              type="submit"
+            >
+              + Add Warehouse
+            </button>
           </section>
         </form>
-        <section className="button-section">
-          <button className="button-section__cancel" onClick={cancelUpload}>
-            Cancel
-          </button>
-          <button
-            className="button-section__add"
-            onClick={addWarehouse}
-            type="submit"
-          >
-            + Add Warehouse
-          </button>
-        </section>
       </section>
     </section>
   );
