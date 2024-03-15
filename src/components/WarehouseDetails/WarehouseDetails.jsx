@@ -5,6 +5,7 @@ import edit from '../../assets/icons/edit-24px.svg'
 import { Link } from 'react-router-dom'
 
 function WarehouseDetails({ currentData }) {
+    console.log(currentData)
     return (
         <div className='warehouse_details'>
             <div className='warehouse_details__header-cont'>

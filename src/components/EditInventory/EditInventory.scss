@@ -1,5 +1,32 @@
 @use '../../styles//partials/global' as *;
 
+.container {
+  height: 80rem;
+  position: relative;
+}
+
+.editInventory {
+  font-family: "Titillium Web";
+  margin: 0 1.5rem;
+  box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+  background-color: $white;
+  position: absolute;
+  top: 9rem;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  @include tablet {
+    // height: 40rem;
+    margin-left: 2.25rem;
+    margin-right: 2.25rem;
+  }
+
+  @include desktop {
+    margin-left: 8.125rem;
+    margin-right: 8.125rem;
+  }
+}
 
 .editInventory__back-arrow {
   align-items: center;
@@ -15,21 +42,35 @@
 
 }
 
+.editInventory__form {
+  @include tablet {
+    display: flex;
+    padding: 1rem;
+  }
+}
+
 .editInventory__itemDetails {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   border-bottom: 1px solid $cloud;
 
+  @include tablet {
+    width: 50%;
+    border-right: 1px solid $cloud;
+    border-bottom: none;
+  }
+
   &__items {
     flex-direction: column;
     display: flex;
 
-    &--h3 {
+    &--label {
       display: flex;
       flex-direction: column;
       padding: .5rem 0;
       gap: .2rem;
+      font-weight: 600;
     }
 
     &--input {
@@ -38,6 +79,11 @@
       border-radius: 20px;
       padding: .5rem;
       border: 1px solid $cloud;
+
+      &:focus {
+        border-color: blue !important;
+      }
+
     }
 
     &--radio {
@@ -45,6 +91,7 @@
       flex-direction: row;
       justify-content: flex-start;
       gap: 5rem;
+      padding-bottom: .5rem;
     }
 
     &--radio-quantity {
@@ -52,9 +99,7 @@
       flex-direction: column;
     }
 
-    &--radio-quantity-h3 {
-      // display: flex;
-      // flex-direction: column;
+    &--radio-quantity-label {
       padding-top: 1rem;
     }
   }
@@ -65,6 +110,10 @@
   flex-direction: column;
   padding: 1rem;
 
+  @include tablet {
+    width: 50%;
+    padding-left: 1.5rem;
+  }
 }
 
 
@@ -92,20 +141,45 @@ input[type="radio"]:checked {
 }
 
 .editInventory--button {
+  position: relative;
   padding: 1rem;
+  background-color: $lightGrey;
 }
 
 .editInventory-save {
   background-color: $indigo;
+
+  @include tablet {
+    width: 10%;
+  }
+
+  &:hover {
+    background-color: $graphite;
+    text-decoration: none;
+    list-style-type: none;
+  }
 }
 
 .editInventory--cancel {
   color: $slate;
-  text-decoration: none;
-  list-style-type: none;
+
+  @include tablet {
+    width: 10%;
+  }
+
+  &:hover {
+    color: $indigo;
+    border: 1px solid $indigo;
+    text-decoration: none;
+    list-style-type: none;
+  }
 }
 
 .form_validation {
   color: $red;
   padding: 1rem;
+}
+
+.editInventory__itemDetails__items--input:focus {
+  border-color: blue
 }

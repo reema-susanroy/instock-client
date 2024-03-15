@@ -53,10 +53,8 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
                
                 <div className="warehouse-item__buttons">
                     <DeleteIcon className="warehouse-item__button"/>
-                    <EditIcon className="warehouse-item__button"/>
+                    <EditIcon className="warehouse-item__button" onClick={handleEditInventory}/>
                 </div>
-                <DeleteIcon />
-                <EditIcon onClick={handleEditInventory}/>
             </section>
         </li>
         {/* {editInventory &&
