@@ -4,6 +4,7 @@ import FormErrorMessageEmail from "../../components/FormErrorMessageEmail/FormEr
 import FormErrorMessagePhone from "../../components/FormErrorMessagePhone/FormErrorMessagePhone";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow_back-24px.svg";
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import validator from "validator";
@@ -213,7 +214,9 @@ function AddWarehousePage() {
     <section className="new-warehouse-page">
       <section className="new-warehouse-body">
         <section className="new-warehouse-header">
-          <ArrowIcon />
+          <Link to={"/warehouses"}>
+            <ArrowIcon />
+          </Link>
           <h1 className="new-warehouse-header__title">Add New Warehouse</h1>
         </section>
         <form
@@ -221,151 +224,158 @@ function AddWarehousePage() {
           onSubmit={handleSubmit}
           ref={formRef}
         >
-          <section className="new-warehouse-details">
-            <h2 className="new-warehouse-details__title">Warehouse Details</h2>
-            <label
-              htmlFor="warehouse-name"
-              className="new-warehouse-details__label"
-            >
-              Warehouse Name
-            </label>
-            <input
-              type="text"
-              name="warehouse-name"
-              id="warehouse-name"
-              className={`new-warehouse-details__input ${
-                activeField === "warehouse-name" ? "active" : ""
-              }`}
-              placeholder="Warehouse Name"
-              // When this input is focused on, handleFocus function is called with argument
-              // 'warehouse-name' (field name) and updates state to show that this field is now active
-              onFocus={() => handleFocus("warehouse-name")}
-              onBlur={handleBlur}
-            ></input>
-            {warehouseNameError && (
-              <FormErrorMessage message={warehouseNameError} />
-            )}
-            <label
-              htmlFor="street-address"
-              className="new-warehouse-details__label"
-            >
-              Street Address
-            </label>
-            <input
-              type="text"
-              name="street-address"
-              id="street-address"
-              className={`new-warehouse-details__input ${
-                activeField === "street-address" ? "active" : ""
-              }`}
-              placeholder="Street Address"
-              onFocus={() => handleFocus("street-address")}
-              onBlur={handleBlur}
-            ></input>
-            {addressError && <FormErrorMessage message={addressError} />}
-            <label htmlFor="city" className="new-warehouse-details__label">
-              City
-            </label>
-            <input
-              type="text"
-              name="city"
-              id="city"
-              className={`new-warehouse-details__input ${
-                activeField === "city" ? "active" : ""
-              }`}
-              placeholder="City"
-              onFocus={() => handleFocus("city")}
-              onBlur={handleBlur}
-            ></input>
-            {cityError && <FormErrorMessage message={cityError} />}
-            <label htmlFor="country" className="new-warehouse-details__label">
-              Country
-            </label>
-            <input
-              type="text"
-              name="country"
-              id="country"
-              className={`new-warehouse-details__input ${
-                activeField === "country" ? "active" : ""
-              }`}
-              placeholder="Country"
-              onFocus={() => handleFocus("country")}
-              onBlur={handleBlur}
-            ></input>
-            {countryError && <FormErrorMessage message={countryError} />}
-          </section>
-          <section className="new-warehouse-details new-warehouse-details--bottom">
-            <h2 className="new-warehouse-details__title">Contact Details</h2>
-            <label
-              htmlFor="contact-name"
-              className="new-warehouse-details__label"
-            >
-              Contact Name
-            </label>
-            <input
-              type="text"
-              name="contact-name"
-              id="contact-name"
-              className={`new-warehouse-details__input ${
-                activeField === "contact-name" ? "active" : ""
-              }`}
-              placeholder="Contact Name"
-              onFocus={() => handleFocus("contact-name")}
-              onBlur={handleBlur}
-            ></input>
-            {contactNameError && (
-              <FormErrorMessage message={contactNameError} />
-            )}
-            <label htmlFor="Position" className="new-warehouse-details__label">
-              Position
-            </label>
-            <input
-              type="text"
-              name="position"
-              id="position"
-              className={`new-warehouse-details__input ${
-                activeField === "position" ? "active" : ""
-              }`}
-              placeholder="Position"
-              onFocus={() => handleFocus("position")}
-              onBlur={handleBlur}
-            ></input>
-            {contactPositionError && (
-              <FormErrorMessage message={contactPositionError} />
-            )}
-            <label
-              htmlFor="phone-number"
-              className="new-warehouse-details__label"
-            >
-              Phone Number
-            </label>
-            <input
-              type="text"
-              name="phone-number"
-              id="phone-number"
-              className={`new-warehouse-details__input ${
-                activeField === "phone-number" ? "active" : ""
-              }`}
-              placeholder="Phone Number"
-              onFocus={() => handleFocus("phone-number")}
-              onBlur={handleBlur}
-            />
-            {phoneError && <FormErrorMessagePhone message={phoneError} />}
-            <label htmlFor="email" className="new-warehouse-details__label">
-              Email
-            </label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              className={`new-warehouse-details__input ${
-                activeField === "email" ? "active" : ""
-              }`}
-              placeholder="Email"
-              onFocus={() => handleFocus("email")}
-              onBlur={handleBlur}
-            ></input>
-            {emailError && <FormErrorMessageEmail message={emailError} />}
+          <section className="form-inputs">
+            <section className="new-warehouse-details">
+              <h2 className="new-warehouse-details__title">
+                Warehouse Details
+              </h2>
+              <label
+                htmlFor="warehouse-name"
+                className="new-warehouse-details__label"
+              >
+                Warehouse Name
+              </label>
+              <input
+                type="text"
+                name="warehouse-name"
+                id="warehouse-name"
+                className={`new-warehouse-details__input ${
+                  activeField === "warehouse-name" ? "active" : ""
+                }`}
+                placeholder="Warehouse Name"
+                // When this input is focused on, handleFocus function is called with argument
+                // 'warehouse-name' (field name) and updates state to show that this field is now active
+                onFocus={() => handleFocus("warehouse-name")}
+                onBlur={handleBlur}
+              ></input>
+              {warehouseNameError && (
+                <FormErrorMessage message={warehouseNameError} />
+              )}
+              <label
+                htmlFor="street-address"
+                className="new-warehouse-details__label"
+              >
+                Street Address
+              </label>
+              <input
+                type="text"
+                name="street-address"
+                id="street-address"
+                className={`new-warehouse-details__input ${
+                  activeField === "street-address" ? "active" : ""
+                }`}
+                placeholder="Street Address"
+                onFocus={() => handleFocus("street-address")}
+                onBlur={handleBlur}
+              ></input>
+              {addressError && <FormErrorMessage message={addressError} />}
+              <label htmlFor="city" className="new-warehouse-details__label">
+                City
+              </label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                className={`new-warehouse-details__input ${
+                  activeField === "city" ? "active" : ""
+                }`}
+                placeholder="City"
+                onFocus={() => handleFocus("city")}
+                onBlur={handleBlur}
+              ></input>
+              {cityError && <FormErrorMessage message={cityError} />}
+              <label htmlFor="country" className="new-warehouse-details__label">
+                Country
+              </label>
+              <input
+                type="text"
+                name="country"
+                id="country"
+                className={`new-warehouse-details__input ${
+                  activeField === "country" ? "active" : ""
+                }`}
+                placeholder="Country"
+                onFocus={() => handleFocus("country")}
+                onBlur={handleBlur}
+              ></input>
+              {countryError && <FormErrorMessage message={countryError} />}
+            </section>
+            <section className="new-warehouse-details new-warehouse-details--bottom">
+              <h2 className="new-warehouse-details__title">Contact Details</h2>
+              <label
+                htmlFor="contact-name"
+                className="new-warehouse-details__label"
+              >
+                Contact Name
+              </label>
+              <input
+                type="text"
+                name="contact-name"
+                id="contact-name"
+                className={`new-warehouse-details__input ${
+                  activeField === "contact-name" ? "active" : ""
+                }`}
+                placeholder="Contact Name"
+                onFocus={() => handleFocus("contact-name")}
+                onBlur={handleBlur}
+              ></input>
+              {contactNameError && (
+                <FormErrorMessage message={contactNameError} />
+              )}
+              <label
+                htmlFor="Position"
+                className="new-warehouse-details__label"
+              >
+                Position
+              </label>
+              <input
+                type="text"
+                name="position"
+                id="position"
+                className={`new-warehouse-details__input ${
+                  activeField === "position" ? "active" : ""
+                }`}
+                placeholder="Position"
+                onFocus={() => handleFocus("position")}
+                onBlur={handleBlur}
+              ></input>
+              {contactPositionError && (
+                <FormErrorMessage message={contactPositionError} />
+              )}
+              <label
+                htmlFor="phone-number"
+                className="new-warehouse-details__label"
+              >
+                Phone Number
+              </label>
+              <input
+                type="text"
+                name="phone-number"
+                id="phone-number"
+                className={`new-warehouse-details__input ${
+                  activeField === "phone-number" ? "active" : ""
+                }`}
+                placeholder="Phone Number"
+                onFocus={() => handleFocus("phone-number")}
+                onBlur={handleBlur}
+              />
+              {phoneError && <FormErrorMessagePhone message={phoneError} />}
+              <label htmlFor="email" className="new-warehouse-details__label">
+                Email
+              </label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                className={`new-warehouse-details__input ${
+                  activeField === "email" ? "active" : ""
+                }`}
+                placeholder="Email"
+                onFocus={() => handleFocus("email")}
+                onBlur={handleBlur}
+              ></input>
+              {emailError && <FormErrorMessageEmail message={emailError} />}
+            </section>
           </section>
           <section className="button-section">
             <button className="button-section__cancel" onClick={cancelUpload}>

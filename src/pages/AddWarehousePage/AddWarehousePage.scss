@@ -38,8 +38,10 @@
 .new-warehouse-form {
     @include tablet {
         display: flex;
-        margin: 2rem 0;
+        flex-direction: column;
+        margin: 2rem 0 0;
     }
+
 }
 .new-warehouse-details {
   padding: 1rem 1.5rem;
@@ -121,4 +123,8 @@
         
 
     }
+}
+
+.form-inputs {
+    display: flex;
 }
