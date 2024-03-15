@@ -1,112 +1,141 @@
 @use '../../styles/partials/global' as*;
 
-.warehouse_details{
+.warehouse_details {
     // @include padding-mobile;
 
-    &__header-cont{
+    &__header-cont {
         display: flex;
         border-bottom: 1px solid $cloud;
-        padding: 1rem;
+        padding: 2rem 1rem;
         justify-content: space-between;
 
-        @include tablet{
-            @include margin-tablet;
+        @include tablet {
+            // @include margin-tablet;
         }
-        @include desktop{
+
+        @include desktop {
             padding-top: 2rem;
             @include margin-desktop;
         }
     }
-    &__header{
+
+    &__header {
         display: flex;
         flex-direction: row;
         gap: 2px;
         align-items: center;
-        @include tablet{
+
+        @include tablet {
             gap: .5rem;
         }
 
-        &--edit{
+        &--edit {
             position: absolute;
             left: 4px;
-            bottom: 5px;            
+            bottom: 5px;
 
-            &__span{
+            @include tablet {
+                position: absolute;
+                left: 15px;
+                height: 20px;
+            }
+
+            &__span {
                 display: none;
-                @include tablet{
+
+                @include tablet {
                     display: flex;
                     z-index: 1;
-                    color: white;
+                    color: $white;
+                    position: absolute;
+                    left: 2.5rem;
 
                 }
             }
         }
-        &--back-arrow{
+
+        &--back-arrow {
             height: 1.5rem;
             display: flex;
             align-self: center;
         }
     }
-    &__header-edit{
+
+    &__header-edit {
         display: flex;
         flex-direction: column;
     }
-    &__header-edit-cont{
+
+    &__header-edit-cont {
         height: 2rem;
         width: 2rem;
         background-color: $indigo;
         border-radius: 50%;
         position: relative;
-        @include tablet{
+
+        @include tablet {
             width: 5rem;
+            align-items: center;
+            display: flex;
+            border-radius: 50px;
         }
     }
-    &__content--address{
+
+    &__content--address {
         padding: 1rem;
-        @include tablet{
+
+        @include tablet {
             width: 40%;
             border-right: 1px solid $slate;
         }
-    
+
     }
-    &__content--label{
+
+    &__content--label {
         color: $slate;
         font-size: .8rem;
-       
+
     }
-    &__content--address-data{
+
+    &__content--address-data {
         display: flex;
         flex-direction: row;
-        @include tablet{
+
+        @include tablet {
             flex-direction: column;
         }
     }
-    &__content--contact{
+
+    &__content--contact {
         display: flex;
         justify-content: space-between;
         padding: 1rem;
-        @include tablet{
+
+        @include tablet {
             // flex: 1;
             width: 60%;
-            justify-content: space-around;}
-            @include desktop{
-                width: 55%;
-            }
+            justify-content: space-around;
+        }
+
+        @include desktop {
+            width: 55%;
+        }
     }
 }
 
-.warehouse_details__content-cont{
-    @include tablet{
+.warehouse_details__content-cont {
+    @include tablet {
         display: flex;
         padding-top: 1.5rem;
         // @include margin-tablet;
         padding: 1rem 1rem;
     }
+
     // @include desktop{
     //     @include margin-desktop;
     // }
 }
 
-.set-height{
+.set-height {
     height: fit-content;
 }

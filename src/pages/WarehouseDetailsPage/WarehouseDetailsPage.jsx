@@ -54,7 +54,7 @@ function WarehouseDetailsPage() {
   return (
     <>
       <main className="">
-        <div className="edit-warehouse">
+        <div className="editInventory">
           <WarehouseDetails currentData={currentData} />
           <WarehouseInventoryList
             inventories={inventoryData}
