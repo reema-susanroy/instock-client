@@ -1,7 +1,6 @@
 
 import backIcon from '../../assets/icons/arrow_back-24px.svg'
-import edit from '../../assets/icons/edit-24px.svg'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './EditInventory.scss'
@@ -26,6 +25,9 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
         setSelectedOption(event.target.value);
         if (event.target.value === 'Out of Stock') {
             setQuantity(0);
+        }
+        if (event.target.value === 'In Stock') {
+            setQuantity(inventory.quantity);
         }
     };
     const handleItemNameChange = (value) => {
@@ -74,8 +76,8 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
             if (!quantity) {
                 return false
             }
-            return true;
         }
+        return true;
     }
 
     const updateWarehouse = async (e) => {

@@ -28,27 +28,6 @@
   }
 }
 
-.editInventory__back-arrow {
-  align-items: center;
-  display: flex;
-}
-
-.editInventory__header {
-  display: flex;
-  border-bottom: 1px solid $cloud;
-  padding: 1rem;
-  align-items: center;
-  gap: .2rem;
-
-}
-
-.editInventory__form {
-  @include tablet {
-    display: flex;
-    padding: 1rem;
-  }
-}
-
 .editInventory__itemDetails {
   display: flex;
   flex-direction: column;
@@ -79,11 +58,6 @@
       border-radius: 20px;
       padding: .5rem;
       border: 1px solid $cloud;
-
-      &:focus {
-        border-color: blue !important;
-      }
-
     }
 
     &--radio {
@@ -127,10 +101,6 @@
   color: $slate;
   display: flex;
   gap: .3rem;
-}
-
-input[type="radio"]:checked {
-  color: $slate;
 }
 
 .checkbox {
@@ -180,6 +150,23 @@ input[type="radio"]:checked {
   padding: 1rem;
 }
 
-.editInventory__itemDetails__items--input:focus {
-  border-color: blue
+.editInventory__back-arrow {
+  align-items: center;
+  display: flex;
+}
+
+.editInventory__header {
+  display: flex;
+  border-bottom: 1px solid $cloud;
+  padding: 1rem;
+  align-items: center;
+  gap: .2rem;
+
+}
+
+.editInventory__form {
+  @include tablet {
+    display: flex;
+    padding: 1rem;
+  }
 }
