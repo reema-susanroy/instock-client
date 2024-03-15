@@ -1,5 +1,5 @@
 import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
-import InventoryList from '../../components/WarehouseInventoryList/WarehouseInventoryList';
+import WarehouseInventoryList from '../../components/WarehouseInventoryList/WarehouseInventoryList';
 import './WarehouseDetailsPage.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
@@ -60,7 +60,7 @@ function WarehouseDetailsPage() {
         <main className='page__background'>
         <div className='page__allignment'> 
         <WarehouseDetails currentData={currentData}/>
-        <InventoryList inventories={inventoryData}/>
+        <WarehouseInventoryList inventories={inventoryData}/>
         </div>
         </main>
         </>
