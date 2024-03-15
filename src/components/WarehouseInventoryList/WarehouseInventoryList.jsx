@@ -3,7 +3,7 @@ import './WarehouseInventoryList.scss';
 import { ReactComponent as SortIcon } from '../../assets/icons/sort-24px.svg';
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 
-function InventoryList({ inventories }) {
+function WarehouseInventoryList({ inventories }) {
 
     return(
        <section className='warehouse-list'>
@@ -37,4 +37,4 @@ function InventoryList({ inventories }) {
     );
 }
 
-export default InventoryList;
+export default WarehouseInventoryList;
