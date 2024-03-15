@@ -1,9 +1,10 @@
-import InventoryItem from '../WarehouseInventoryItem/WarehouseInventoryItem';
+import WarehouseInventoryItem from '../WarehouseInventoryItem/WarehouseInventoryItem';
 import './WarehouseInventoryList.scss';
 import { ReactComponent as SortIcon } from '../../assets/icons/sort-24px.svg';
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 
-function WarehouseInventoryList({ inventories }) {
+
+function WarehouseInventoryList({ inventories, warehouseName , warehouseId}) {
 
     return(
        <section className='warehouse-list'>
@@ -30,7 +31,7 @@ function WarehouseInventoryList({ inventories }) {
             </section>
                 <ul className='warehouse-list'>
                     {inventories.map((inventory) =>(
-                        <InventoryItem key={inventory.id} inventory={inventory} />
+                        <WarehouseInventoryItem key={inventory.id} inventory={inventory} warehouseName={warehouseName} warehouseId={warehouseId}/>
                     ))}
                 </ul>
        </section>

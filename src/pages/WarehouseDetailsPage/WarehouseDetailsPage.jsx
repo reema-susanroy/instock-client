@@ -1,70 +1,70 @@
-import WarehouseDetails from '../../components/WarehouseDetails/WarehouseDetails';
-import WarehouseInventoryList from '../../components/WarehouseInventoryList/WarehouseInventoryList';
-import './WarehouseDetailsPage.scss';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails";
+import WarehouseInventoryList from "../../components/WarehouseInventoryList/WarehouseInventoryList";
+import "./WarehouseDetailsPage.scss";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function WarehouseDetailsPage() {
-    const server_url= 'http://localhost:5000';
-    const { warehouseId } = useParams();
-    console.log("test", warehouseId);
+  const server_url = "http://localhost:5000";
+  const { warehouseId } = useParams();
+  const [inventoryData, setInventoryData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentData, setCurrentData] = useState();
 
-    const [inventoryData, setInventoryData] = useState();
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [currentData, setCurrentData] =useState();
+  useEffect(() => {
+    const fetchWarehouseDetails = async (id) => {
+      const response = await axios.get(`${server_url}/api/warehouses/${id}`);
+      // console.log(response.data);
+      setCurrentData(response.data);
+    };
 
-    console.log(currentData);
+    fetchWarehouseDetails(warehouseId);
+  }, [warehouseId]);
 
-    useEffect(() => {
-        const fetchWarehouseDetails = async (id) => {
-            const response = await axios.get(`${server_url}/api/warehouses/${id}`)
-            console.log(response.data);
-            setCurrentData(response.data);
-        }
+  useEffect(() => {
+    const fetchWarehouseInventory = async () => {
+      try {
+        // console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
+        const response = await axios.get(
+          `${server_url}/api/warehouses/${warehouseId}/inventories/`
+        );
+        // console.log("inventoryData", response.data);
+        setInventoryData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchWarehouseInventory(warehouseId);
+  }, [warehouseId]);
 
-        fetchWarehouseDetails(warehouseId);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-    }, [warehouseId]);
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
-    useEffect(() => {
-        const fetchWarehouseInventory = async () => {
-            try {
-                console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
-                const response = await axios.get(`${server_url}/api/warehouses/${warehouseId}/inventories/`)
-                console.log("inventoryData", response.data);
-                setInventoryData(response.data);
-                setIsLoading(false);
-            } catch (error) {
-                setError(error.message);
-                setIsLoading(false);
-            }
-        }
-        fetchWarehouseInventory(warehouseId);
-    }, [warehouseId]);
+  console.log(currentData);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-    
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
-    console.log("test2", inventoryData)
-
-
-    return(
-        <>
-        <main className='page__background'>
-        <div className='page__allignment'> 
-        <WarehouseDetails currentData={currentData}/>
-        <WarehouseInventoryList inventories={inventoryData}/>
+  return (
+    <>
+      <main className="page__background">
+        <div className="page__allignment">
+          <WarehouseDetails currentData={currentData} />
+          <WarehouseInventoryList
+            inventories={inventoryData}
+            warehouseName={currentData.warehouse_name}
+            warehouseId={currentData.id}
+          />
         </div>
-        </main>
-        </>
-    )
+      </main>
+    </>
+  );
 }
 
 export default WarehouseDetailsPage;
