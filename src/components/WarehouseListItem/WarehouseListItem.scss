@@ -78,6 +78,7 @@
 }
 
 .warehouse-item-title__mobile {
+    margin-bottom: 0.2rem;
     @include tablet {
         display: none;
     }

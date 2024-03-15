@@ -1,4 +1,4 @@
-import InventoryItem from "../WarehouseInventoryItem/WarehouseInventoryItem";
+import InventoryListItem from "../InventoryListItem/InventoryListItem";
 import "./InventoryList.scss";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-24px.svg";
 import { ReactComponent as SortIcon } from "../../assets/icons/sort-24px.svg";
@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 
 function InventoryList({ inventories }) {
   return (
-    <section>
+    <section className="inventory-list-body">
       <section className="warehouse-list-header">
-        <h1 className="warehouse-list-title">Warehouses</h1>
+        <h1 className="warehouse-list-title">Inventories</h1>
         <div className="warehouse-list-header__search-bar-container">
           <input
             className="warehouse-list-header__search-bar"
@@ -22,7 +22,7 @@ function InventoryList({ inventories }) {
         </div>
         <Link to={"/warehouses/add"}>
           <button className="warehouse-list-header__add-button">
-            + Add New Warehouse
+            + Add New Item
           </button>
         </Link>
       </section>
@@ -48,11 +48,11 @@ function InventoryList({ inventories }) {
             <h4>ACTIONS</h4>
           </div>
         </section>
-        {/* <ul className="warehouse-list">
-          {inventories.map((inventory) => (
-            <InventoryItem key={inventory.id} inventory={inventory} />
+        <ul className="warehouse-list">
+          {inventories.map((inventories) => (
+            <InventoryListItem key={inventories.id} inventories={inventories} />
           ))}
-        </ul> */}
+        </ul>
       </section>
     </section>
   );

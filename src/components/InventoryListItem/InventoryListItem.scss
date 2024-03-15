@@ -1,0 +1,11 @@
+@import "../../styles/partials/global";
+
+.inventory-list {
+    &__item-name {
+        font-weight: 600;
+        font-size: 0.8125rem;
+    }
+    &__item-content {
+        @include p2;
+    }
+}
