@@ -1,18 +1,28 @@
 import "./WarehouseInventoryItem.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ChevronIcon } from "../../assets/icons/chevron_right-24px.svg";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
+import { useState } from "react";
+import EditInventory from "../EditInventory/EditInventory";
 
-function InventoryItem({ inventory }) {
+function InventoryItem({ inventory, warehouseName, warehouseId}) {
     const {
         item_name,
         category,
         status,
         quantity
     } = inventory;
+    const navigate = useNavigate();
+    // const [editInventory, setEditInventory] =useState(false);
+    // const [inventoryItem, setInventoryItem] = useState(inventory);
 
+    const handleEditInventory =() =>{
+        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory, warehouseName, warehouseId } });
+
+    }
     return (
+        <>
         <li>
             <section className="warehouse-list-item">
                 <div className="warehouse-item warehouse-item__contact--link">
@@ -43,11 +53,14 @@ function InventoryItem({ inventory }) {
                
                 <div className="warehouse-item__buttons">
                     <DeleteIcon className="warehouse-item__button"/>
-                    <EditIcon className="warehouse-item__button"/>
+                    <EditIcon className="warehouse-item__button" onClick={handleEditInventory}/>
                 </div>
             </section>
         </li>
-
+        {/* {editInventory &&
+            <EditInventory inventory={inventory}/>
+        } */}
+    </>
     )
 }
 
