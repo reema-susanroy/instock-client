@@ -1,5 +1,7 @@
 import "./AddWarehousePage.scss";
 import FormErrorMessage from "../../components/FormErrorMessage/FormErrorMessage";
+import FormErrorMessageEmail from "../../components/FormErrorMessageEmail/FormErrorMessageEmail";
+import FormErrorMessagePhone from "../../components/FormErrorMessagePhone/FormErrorMessagePhone";
 import { ReactComponent as ArrowIcon } from "../../assets/icons/arrow_back-24px.svg";
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +14,12 @@ function AddWarehousePage() {
   const [error, setError] = useState(null);
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [warehouseNameError, setWarehouseNameError] = useState("");
+  const [addressError, setAddressError] = useState("");
+  const [cityError, setCityError] = useState("");
+  const [countryError, setCountryError] = useState("");
+  const [contactNameError, setContactNameError] = useState("");
+  const [contactPositionError, setContactPositionError] = useState("");
   const [activeField, setActiveField] = useState(null);
   const formRef = useRef();
   const navigate = useNavigate();
@@ -41,9 +49,7 @@ function AddWarehousePage() {
 
   // Get data from user through form
   const addWarehouse = async (event) => {
-    console.log("addWareshouse is clicked!");
     event.preventDefault();
-    console.log("addWareshouse is clicked! After prevent default!");
     const formData = formRef.current;
     console.log(formData);
     const warehousesData = {
@@ -77,62 +83,85 @@ function AddWarehousePage() {
     }
   };
 
-  const formValidator = () => {
-    // Form validation
-    if (
-      !formData.warehouse_name ||
-      !formData.address ||
-      !formData.city ||
-      !formData.country ||
-      !formData.contact_name ||
-      !formData.contact_position ||
-      !formData.contact_phone ||
-      !formData.contact_email
-    ) {
-      setError("All fields are required");
-      return;
+  const formValidator = (formData) => {
+    // Reset error states
+    setEmailError("");
+    setPhoneError("");
+    setWarehouseNameError("");
+    setAddressError("");
+    setCityError("");
+    setContactNameError("");
+    setContactPositionError("");
+    setCountryError("");
+
+    let isValid = true;
+
+    // Check if fields are empty
+    if (!formData.get("warehouse-name")) {
+      setWarehouseNameError("Warehouse Name field required");
+      isValid = false;
+    }
+    if (!formData.get("street-address")) {
+      setAddressError("Address field required");
+      isValid = false;
+    }
+    if (!formData.get("city")) {
+      setCityError("City field required");
+      isValid = false;
+    }
+    if (!formData.get("contact-name")) {
+      setContactNameError("Contact Name field required");
+      isValid = false;
+    }
+    if (!formData.get("position")) {
+      setContactPositionError("Contact position field required");
+      isValid = false;
+    }
+    if (!formData.get("country")) {
+      setCountryError("country field required");
+      isValid = false;
     }
 
     // Validate email using the validator library
-    if (!validator.isEmail(formData.contact_email)) {
-      setError("Invalid email format");
-      // setTimeout(() => {
-      //     setError('');
-      //     navigate(`/warehouses/${formData.id}/edit`);
-      // }, 2000);
-      return;
+    if (!validator.isEmail(formData.get("email"))) {
+      setEmailError("Invalid email format");
+      isValid = false;
     }
-
     // Validate phone number using regular expression
     const phoneRegex = /^\+\d{1,3}\s?\(\d{3}\)\s?\d{3}-\d{4}$/;
-    if (!phoneRegex.test(formData.contact_phone)) {
-      setError("Invalid phone number format");
-      // setTimeout(() => {
-      //     setErrorMessage('');
-      //     navigate(`/warehouses/${formData.id}/edit`);
-      // }, 2000);
-      return;
+    if (!phoneRegex.test(formData.get("phone-number"))) {
+      setPhoneError("Invalid phone number format");
+      isValid = false;
     }
+
+    return isValid;
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Start of handleSubmit function!");
-    if (!formValidator) {
-      setError("Invalid form");
-    } else {
-      setIsLoading(true);
-      const formData = new FormData(formRef.current);
-      for (const pair of formData.entries()) {
-        console.log(pair[0] + ": " + pair[1]);
-      }
+    const formData = new FormData(formRef.current);
 
-      // Proceed with form submission
-      await addWarehouse(event);
-      event.target.reset();
-      setTimeout(() => {
-        navigate("/warehouses");
-      }, 1000);
+    // Validate the form data
+    const isValid = formValidator(formData);
+
+    if (!isValid) {
+      // Form validation failed, do not proceed with submission
+      console.log("Form validation failed!");
+      return;
     }
+
+    // Proceed with form submission
+    setIsLoading(true);
+    for (const pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
+    // Add warehouse
+    await addWarehouse(event);
+    event.target.reset();
+    setTimeout(() => {
+      navigate("/warehouses");
+    }, 1000);
   };
   const cancelUpload = (event) => {
     event.preventDefault();
@@ -143,6 +172,35 @@ function AddWarehousePage() {
   // Then it sets the activeField state to the value of the field parameter
   const handleFocus = (field) => {
     setActiveField(field);
+    // Clear error for the active field
+    switch (field) {
+      case "warehouse-name":
+        setWarehouseNameError("");
+        break;
+      case "street-address":
+        setAddressError("");
+        break;
+      case "city":
+        setCityError("");
+        break;
+      case "country":
+        setCountryError("");
+        break;
+      case "contact-name":
+        setContactNameError("");
+        break;
+      case "position":
+        setContactPositionError("");
+        break;
+      case "phone-number":
+        setPhoneError("");
+        break;
+      case "email":
+        setEmailError("");
+        break;
+      default:
+        break;
+    }
   };
 
   // resets the active field to null when a user clicks away from it and is no
@@ -150,6 +208,7 @@ function AddWarehousePage() {
   const handleBlur = () => {
     setActiveField(null);
   };
+
   return (
     <section className="new-warehouse-page">
       <section className="new-warehouse-body">
@@ -183,6 +242,9 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("warehouse-name")}
               onBlur={handleBlur}
             ></input>
+            {warehouseNameError && (
+              <FormErrorMessage message={warehouseNameError} />
+            )}
             <label
               htmlFor="street-address"
               className="new-warehouse-details__label"
@@ -200,6 +262,7 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("street-address")}
               onBlur={handleBlur}
             ></input>
+            {addressError && <FormErrorMessage message={addressError} />}
             <label htmlFor="city" className="new-warehouse-details__label">
               City
             </label>
@@ -214,6 +277,7 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("city")}
               onBlur={handleBlur}
             ></input>
+            {cityError && <FormErrorMessage message={cityError} />}
             <label htmlFor="country" className="new-warehouse-details__label">
               Country
             </label>
@@ -228,6 +292,7 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("country")}
               onBlur={handleBlur}
             ></input>
+            {countryError && <FormErrorMessage message={countryError} />}
           </section>
           <section className="new-warehouse-details new-warehouse-details--bottom">
             <h2 className="new-warehouse-details__title">Contact Details</h2>
@@ -248,6 +313,9 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("contact-name")}
               onBlur={handleBlur}
             ></input>
+            {contactNameError && (
+              <FormErrorMessage message={contactNameError} />
+            )}
             <label htmlFor="Position" className="new-warehouse-details__label">
               Position
             </label>
@@ -262,6 +330,9 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("position")}
               onBlur={handleBlur}
             ></input>
+            {contactPositionError && (
+              <FormErrorMessage message={contactPositionError} />
+            )}
             <label
               htmlFor="phone-number"
               className="new-warehouse-details__label"
@@ -279,7 +350,7 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("phone-number")}
               onBlur={handleBlur}
             />
-            {phoneError && <FormErrorMessage message={phoneError} />}
+            {phoneError && <FormErrorMessagePhone message={phoneError} />}
             <label htmlFor="email" className="new-warehouse-details__label">
               Email
             </label>
@@ -294,7 +365,7 @@ function AddWarehousePage() {
               onFocus={() => handleFocus("email")}
               onBlur={handleBlur}
             ></input>
-            {emailError && <FormErrorMessage message={emailError} />}
+            {emailError && <FormErrorMessageEmail message={emailError} />}
           </section>
           <section className="button-section">
             <button className="button-section__cancel" onClick={cancelUpload}>
