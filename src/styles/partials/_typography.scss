@@ -51,6 +51,10 @@ h2 {
   }
 }
 
+h3 {
+  @include h3;
+}
+
 h4 {
   font-size: 0.6875rem;
   line-height: 1rem;
