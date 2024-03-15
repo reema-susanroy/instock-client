@@ -1,3 +1,112 @@
-.editInventory__header{
+@use '../../styles//partials/global' as *;
+
+
+.editInventory__back-arrow{
+align-items: center;
     display: flex;
 }
+
+.editInventory__header {
+    display: flex;
+    border-bottom: 1px solid $cloud;
+    padding: 1rem;
+    align-items: center;
+    gap : .2rem;
+}
+
+.editInventory__itemDetails {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-bottom: 1px solid $cloud
+}
+
+.editInventory__itemDetails__items {
+    flex-direction: column;
+    display: flex;
+
+}
+
+.editInventory__itemDetails__items--h3 {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 0;
+    gap: .2rem;
+}
+
+.editInventory__itemDetails__items--input {
+    width: 90%;
+    height: fit-content;
+    border-radius: 20px;
+    padding: .5rem;
+    border: 1px solid $cloud;
+}
+
+.editInventory__itemAvailability {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+
+}
+
+.editInventory__itemDetails__items--radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5rem;
+}
+
+.editInventory__itemDetails__items--radio-quantity {
+    display: flex;
+    flex-direction: column;
+}
+
+.editInventory__itemDetails__items--radio-quantity-h3 {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.radio-button {
+    color: black; /* Default color */
+    display: flex;
+    gap: .3rem;
+  }
+  
+  .grey {
+    color: grey;
+    display: flex;
+    gap: .3rem; /* Grey color for radio button when not selected */
+  }
+// input[type="radio"] {
+//     // appearance: none; /* Hide the default radio button */
+//     // width: 10px; /* Adjust size as needed */
+//     // height: 10px; /* Adjust size as needed */
+//     // border-radius: 50%; /* Make it circular */
+//     // border: 1px solid $indigo; /* Set border color to blue */
+//     // outline: 1px solid red; /* Remove focus outline */
+ 
+// }
+
+  input[type="radio"]:checked {
+    color: $slate; /* Change background color when checked */
+  }
+
+  .checkbox{
+    appearance: none;
+    background-image: url('../../assets//icons/arrow_drop_down-24px.svg');
+    background-repeat: no-repeat;
+    background-position: (90% 0.3rem);
+  }
+
+  .editInventory--button{
+    padding: 1rem;
+  }
+  .editInventory-save{
+    background-color: $indigo;
+  }
+  .editInventory--cancel{
+    color: $slate;
+    text-decoration: none;
+    list-style-type: none;
+  }

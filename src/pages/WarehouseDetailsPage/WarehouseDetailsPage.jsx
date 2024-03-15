@@ -8,17 +8,16 @@ import { useParams } from 'react-router-dom';
 function WarehouseDetailsPage() {
     const server_url= 'http://localhost:5000';
     const { warehouseId } = useParams();
-    console.log("test", warehouseId);
-
     const [inventoryData, setInventoryData] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentData, setCurrentData] =useState();
-    
+    console.log(currentData)
+
     useEffect(() => {
         const fetchWarehouseDetails = async (id) => {
             const response = await axios.get(`${server_url}/api/warehouses/${id}`)
-            console.log(response.data);
+            // console.log(response.data);
             setCurrentData(response.data);
         }
 
@@ -29,9 +28,9 @@ function WarehouseDetailsPage() {
     useEffect(() => {
         const fetchWarehouseInventory = async () => {
             try {
-                console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
+                // console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
                 const response = await axios.get(`${server_url}/api/warehouses/${warehouseId}/inventories/`)
-                console.log("inventoryData", response.data);
+                // console.log("inventoryData", response.data);
                 setInventoryData(response.data);
                 setIsLoading(false);
             } catch (error) {
@@ -50,7 +49,7 @@ function WarehouseDetailsPage() {
         return <div>Error: {error}</div>;
     }
 
-    console.log("test2", inventoryData)
+    console.log(currentData)
 
 
     return(
@@ -58,7 +57,7 @@ function WarehouseDetailsPage() {
         <main className='page__background'>
         <div className='page__allignment'> 
         <WarehouseDetails currentData={currentData}/>
-        <InventoryList inventories={inventoryData}/>
+        <InventoryList inventories={inventoryData} warehouseName={currentData.warehouse_name}/>
         </div>
         </main>
         </>

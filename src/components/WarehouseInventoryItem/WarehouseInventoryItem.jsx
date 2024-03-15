@@ -6,20 +6,19 @@ import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 import { useState } from "react";
 import EditInventory from "../EditInventory/EditInventory";
 
-function InventoryItem({ inventory}) {
+function InventoryItem({ inventory, warehouseName}) {
     const {
         item_name,
         category,
         status,
         quantity
     } = inventory;
-    console.log(inventory);
     const navigate = useNavigate();
     // const [editInventory, setEditInventory] =useState(false);
     // const [inventoryItem, setInventoryItem] = useState(inventory);
 
     const handleEditInventory =() =>{
-        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory } });
+        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory, warehouseName } });
 
     }
     return (
