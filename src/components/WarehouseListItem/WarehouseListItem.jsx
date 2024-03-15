@@ -81,7 +81,7 @@ function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
             </section>
             <section className='modal__button'>
               <button onClick={cancelDelete} className='modal__button--cancel'>Cancel</button>
-              <button onClick={updateWarehouse} className='modal__button--delete'>Delete</button>
+              <button onClick={updateWarehouse} className='modal__button--delete delColor'>Delete</button>
             </section>
           </div>
         </div>
