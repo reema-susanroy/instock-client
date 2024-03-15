@@ -1,0 +1,130 @@
+@import "../../styles/partials/global";
+
+.new-warehouse-page {
+    background-color: $lightGrey;
+    display: flex;
+    justify-content: center;
+}
+.new-warehouse-body {
+  background-color: $white;
+  @include margin-mobile;
+  border-radius: 4px;
+  box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
+  @include tablet {
+    @include margin-tablet;
+    max-width: 63.75rem;
+  }
+  @include desktop {
+    @include margin-desktop;
+  }
+}
+
+.new-warehouse-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $cloud;
+  padding: 1.5rem;
+  @include tablet {
+    padding-top: 2rem;
+  }
+  &__title {
+    font-weight: 600;
+    margin-left: 1rem;
+    @include tablet {
+      margin-right: 6rem;
+    }
+  }
+}
+.new-warehouse-form {
+    @include tablet {
+        display: flex;
+        flex-direction: column;
+        margin: 2rem 0 0;
+    }
+
+}
+.new-warehouse-details {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid $cloud;
+  @include tablet {
+    padding: 0 2rem;
+    border-bottom: none;
+  }
+  &__title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  &__label {
+    font-weight: 600;
+    font-size: 0.8125rem;
+  }
+  &__input {
+    margin: 0.25rem 0 1rem;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    height: 2.25rem;
+    color: $slate;
+    &::placeholder {
+      font-family: "Titillium Web";
+    }
+    &.active {
+        @include active-input;
+    }
+    &.error {
+        @include error-input;
+    }
+  }
+  &--bottom {
+    border: none;
+    padding-bottom: 0.5rem;
+    @include tablet {
+        border-left: 1px solid $cloud;
+    }
+  }
+}
+
+.button-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: $lightGrey;
+    @include tablet {
+        justify-content: right;
+    }
+    &__cancel {
+        width: 50%;
+        margin-right: 1rem;
+        background-color: $white;
+        color: $slate;
+        font-family: "Titillium Web";
+        border: 1px solid $cloud;
+        height: 2.25rem;
+        border-radius: 20px;
+        @include tablet {
+            
+            max-width: 4.5rem;
+        }
+        
+    }
+    &__add {
+        width: 50%;
+        font-family: "Titillium Web";
+        height: 2.25rem;
+        border-radius: 20px;
+        background-color: $indigo;
+        @include tablet {
+            width: 8.625rem;
+        }
+        
+
+    }
+}
+
+.form-inputs {
+    display: flex;
+}

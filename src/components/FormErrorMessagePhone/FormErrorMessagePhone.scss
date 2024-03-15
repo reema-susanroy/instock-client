@@ -1,0 +1,15 @@
+@import "../../styles/partials/global";
+
+.error-message {
+    display: flex;
+    margin: -0.5rem 0 0.75rem;
+    &__text {
+        @include p3;
+        color: $red;
+    }
+    &__icon {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.25rem;
+    }
+}
