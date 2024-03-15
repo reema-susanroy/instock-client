@@ -44,6 +44,10 @@ function InventoryList({ inventories }) {
             <h4>QUANTITY</h4>
             <SortIcon className="warehouse-list__sort-icon" />
           </div>
+          <div className="warehouse-list__title warehouse-list__title-contact-information">
+            <h4>WAREHOUSE</h4>
+            <SortIcon className="warehouse-list__sort-icon" />
+          </div>
           <div className="warehouse-list__title warehouse-list__title-actions">
             <h4>ACTIONS</h4>
           </div>

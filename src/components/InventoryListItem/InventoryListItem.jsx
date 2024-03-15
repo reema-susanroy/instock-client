@@ -43,7 +43,7 @@ return (
                 <h4 className="warehouse-item-title__mobile">QUANTITY</h4>
                 <p className="inventory-list__item-content">{quantity}</p>
             </div>
-            <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
+            <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide inventory-warehouse-name">
                 <h4 className="warehouse-item-title__mobile">WAREHOUSE</h4>
                 <p className="inventory-list__item-content">{warehouse_name}</p>
             </div>
