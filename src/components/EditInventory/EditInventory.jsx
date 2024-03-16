@@ -7,7 +7,7 @@ import './EditInventory.scss'
 import errorIcon from '../../assets/icons/error-24px.svg';
 
 
-function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
+function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
     const navigate = useNavigate();
 
     const [itemName, setItemName] = useState(inventory.item_name);
@@ -23,8 +23,11 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
     const [errorMesage, setErrorMessage] = useState(false);
     
     let url;
-    if(thisPath==="inventory"){
+    if(flag==="inventory"){
         url=`/inventories`;
+    }
+    else if(flag==="inventory-details"){
+        url=`/inventories/${inventory.id}`;
     }
     else{
         url=`/warehouses/${warehouseId}`;

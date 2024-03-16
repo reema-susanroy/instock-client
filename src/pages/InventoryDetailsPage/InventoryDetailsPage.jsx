@@ -45,16 +45,17 @@ function InventoryDetailsPage() {
   if (!currentData) {
     return <div>No data available</div>;
   }
+  const warehouse = warehouses.find(warehouse => warehouse.id === currentData.warehouse_id);
 
+  
   const inventory = currentData;
   const warehouseName = warehouse.warehouse_name
   const warehouseId = warehouse.id
-  const thisPath = "inventory";
+  const flag = "inventory-details";
   const handleEditInventory = () => {
-    navigate(`/inventories/${currentData.id}/edit`, { state: { inventory, warehouseName, warehouseId, thisPath } });
+    navigate(`/inventories/${currentData.id}/edit`, { state: { inventory, warehouseName, warehouseId, flag } });
   }
 
-  const warehouse = warehouses.find(warehouse => warehouse.id === currentData.warehouse_id);
 
   return (
     <section className="inventory-details-page">
