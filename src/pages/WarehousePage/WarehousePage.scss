@@ -1,6 +1,11 @@
 @import "../../styles/partials/global";
 
 .warehouse-list-container {
-    margin-top: 7rem;
     background-color: $lightGrey;
+    margin-top: 8rem;
+    @include tablet {
+        margin-top: 7rem;
+    
+    }
+    
 }
