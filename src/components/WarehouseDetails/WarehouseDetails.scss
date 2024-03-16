@@ -1,70 +1,6 @@
-@use '../../styles/partials/global' as*;
+@use "../../styles/partials/global" as *;
 
 .warehouse_details {
-    // @include padding-mobile;
-
-    &__header-cont {
-        display: flex;
-        border-bottom: 1px solid $cloud;
-        padding: 2rem 1rem;
-        justify-content: space-between;
-
-        @include tablet {
-            // @include margin-tablet;
-        }
-
-        @include desktop {
-            padding-top: 2rem;
-            // @include margin-desktop;
-        }
-    }
-
-    &__header {
-        display: flex;
-        flex-direction: row;
-        gap: 2px;
-        align-items: center;
-
-        @include tablet {
-            gap: .5rem;
-        }
-
-        &--edit {
-            position: absolute;
-            left: 4px;
-            bottom: 5px;
-
-            @include tablet {
-                position: absolute;
-                left: 15px;
-                height: 20px;
-            }
-
-            &__span {
-                display: none;
-
-                @include tablet {
-                    display: flex;
-                    z-index: 1;
-                    color: $white;
-                    position: absolute;
-                    left: 2.5rem;
-
-                }
-            }
-        }
-
-        &--back-arrow {
-            height: 1.5rem;
-            display: flex;
-            align-self: center;
-        }
-    }
-
-    &__header-edit {
-        display: flex;
-        flex-direction: column;
-    }
 
     &__header-edit-cont {
         height: 2rem;
@@ -72,7 +8,6 @@
         background-color: $indigo;
         border-radius: 50%;
         position: relative;
-
         @include tablet {
             width: 5rem;
             align-items: center;
@@ -80,58 +15,118 @@
             border-radius: 50px;
         }
     }
+  &__header-cont {
+    display: flex;
+    border-bottom: 1px solid $cloud;
+    padding: 2rem 1rem 1rem;
+    justify-content: space-between;
 
-    &__content--address {
-        padding: 1rem;
+    @include tablet {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    @include desktop {
+      padding-top: 2rem;
+      @include margin-desktop;
+    }
+  }
+  &__header {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    align-items: center;
+    @include tablet {
+      gap: 0.5rem;
+    }
 
+    &--edit {
+        position: absolute;
+        left: 0px;
+        bottom: 1px;
+        width: 2rem;
         @include tablet {
-            width: 40%;
-            border-right: 1px solid $cloud;
-            padding-right: 3rem;
+            position: absolute;
+            left: 13px;
+            bottom: 6px;
+            width: 20px;
+
         }
-
-    }
-
-    &__content--label {
-        color: $slate;
-        font-size: .8rem;
-
-    }
-
-    &__content--address-data {
-        display: flex;
-        flex-direction: row;
-
-        @include tablet {
-            flex-direction: column;
+        &__span {
+            display: none;
+            @include tablet {
+                display: flex;
+                z-index: 1;
+                color: $white;
+                position: absolute;
+                left: 2.5rem;
+            }
         }
     }
-
-    &__content--contact {
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem;
-        margin-right: 1.5rem;
-        @include tablet {
-            // flex: 1;
-            width: 60%;
-            justify-content: space-around;
-        }
-
-        @include desktop {
-            width: 55%;
-        }
+    &--back-arrow {
+      height: 1.5rem;
+      display: flex;
+      align-self: center;
     }
+  }
+  &__header-edit {
+    display: flex;
+  }
+  &__content--address {
+    padding: 1rem;
+    @include tablet {
+      width: 40%;
+      border-right: 1px solid $cloud;
+      padding-right: 4rem;
+      padding-left: 0;
+    }
+  }
+  &__content--label {
+    color: $slate;
+    font-weight: 600;
+  }
+  &__content--address-data {
+    display: flex;
+    flex-direction: row;
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+  &__content--contact {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-right: 1.5rem;
+    @include tablet {
+      // flex: 1;
+      width: 60%;
+      justify-content: space-around;
+    }
+    @include desktop {
+      width: 55%;
+    }
+  }
 }
 
 .warehouse_details__content-cont {
-    @include tablet {
-        display: flex;
-        padding-top: 1.5rem;
-        padding: 1rem 1rem;
-    }
+  border-bottom: 1px solid $cloud;
+  @include tablet {
+    display: flex;
+    padding: 1.5rem 0;
+    @include margin-tablet;
+    border-bottom: none;
+  }
+  @include desktop {
+    @include margin-desktop;
+  }
 }
 
-.set-height {
-    height: fit-content;
+.warehouse-details-content {
+  @include p2;
+}
+
+.warehouse-details {
+  &__warehouse-title {
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
 }
