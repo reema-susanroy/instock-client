@@ -51,7 +51,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        width: 90%;
+        
+        // padding: 0 1rem;
+        
 
         @include tablet {
             justify-content: flex-end;
@@ -61,7 +64,7 @@
         &__items {
             text-decoration: none;
             list-style: none;
-            margin: 0 1rem;
+            // margin: 0 1rem;
 
             @include tablet {
                 margin: 0;
@@ -100,6 +103,4 @@ button {
         text-align: center;
     } 
 }
-
-
 
