@@ -1,7 +1,6 @@
 import "./WarehouseDetails.scss";
-
+import edit from '../../assets/icons/edit-24px-white.svg'
 import backIcon from "../../assets/icons/arrow_back-24px.svg";
-import edit from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 
 function WarehouseDetails({ currentData }) {
@@ -20,12 +19,8 @@ function WarehouseDetails({ currentData }) {
           <h1 className="warehouse-details__warehouse-title">{currentData.warehouse_name}</h1>
         </div>
         <div className="warehouse_details__header-edit">
-          <Link to={`/warehouses/${currentData.id}/edit`}>
-            <img
-              className="warehouse_details__header--edit"
-              src={edit}
-              alt="edit"
-            />
+        <Link to={`/warehouses/${currentData.id}/edit`} className='warehouse_details__header-edit-cont'>
+            <img className='warehouse_details__header--edit' src={edit} alt="edit" /> <span className='warehouse_details__header--edit__span'>Edit</span>
           </Link>
         </div>
       </div>
