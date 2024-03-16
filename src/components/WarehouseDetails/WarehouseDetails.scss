@@ -11,6 +11,7 @@
 
         @include tablet{
             // @include margin-tablet;
+            margin-left: 1rem;
         }
         @include desktop{
             padding-top: 2rem;
