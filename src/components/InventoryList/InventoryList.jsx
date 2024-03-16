@@ -20,7 +20,7 @@ function InventoryList({ inventories, handleDeleteInventory }) {
           ></input>
           <SearchIcon className="warehouse-list-header__search-bar-icon" />
         </div>
-        <Link to={"/warehouses/add"}>
+        <Link to={"/inventories/add"}>
           <button className="warehouse-list-header__add-button">
             + Add New Item
           </button>
