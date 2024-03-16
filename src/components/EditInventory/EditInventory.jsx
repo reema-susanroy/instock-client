@@ -107,7 +107,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                         }
                     }
                     catch(error){
-                        console.log(error)
+                        console.log("Unable to fetch warehouse name from DB: "+ error);
                     }
                 }
 
