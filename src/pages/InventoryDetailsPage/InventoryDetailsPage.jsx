@@ -97,7 +97,6 @@ function InventoryDetailsPage() {
               {currentData.category}
             </p>
           </div>
-
           <div className="inventory-detail-content-right">
             <div className="inventory-detail-content-wrapper">
               <div className="inventory-detail-content-wrapper-left">
@@ -113,7 +112,6 @@ function InventoryDetailsPage() {
                 </p>
               </div>
             </div>
-
             <h4 className="inventory-detail-content__title">WAREHOUSE:</h4>
             <p className="inventory-detail-content__details">
               {warehouse.warehouse_name}

@@ -19,7 +19,6 @@
   box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
   @include tablet {
     @include margin-tablet;
-    
   }
   @include desktop {
     @include margin-desktop;
@@ -31,6 +30,9 @@
     border-bottom: 1px solid $cloud;
     display: flex;
     justify-content: space-between;
+    @include desktop {
+        padding: 2rem 2rem 1.5rem;
+    }
     &__cont {
       font-weight: 600;
     }
@@ -59,7 +61,7 @@
     margin-bottom: 1.5rem;
 
     @include tablet {
-        margin-bottom: 14rem;
+      margin-bottom: 14rem;
       display: flex;
       &-left {
         flex-grow: 1;
@@ -76,11 +78,13 @@
         margin-top: 1rem;
       }
     }
+    @include desktop {
+        padding: 0 2rem;
+    }
 
     &__title {
       padding-top: 1rem;
       padding-bottom: 0.25rem;
-      
     }
 
     &-wrapper {
