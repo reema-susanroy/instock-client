@@ -1,23 +1,28 @@
 import "./InventoryDetailsPage.scss";
 import arrowBack from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/edit-24px-white.svg";
-import axios from "axios";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import axios from 'axios';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 function InventoryDetailsPage() {
-  const base_url = "http://localhost:5000";
+
+  const base_url = 'http://localhost:5000';
   const { inventoryId } = useParams();
   const [currentData, setCurrentData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [warehouses, setWarehouses] = useState([]);
-  const navigate= useNavigate();
+
+  const navigate = useNavigate();
   useEffect(() => {
-    const fetchInventoryDetails = async (id) => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`${base_url}/api/inventories/${id}`);
-        console.log(response.data);
-        setCurrentData(response.data);
+        const inventoryResponse = await axios.get(`${base_url}/api/inventories/${inventoryId}`);
+        setCurrentData(inventoryResponse.data);
+
+        const warehousesResponse = await axios.get(`${base_url}/api/warehouses`);
+        setWarehouses(warehousesResponse.data);
+
         setIsLoading(false);
       } catch (error) {
         setError(error.message);
@@ -25,20 +30,8 @@ function InventoryDetailsPage() {
       }
     };
 
-    fetchInventoryDetails(inventoryId);
+    fetchData();
   }, [inventoryId]);
-
-  useEffect(() => {
-    const getWarehouses = async () => {
-      try {
-        const response = await axios.get(`${base_url}/api/warehouses`);
-        setWarehouses(response.data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-    getWarehouses();
-  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -52,21 +45,16 @@ function InventoryDetailsPage() {
   if (!currentData) {
     return <div>No data available</div>;
   }
-  console.log(warehouses);
-  const warehouse = warehouses.find(
-    (warehouse) => warehouse.id === currentData.warehouse_id
-  );
 
   const inventory = currentData;
   const warehouseName = warehouse.warehouse_name
   const warehouseId = warehouse.id
-  const thisPath= "inventory";
-console.log("warehouse"+ warehouseName)
-  const handleEditInventory=()=>{
-    navigate(`/inventories/${currentData.id}/edit`,{ state: { inventory, warehouseName , warehouseId, thisPath} });
+  const thisPath = "inventory";
+  const handleEditInventory = () => {
+    navigate(`/inventories/${currentData.id}/edit`, { state: { inventory, warehouseName, warehouseId, thisPath } });
   }
 
-  console.log(currentData);
+  const warehouse = warehouses.find(warehouse => warehouse.id === currentData.warehouse_id);
 
   return (
     <section className="inventory-details-page">
@@ -85,12 +73,12 @@ console.log("warehouse"+ warehouseName)
             </h1>
           </div>
           {/* <Link to={`/inventories/${currentData.id}/edit`}> */}
-            <img
-              src={editIcon}
-              alt="Edit Icon"
-              className="inventory-detail-title__edit"
-              onClick={handleEditInventory}
-            />
+          <img
+            src={editIcon}
+            alt="Edit Icon"
+            className="inventory-detail-title__edit"
+            onClick={handleEditInventory}
+          />
           {/* </Link> */}
         </div>
         <section className="inventory-detail-content">
