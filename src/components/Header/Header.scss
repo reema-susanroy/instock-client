@@ -1,13 +1,11 @@
 @import "../../styles/partials/global";
 
-.header {
+.header{
     background-color: $graphite;
     padding-top: 1.5rem;
     display: flex;
     height: 12.5rem;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     position: absolute;
     top: 0;
     left: 0;
@@ -15,19 +13,30 @@
     z-index: 1; 
 
     @include tablet {
-        padding: 1.5rem;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 2rem;
+        padding-top: 2rem;
     }
 
-    @include desktop {
-        padding: 2rem 8.125rem;
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            @include margin-tablet;
+        }
+
+        @include desktop {
+            width: 63.75rem;
+            @include margin-desktop;
+        }
     }
 
+
+    // header logo
     &-logo {
-        margin: 0 auto;
         height: 2.75rem;
         width: 8.035rem;
         @include content-padding;
@@ -36,36 +45,36 @@
             padding: 0;
             margin: 0;
         }
-
-        @include desktop {
-
-        }
     }
 
     &-navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
+
+        @include tablet {
+            justify-content: flex-end;
+        }
+
 
         &__items {
             text-decoration: none;
             list-style: none;
+            margin: 0 1rem;
 
             @include tablet {
-                padding: 0.5rem 0 0 1rem;
+                margin: 0;
             }
-
-
         }
     }
-
 }
 
+// warehouses and inventory button
 button {
     color: $cloud;
     background-color: $graphite;
     border: none;
-    // padding: 0.5rem 1rem;
     width: 10.25rem;
     height: 2.25rem;
     border-radius: 1rem;
@@ -86,13 +95,11 @@ button {
     &.active {
         background-color: $black;
         border: none;
-        // padding: 0.5rem 1rem;
         border-radius: 1rem;
         color: $white;
         text-align: center;
-        // width: 10.25rem;
-        // text-align: center;
-
-    }
-    
+    } 
 }
+
+
+
