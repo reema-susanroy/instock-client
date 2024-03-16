@@ -7,9 +7,9 @@ function EditInventoryPage() {
     const location = useLocation();
     const { inventory, warehouseName, warehouseId, thisPath} = location.state;
     return (
-        <>
+        <div className='edit-inventory-page'>
             <EditInventory inventory={inventory}  warehouseName={warehouseName} warehouseId={warehouseId} thisPath={thisPath}/>
-        </>
+        </div>
     )
 }
 
