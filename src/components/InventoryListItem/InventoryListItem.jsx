@@ -1,6 +1,6 @@
 import "./InventoryListItem.scss";
 import { ReactComponent as ChevronIcon } from "../../assets/icons/chevron_right-24px.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 import { useState } from "react";
@@ -13,6 +13,8 @@ function InventoryListItem({ inventories, handleDeleteInventory }) {
     quantity,
     warehouse_name
 } = inventories;
+const navigate = useNavigate();
+const warehouseId= inventories.warehouse_id;
 
 const [delInventory, setDelInventory] = useState(false);
 
@@ -25,6 +27,15 @@ const updateInventory = () => {
 }
 const cancelDelete = () => {
     setDelInventory(false);
+}
+const inventory = inventories;
+const warehouseName = warehouse_name
+// const warehouseId = warehouseId
+const thisPath= "inventory";
+const editInventory=()=>{
+    console.log(inventory,warehouseId,warehouseName)
+    navigate(`/inventories/${inventories.id}/edit`,{ state: { inventory, warehouseName , warehouseId, thisPath} });
+
 }
 
 return (
@@ -62,7 +73,7 @@ return (
                 </div>
                 <div className="warehouse-item__buttons">
                     <DeleteIcon className="warehouse-item__button" onClick={deleteInventory}/>
-                    <EditIcon className="warehouse-item__button"/>
+                    <EditIcon className="warehouse-item__button" onClick={editInventory}/>
                 </div>
             </section>
         </li>

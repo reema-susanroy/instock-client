@@ -7,7 +7,7 @@ import './EditInventory.scss'
 import errorIcon from '../../assets/icons/error-24px.svg';
 
 
-function EditInventory({ inventory, warehouseName, warehouseId }) {
+function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
     const navigate = useNavigate();
 
     const [itemName, setItemName] = useState(inventory.item_name);
@@ -21,6 +21,15 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
     const [selectedOption, setSelectedOption] = useState(inventory.status);
     const [updateSuccess, setUpdateSuccess] = useState("");
     const [errorMesage, setErrorMessage] = useState(false);
+    
+    let url;
+    if(thisPath==="inventory"){
+        url=`/inventories`;
+    }
+    else{
+        url=`/warehouses/${warehouseId}`;
+    }
+    console.log('url'+url);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -97,7 +106,7 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                     status: selectedOption,
                     quantity: String(quantity)
                 });
-                navigate(`/warehouses/${warehouseId}`)
+                navigate(url)
             }
             catch (message) {
                 console.log('Unable to do Update inventory item : ' + message);
@@ -111,7 +120,8 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
 
     const cancelEdit = (event) => {
         event.preventDefault();
-        navigate(`/warehouses/${warehouseId}`)
+        // navigate(`/warehouses/${warehouseId}`)
+        navigate(url);
     }
     return (
         <>
@@ -119,7 +129,7 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
 
                 <div className='editInventory'>
                     <div className='editInventory__header'>
-                        <Link to={`/warehouses/${warehouseId}`}>
+                        <Link to={url}>
                             <img className='editInventory__back-arrow' src={backIcon} alt="back-arrow" />
                         </Link>
                         <h1>Edit Inventory Item</h1>
