@@ -45,7 +45,7 @@ return (
                 <div className="warehouse-item warehouse-item__contact--link">
                     <h4 className="warehouse-item-title__mobile">INVENTORY ITEM</h4>
                     <div className="warehouse-item__link">
-                        <Link to={`/inventory/${item_name}`}>
+                        <Link to={`/inventories/${inventories.id}`}>
                         <h3 className="inventory-list__item-name">{item_name}</h3>
                         </Link>
                         <ChevronIcon />
