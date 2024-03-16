@@ -86,7 +86,8 @@
 
         @include tablet {
             width: 40%;
-            border-right: 1px solid $slate;
+            border-right: 1px solid $cloud;
+            padding-right: 3rem;
         }
 
     }
@@ -110,7 +111,7 @@
         display: flex;
         justify-content: space-between;
         padding: 1rem;
-
+        margin-right: 1.5rem;
         @include tablet {
             // flex: 1;
             width: 60%;
