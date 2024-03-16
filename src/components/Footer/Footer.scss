@@ -3,13 +3,14 @@
 
 .footer {
     padding: 1rem;
+    margin: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 3rem;
     flex-wrap: nowrap;
     background-color: $lightGrey;
-    position: fixed;
+    // position: fixed;
     z-index: 2;
     bottom: 1.5rem;
     left:20%;
@@ -20,6 +21,7 @@
         bottom: 1rem;
         width: 100%;
         left: 1%;
+        margin-top: 4rem;
     }
 
     @include desktop {

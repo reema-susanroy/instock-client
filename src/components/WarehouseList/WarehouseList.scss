@@ -69,8 +69,12 @@
     background-color: $indigo;
     height: 2.25rem;
     width: 100%;
+    color: $white;
     @include tablet {
       margin-left: 1rem;
+    }
+    &:hover {
+      background-color: $graphite;
     }
   }
 }

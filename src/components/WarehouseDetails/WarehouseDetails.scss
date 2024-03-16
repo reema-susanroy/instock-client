@@ -1,6 +1,33 @@
 @use "../../styles/partials/global" as *;
 
+.warehouse-details-page {
+    background-color: $lightGrey;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 8.5rem;
+    @include tablet {
+        margin-top: 7rem;
+    }
+}
+
+.warehouse-details-body {
+    background-color: $white;
+    z-index: 2;
+    @include margin-mobile;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
+    @include tablet {
+      @include margin-tablet;
+    //   
+    }
+    @include desktop {
+      @include margin-desktop;
+      min-width: 63.75rem;
+    }
+  }
 .warehouse_details {
+
 
     &__header-edit-cont {
         height: 2rem;
@@ -14,6 +41,9 @@
             display: flex;
             border-radius: 50px;
         }
+        &:hover {
+            background-color: $graphite;
+          }
     }
   &__header-cont {
     display: flex;
@@ -70,6 +100,7 @@
   }
   &__header-edit {
     display: flex;
+    
   }
   &__content--address {
     padding: 1rem;
@@ -116,7 +147,7 @@
     border-bottom: none;
   }
   @include desktop {
-    @include margin-desktop;
+    // @include margin-desktop;
   }
 }
 

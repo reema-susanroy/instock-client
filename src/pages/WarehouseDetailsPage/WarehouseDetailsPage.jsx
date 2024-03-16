@@ -54,13 +54,15 @@ function WarehouseDetailsPage() {
   return (
     <>
       <main className="">
-        <div className="editInventory">
-          <WarehouseDetails currentData={currentData} />
-          <WarehouseInventoryList
-            inventories={inventoryData}
-            warehouseName={currentData.warehouse_name}
-            warehouseId={currentData.id}
-          />
+        <div className="warehouse-details-page">
+          <section className="warehouse-details-body">
+            <WarehouseDetails currentData={currentData} />
+            <WarehouseInventoryList
+              inventories={inventoryData}
+              warehouseName={currentData.warehouse_name}
+              warehouseId={currentData.id}
+            />
+          </section>
         </div>
       </main>
     </>
