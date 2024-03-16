@@ -173,12 +173,16 @@
   }
 }
 
-input .error{
-  display: flex;
-  // border: none;
-  border-color: $indigo;
+.error{
+  border-color: $red;
 }
 
-.error{
-  border-color: red;
+.editInventory__itemDetails__items--input {
+  &:focus {
+    outline-color: $indigo;
+  }
+
+  &.error {
+    outline-color: $red;
+  }
 }

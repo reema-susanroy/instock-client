@@ -143,7 +143,8 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
 
                                     <label className='editInventory__itemDetails__items--label'>Description
                                         <textarea className= 'editInventory__itemDetails__items--input'  type="text" rows={4} value={description}
-                                            onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} />
+                                            onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} 
+                                            />
                                         {!description && (
                                             <div className='error'>
                                                 <img src={errorIcon} className="error-icon" alt='Error Icon' />
