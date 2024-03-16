@@ -15,7 +15,7 @@
 
         @include desktop {
             padding-top: 2rem;
-            @include margin-desktop;
+            // @include margin-desktop;
         }
     }
 
@@ -128,13 +128,8 @@
     @include tablet {
         display: flex;
         padding-top: 1.5rem;
-        // @include margin-tablet;
         padding: 1rem 1rem;
     }
-
-    // @include desktop{
-    //     @include margin-desktop;
-    // }
 }
 
 .set-height {
