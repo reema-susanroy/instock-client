@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 import { useState } from "react";
+import { ReactComponent as CloseIcon } from "../../assets/icons/close-24px.svg"
 
 function InventoryListItem({ inventories, handleDeleteInventory }) {
   const {
@@ -80,12 +81,13 @@ return (
 
         {delInventory &&
             <div className="modal-overlay">
-            <div className="modal">
-                <section className='modal__title-cont'>
-                    <h2 className='modal__title--title'>Delete {item_name} inventory item ?</h2>
-                    <p className='modal__title'>Please confirm that you'd like to delete the {item_name} from the list of inventory list. You won't be able to undo this action.</p>
+            <div className="delete-modal">
+                <CloseIcon onClick={cancelDelete} className="close-icon"/>
+                <section className='delete-modal__title-cont'>
+                    <h1 className='delete-modal__title--title'>Delete {item_name} inventory item?</h1>
+                    <p className='delete-modal__title'>Please confirm that you'd like to delete the {item_name} from the list of inventory list. You won't be able to undo this action.</p>
                 </section>
-                <section className='modal__button'>
+                <section className='delete-modal__button'>
                     <button onClick={cancelDelete} className='modal__button--cancel'>Cancel</button>
                     <button onClick={updateInventory} className='modal__button--delete delColor'>Delete</button>
                 </section>
