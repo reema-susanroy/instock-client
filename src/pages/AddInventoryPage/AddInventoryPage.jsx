@@ -1,4 +1,4 @@
-import AddInventoryItem from "../../components/AddInventoryItem/AddInventoryItem";
+import AddInventoryItem from "../../components/AddInventoryItem/AddInventoryItem"
 
 function AddInventoryPage() {
     
