@@ -156,13 +156,13 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                         <Link to={url}>
                             <img className='editInventory__back-arrow' src={backIcon} alt="back-arrow" />
                         </Link>
-                        <h1>Edit Inventory Item</h1>
+                        <h1 className='edit-inventory__title'>Edit Inventory Item</h1>
                     </div>
                     {/* <form onSubmit={handleSubmit}> */}
                     <form >
                         <section className='editInventory__form'>
                             <div className='editInventory__itemDetails'>
-                                <h2 className='edit-warehouse__form-group-one-subtitle'>Item Details</h2>
+                                <h2 className='edit-inventory__subtitle'>Item Details</h2>
                                 <section className='editInventory__itemDetails__items'>
                                     <label className='editInventory__itemDetails__items--label'>Item Name
                                         <input className='editInventory__itemDetails__items--input' type="text" value={itemName}
@@ -209,7 +209,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
 
                             <div className='editInventory__itemAvailability'>
                                 <div className='warehouse_details__header-edit'>
-                                    <h2 className='edit-warehouse__form-group-one-subtitle'>Item Availability</h2>
+                                    <h2 className='edit-inventory__subtitle'>Item Availability</h2>
                                 </div>
                                 <label className='editInventory__itemDetails__items--label'>Status
 
