@@ -14,6 +14,9 @@
             display: flex;
             border-radius: 50px;
         }
+        &:hover {
+            background-color: $graphite;
+          }
     }
   &__header-cont {
     display: flex;
@@ -70,6 +73,7 @@
   }
   &__header-edit {
     display: flex;
+    
   }
   &__content--address {
     padding: 1rem;
@@ -116,7 +120,7 @@
     border-bottom: none;
   }
   @include desktop {
-    @include margin-desktop;
+    // @include margin-desktop;
   }
 }
 
