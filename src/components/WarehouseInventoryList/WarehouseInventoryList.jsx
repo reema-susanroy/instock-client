@@ -3,7 +3,6 @@ import './WarehouseInventoryList.scss';
 import { ReactComponent as SortIcon } from '../../assets/icons/sort-24px.svg';
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 
-
 function WarehouseInventoryList({ inventories, warehouseName , warehouseId}) {
 
     return(
