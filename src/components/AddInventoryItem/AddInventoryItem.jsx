@@ -117,7 +117,7 @@ function AddInventoryItem( ) {
         <section className='container'>
             <div className='editInventory'>
                 <div className='editInventory__header'>
-                    <Link to={`/inventory`}>
+                    <Link to={`/inventories`}>
                         <img className='editInventory__back-arrow' src={backIcon} alt="back-arrow" />
                     </Link>
                     <h1>Add New Inventory Item</h1>
