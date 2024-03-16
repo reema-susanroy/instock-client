@@ -87,7 +87,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
         }
         return true;
     }
-
     const warehouseObj = {
         "1" : "Manhattan",
         "2" : "Washington",
@@ -98,34 +97,21 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
         "7" : "Miami",
         "8" : "Boston"
     }
-    console.log(selectedWarehouse.toLowerCase());
-    const checkWarehouseSelected = async() =>{
+    const checkWarehouseSelected = () =>{
         if(selectedWarehouse !== warehouseName){
-            try{
-            const newId = await axios.get(`http://localhost:5000/api/warehouses/name/${selectedWarehouse.toLowerCase()}`);
-            console.log("newId" +newId)
-            return newId;
+            for (const [id, warehouse] of Object.entries(warehouseObj)) {
+                if (warehouse === selectedWarehouse) {
+                    return id;
+                }
             }
-            catch(error){
-                console.log("Couldn't fetch Id for the selected warehouse" + error);
-            }
-            // for (const [id, warehouse] of Object.entries(warehouseObj)) {
-            //     if (warehouse === selectedWarehouse) {
-            //         return id;
-            //     }
-            // }
-            
-
         }
         return warehouseId;
     }
-
     const updateWarehouse = async (e) => {
         e.preventDefault();
         const Validation = validateInput();
         const validateQuantity = validateQuantities();
         const checkWarehouseUpdateId = checkWarehouseSelected();
-
         if (Validation && validateQuantity) {
             setUpdateSuccess(false);
             try {

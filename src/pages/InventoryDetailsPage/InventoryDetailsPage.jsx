@@ -2,7 +2,7 @@ import "./InventoryDetailsPage.scss";
 import arrowBack from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/edit-24px-white.svg";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 function InventoryDetailsPage() {
   const base_url = "http://localhost:5000";
@@ -11,7 +11,7 @@ function InventoryDetailsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [warehouses, setWarehouses] = useState([]);
-
+  const navigate= useNavigate();
   useEffect(() => {
     const fetchInventoryDetails = async (id) => {
       try {
@@ -57,6 +57,15 @@ function InventoryDetailsPage() {
     (warehouse) => warehouse.id === currentData.warehouse_id
   );
 
+  const inventory = currentData;
+  const warehouseName = warehouse.warehouse_name
+  const warehouseId = warehouse.id
+  const thisPath= "inventory";
+console.log("warehouse"+ warehouseName)
+  const handleEditInventory=()=>{
+    navigate(`/inventories/${currentData.id}/edit`,{ state: { inventory, warehouseName , warehouseId, thisPath} });
+  }
+
   console.log(currentData);
 
   return (
@@ -75,13 +84,14 @@ function InventoryDetailsPage() {
               {currentData.item_name}
             </h1>
           </div>
-          <Link to={`/inventories/${currentData.id}/edit`}>
+          {/* <Link to={`/inventories/${currentData.id}/edit`}> */}
             <img
               src={editIcon}
               alt="Edit Icon"
               className="inventory-detail-title__edit"
+              onClick={handleEditInventory}
             />
-          </Link>
+          {/* </Link> */}
         </div>
         <section className="inventory-detail-content">
           <div className="inventory-detail-content-left">
