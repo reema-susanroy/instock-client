@@ -17,10 +17,10 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
     const navigate = useNavigate();
     // const [editInventory, setEditInventory] =useState(false);
     // const [inventoryItem, setInventoryItem] = useState(inventory);
-    let thisPath;
-    thisPath="warehouses"
+    let flag;
+    flag="warehouses"
     const handleEditInventory =() =>{
-        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory, warehouseName, warehouseId , thisPath} });
+        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory, warehouseName, warehouseId , flag} });
 
     }
     return (
