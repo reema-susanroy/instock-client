@@ -5,6 +5,9 @@
     display: flex;
     justify-content: center;
     margin-top: 8rem;
+    @include tablet {
+      margin-top: 6.5rem;
+    }
 }
 .new-warehouse-body {
   background-color: $white;
@@ -132,6 +135,7 @@
 .form-inputs {
   @include tablet {
     display: flex;
+    margin-bottom: 2rem;
   }
     
 }
