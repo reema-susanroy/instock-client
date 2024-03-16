@@ -175,12 +175,12 @@ function AddInventoryItem(inventory) {
                                     {selectedOption === 'In Stock' && (
                                         <div>
                                             <label className='editInventory__itemDetails__items--radio-quantity-label'> Quantity
-                                                {/* <input
+                                                <input
                                                     type="number"
                                                     className='editInventory__itemDetails__items--input'
                                                     value={quantity}
                                                     onChange={(e) => setQuantity(e.target.value)}
-                                                /> */}
+                                                />
                                             </label>
                                         </div>
                                     )}
