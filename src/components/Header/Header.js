@@ -24,7 +24,7 @@ function Header() {
                     <button className={`nav-button ${activeButton === '/warehouses' ? 'active' : ''}`} onClick={() => goToPage('/warehouses')}>Warehouses</button>
                 </li>
                 <li className="header-navbar__items">
-                    <button className={`nav-button ${activeButton === '/inventory' ? 'active' : ''}`} onClick={() => goToPage('/inventory')}>Inventory</button>
+                    <button className={`nav-button ${activeButton === '/inventory' ? 'active' : ''}`} onClick={() => goToPage('/inventories')}>Inventory</button>
                 </li>
             </ul>
         </header>

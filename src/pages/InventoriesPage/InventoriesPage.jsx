@@ -23,18 +23,33 @@ function InventoriesPage() {
       setIsLoading(false);
     }
 
-  if (isLoading) {
-    return <div>Loading Inventories...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+    if (isLoading) {
+      return <div>Loading Inventories...</div>;
+    }
+  
+    if (error) {
+      return <div>Error: {error}</div>;
+    }
 
   };
+
+  const handleDeleteInventory = async (id) => {
+    try {
+      await axios.delete(`${base_url}/api/inventories/${id}`);
+      getInventoriesList();
+    }
+    catch (error) {
+      console.log("Unable to Delete inventory : " + error);
+    }
+
+  }
+
+ 
+
+
   return (
     <div className="warehouse-list-container">
-      <InventoryList inventories={inventories}/>
+      <InventoryList inventories={inventories} handleDeleteInventory={handleDeleteInventory}/>
     </div>
   );
 }
