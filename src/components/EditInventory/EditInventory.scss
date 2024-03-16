@@ -172,3 +172,13 @@
     padding: 1rem;
   }
 }
+
+input .error{
+  display: flex;
+  // border: none;
+  border-color: $indigo;
+}
+
+.error{
+  border-color: red;
+}
