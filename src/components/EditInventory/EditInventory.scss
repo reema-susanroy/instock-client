@@ -172,3 +172,17 @@
     padding: 1rem;
   }
 }
+
+.error{
+  border-color: $red;
+}
+
+.editInventory__itemDetails__items--input {
+  &:focus {
+    outline-color: $indigo;
+  }
+
+  &.error {
+    outline-color: $red;
+  }
+}

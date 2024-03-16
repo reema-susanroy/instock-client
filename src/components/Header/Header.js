@@ -16,17 +16,19 @@ function Header() {
 
     return (
         <header className="header">
-            <Link to="/warehouses">
-                <img className="header-logo" src={Logo} alt="Logo" />
-            </Link>
-            <ul className="header-navbar">
-                <li className="header-navbar__items">
-                    <button className={`nav-button ${activeButton === '/warehouses' ? 'active' : ''}`} onClick={() => goToPage('/warehouses')}>Warehouses</button>
-                </li>
-                <li className="header-navbar__items">
-                    <button className={`nav-button ${activeButton === '/inventory' ? 'active' : ''}`} onClick={() => goToPage('/inventory')}>Inventory</button>
-                </li>
-            </ul>
+            <div className="header-wrapper">
+                <Link to="/warehouses">
+                    <img className="header-logo" src={Logo} alt="Logo" />
+                </Link>
+                <ul className="header-navbar">
+                    <li className="header-navbar__items">
+                        <button className={`nav-button ${activeButton === '/warehouses' ? 'active' : ''}`} onClick={() => goToPage('/warehouses')}>Warehouses</button>
+                    </li>
+                    <li className="header-navbar__items">
+                        <button className={`nav-button ${activeButton === '/inventories' ? 'active' : ''}`} onClick={() => goToPage('/inventories')}>Inventory</button>
+                    </li>
+                </ul>
+            </div>
         </header>
     )
 }
