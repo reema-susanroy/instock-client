@@ -4,14 +4,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './EditInventory.scss'
+import errorIcon from '../../assets/icons/error-24px.svg';
 
-function EditInventory({ inventory, warehouseName, warehouseId }) {
+
+function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
     const navigate = useNavigate();
 
     const [itemName, setItemName] = useState(inventory.item_name);
     const [description, setDescription] = useState(inventory.description);
     const [quantity, setQuantity] = useState(inventory.quantity);
-
 
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(inventory.category);
@@ -20,6 +21,14 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
     const [selectedOption, setSelectedOption] = useState(inventory.status);
     const [updateSuccess, setUpdateSuccess] = useState("");
     const [errorMesage, setErrorMessage] = useState(false);
+    
+    let url;
+    if(thisPath==="inventory"){
+        url=`/inventories`;
+    }
+    else{
+        url=`/warehouses/${warehouseId}`;
+    }
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -47,6 +56,7 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
     const handleInputChange = () => {
         setErrorMessage(false);
     };
+    
     useEffect(() => {
         async function fetchCategories() {
             try {
@@ -63,8 +73,6 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
 
 
     const validateInput = () => {
-        console.log('1')
-        console.log(warehouseId, itemName, description, selectedCategory, selectedOption, quantity)
         if (!warehouseId || !itemName || !description) {
             return false;
         }
@@ -84,7 +92,6 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
         e.preventDefault();
         const Validation = validateInput();
         const validateQuantity = validateQuantities();
-        console.log(Validation, validateQuantity)
         if (Validation && validateQuantity) {
             setUpdateSuccess(false);
             try {
@@ -96,7 +103,7 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                     status: selectedOption,
                     quantity: String(quantity)
                 });
-                navigate(`/warehouses/${warehouseId}`)
+                navigate(url)
             }
             catch (message) {
                 console.log('Unable to do Update inventory item : ' + message);
@@ -110,7 +117,8 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
 
     const cancelEdit = (event) => {
         event.preventDefault();
-        navigate(`/warehouses/${warehouseId}`)
+        // navigate(`/warehouses/${warehouseId}`)
+        navigate(url);
     }
     return (
         <>
@@ -118,7 +126,7 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
 
                 <div className='editInventory'>
                     <div className='editInventory__header'>
-                        <Link to={`/warehouses/${warehouseId}`}>
+                        <Link to={url}>
                             <img className='editInventory__back-arrow' src={backIcon} alt="back-arrow" />
                         </Link>
                         <h1>Edit Inventory Item</h1>
@@ -132,21 +140,41 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                                     <label className='editInventory__itemDetails__items--label'>Item Name
                                         <input className='editInventory__itemDetails__items--input' type="text" value={itemName}
                                             onChange={(e) => { handleItemNameChange(e.target.value); handleInputChange(); }} />
+                                        {!itemName && (
+                                            <div className='error'>
+                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                                <span className="error-text">This field is required</span>
+                                            </div>
+                                        )}
                                     </label>
 
                                     <label className='editInventory__itemDetails__items--label'>Description
-                                        <textarea className='editInventory__itemDetails__items--input' type="text" rows={4} value={description}
-                                            onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} />
+                                        <textarea className= 'editInventory__itemDetails__items--input'  type="text" rows={4} value={description}
+                                            onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} 
+                                            />
+                                        {!description && (
+                                            <div className='error'>
+                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                                <span className="error-text">This field is required</span>
+                                            </div>
+                                        )}
                                     </label>
                                     <label className='editInventory__itemDetails__items--label'>Category
                                         <select value={selectedCategory} className='editInventory__itemDetails__items--input checkbox'
                                             onChange={(e) => { handleCategoriesChange(e.target.value); handleInputChange(); }}
 
                                         >
+                                            <option className='checkbox__options' value="Please Select">Please Select</option>
                                             {Array.isArray(categories) && categories.map(category => (
                                                 <option className='checkbox__options' key={category} value={category}>{category}</option>
                                             ))}
                                         </select>
+                                        {selectedCategory === "Please Select" && (
+                                            <div className='error'>
+                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                                <span className="error-text">This field is required</span>
+                                            </div>
+                                        )}
                                     </label>
                                 </section>
                             </div>
@@ -190,16 +218,29 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                                                 </label>
                                             </div>
                                         )}
+                                        {selectedOption === 'In Stock' && !quantity && (
+                                            <div className='error'>
+                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                                <span className="error-text">This field is required</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </label>
 
                                 <label className='editInventory__itemDetails__items--label'>Warehouse
                                     <select value={selectedWarehouse} className='editInventory__itemDetails__items--input checkbox '
                                         onChange={(e) => handleWarehouseChange(e.target.value)}>
+                                        <option className='checkbox__options' value="Please Select">Please Select</option>
                                         {Array.isArray(warehouses) && warehouses.map(warehouse => (
                                             <option key={warehouse} value={warehouse} >{warehouse}</option>
                                         ))}
                                     </select>
+                                    {selectedWarehouse === "Please Select" && (
+                                        <div className='error'>
+                                            <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                            <span className="error-text">This field is required</span>
+                                        </div>
+                                    )}
                                 </label>
                             </div>
                         </section>
@@ -208,9 +249,6 @@ function EditInventory({ inventory, warehouseName, warehouseId }) {
                             <button onClick={cancelEdit} className='modal__button--cancel editInventory--cancel'>Cancel</button>
                             <button onClick={updateWarehouse} className='modal__button--delete editInventory-save'>Save</button>
                         </section>
-                        {errorMesage ? <p className='form_validation'>
-                            All fields are required
-                        </p> : " "}
                     </form>
                 </div>
             </section>
