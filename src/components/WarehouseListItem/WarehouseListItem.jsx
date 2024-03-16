@@ -45,23 +45,23 @@ function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
           </div>
           <div className="warehouse-item warehouse-item__desktop">
             <h4 className="warehouse-item-title__mobile">ADDRESS</h4>
-            <p2>{`${address}, ${city}, ${country}`}</p2>
+            <p className="warehouse-item__content">{`${address}, ${city}, ${country}`}</p>
           </div>
           <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
             <h4 className="warehouse-item-title__mobile">CONTACT NAME</h4>
-            <p2>{contactName}</p2>
+            <p className="warehouse-item__content">{contactName}</p>
           </div>
           <div className="warehouse-item warehouse-item__mobile">
             <h4 className="warehouse-item-title__mobile">ADDRESS</h4>
-            <p2>{`${address}, ${city}, ${country}`}</p2>
+            <p className="warehouse-item__content">{`${address}, ${city}, ${country}`}</p>
           </div>
           <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
             <h4 className="warehouse-item-title__mobile">CONTACT INFORMATION</h4>
-            <p2>
+            <p className="warehouse-item__content">
               {contactPhone}
               <br />
               {contactEmail}
-            </p2>
+            </p>
           </div>
 
           <div className="warehouse-item__buttons">
@@ -77,11 +77,11 @@ function WarehouseListItem({ warehouse, handleDeleteWarehouse }) {
           <div className="modal">
             <section className='modal__title-cont'>
               <h2 className='modal__title--title'>Delete {warehouseName} Warehouse ?</h2>
-              <p2 className='modal__title'>Please confirm that you'd like to delete the {warehouseName} from the list of warehouses. You won't be able to undo this action.</p2>
+              <p className='modal__title'>Please confirm that you'd like to delete the {warehouseName} from the list of warehouses. You won't be able to undo this action.</p>
             </section>
             <section className='modal__button'>
               <button onClick={cancelDelete} className='modal__button--cancel'>Cancel</button>
-              <button onClick={updateWarehouse} className='modal__button--delete'>Delete</button>
+              <button onClick={updateWarehouse} className='modal__button--delete delColor'>Delete</button>
             </section>
           </div>
         </div>

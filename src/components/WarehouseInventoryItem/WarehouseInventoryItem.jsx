@@ -8,6 +8,7 @@ import EditInventory from "../EditInventory/EditInventory";
 
 function InventoryItem({ inventory, warehouseName, warehouseId}) {
     const {
+        id,
         item_name,
         category,
         status,
@@ -16,9 +17,10 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
     const navigate = useNavigate();
     // const [editInventory, setEditInventory] =useState(false);
     // const [inventoryItem, setInventoryItem] = useState(inventory);
-
+    let thisPath;
+    thisPath="warehouses"
     const handleEditInventory =() =>{
-        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory, warehouseName, warehouseId } });
+        navigate(`/inventories/${inventory.id}/edit`,{ state: { inventory, warehouseName, warehouseId , thisPath} });
 
     }
     return (
@@ -28,7 +30,7 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
                 <div className="warehouse-item warehouse-item__contact--link">
                     <h4 className="warehouse-item-title__mobile">INVENTORY ITEM</h4>
                     <div className="warehouse-item__link">
-                        <Link to={`/inventory/${item_name}`}>
+                        <Link to={`/inventories/${id}`}>
                         <h3>{item_name}</h3>
                         </Link>
                         <ChevronIcon />
@@ -36,7 +38,7 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
                 </div>
                 <div className="warehouse-item warehouse-item__desktop">
                     <h4 className="warehouse-item-title__mobile">CATEGORY</h4>
-                    <p2>{category}</p2>
+                    <p className="inventory-item__content">{category}</p>
                 </div>
                 <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
                     <h4 className="warehouse-item-title__mobile">STATUS</h4>
@@ -44,11 +46,11 @@ function InventoryItem({ inventory, warehouseName, warehouseId}) {
                 </div>
                 <div className="warehouse-item warehouse-item__mobile">
                     <h4 className="warehouse-item-title__mobile">CATEGORY</h4>
-                    <p2>{category}</p2>
+                    <p className="inventory-item__content">{category}</p>
                 </div>
                 <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
                     <h4 className="warehouse-item-title__mobile">QUANTITY</h4>
-                    <p2>{quantity}</p2>
+                    <p className="inventory-item__content">{quantity}</p>
                 </div>
                
                 <div className="warehouse-item__buttons">

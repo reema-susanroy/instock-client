@@ -11,12 +11,15 @@
     background-color: $lightGrey;
     position: fixed;
     z-index: 2;
+    bottom: 1.5rem;
+    left:20%;
 
 
     @include tablet {
         padding: 1.5rem;
         bottom: 1rem;
         width: 100%;
+        left: 1%;
     }
 
     @include desktop {
@@ -28,13 +31,13 @@
         text-align: center;
         color: $slate;
         @include p3;
-        margin-top: 0.25rem;
-        // height: 1.125rem;
+        margin-top: 0.1rem;
+
     }
 
     &-copyright-icon {
-        padding-right: 0.3rem;
+        padding-right: 0.2rem;
         color: $slate;
-        // height: 1.125rem;
+
     }
 }

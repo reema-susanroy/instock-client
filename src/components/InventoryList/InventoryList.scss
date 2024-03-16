@@ -1,0 +1,27 @@
+@import "../../styles/partials/global";
+
+.inventory-list-body {
+  position: relative;
+  z-index: 2;
+  background-color: $white;
+  @include margin-mobile;
+  border-radius: 4px;
+  box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
+  @include tablet {
+    @include margin-tablet;
+    // max-width: 63.75rem;
+  }
+  @include desktop {
+    @include margin-desktop;
+  }
+}
+
+.inventory-list-container {
+  @include tablet {
+    display: flex;
+    justify-content: center;
+    
+    margin-top: 8rem;
+    background-color: $lightGrey;
+  }
+}
