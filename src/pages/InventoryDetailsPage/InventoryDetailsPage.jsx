@@ -1,44 +1,37 @@
 import "./InventoryDetailsPage.scss";
 import arrowBack from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/edit-24px-white.svg";
-import axios from "axios";
-import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-function InventoryDetailsPage() {
-  const base_url = "http://localhost:5000";
-  const { inventoryId } = useParams();
-  const [currentData, setCurrentData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [warehouses, setWarehouses] = useState([]);
+import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+function InventoryDetailsPage(){
 
-  useEffect(() => {
-    const fetchInventoryDetails = async (id) => {
-      try {
-        const response = await axios.get(`${base_url}/api/inventories/${id}`);
-        console.log(response.data);
-        setCurrentData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setIsLoading(false);
-      }
-    };
+    const base_url = 'http://localhost:5000';
+    const { inventoryId } = useParams();
+    const [currentData, setCurrentData] =useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [warehouses, setWarehouses] = useState([]);
 
-    fetchInventoryDetails(inventoryId);
-  }, [inventoryId]);
 
-  useEffect(() => {
-    const getWarehouses = async () => {
-      try {
-        const response = await axios.get(`${base_url}/api/warehouses`);
-        setWarehouses(response.data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-    getWarehouses();
-  }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const inventoryResponse = await axios.get(`${base_url}/api/inventories/${inventoryId}`);
+                setCurrentData(inventoryResponse.data);
+                
+                const warehousesResponse = await axios.get(`${base_url}/api/warehouses`);
+                setWarehouses(warehousesResponse.data);
+
+                setIsLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setIsLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [inventoryId]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -48,16 +41,12 @@ function InventoryDetailsPage() {
     return <div>Error: {error}</div>;
   }
 
-  // Ensure currentData is not null before accessing its properties
-  if (!currentData) {
-    return <div>No data available</div>;
-  }
-  console.log(warehouses);
-  const warehouse = warehouses.find(
-    (warehouse) => warehouse.id === currentData.warehouse_id
-  );
+    // Ensure currentData is not null before accessing its properties
+    if (!currentData) {
+        return <div>No data available</div>;
+    }
 
-  console.log(currentData);
+    const warehouse = warehouses.find(warehouse => warehouse.id === currentData.warehouse_id);
 
   return (
     <section className="inventory-details-page">
