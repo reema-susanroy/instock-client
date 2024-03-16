@@ -2,9 +2,9 @@ import "./InventoryDetailsPage.scss";
 import arrowBack from "../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../assets/icons/edit-24px-white.svg";
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-function InventoryDetailsPage(){
+function InventoryDetailsPage() {
 
     const base_url = 'http://localhost:5000';
     const { inventoryId } = useParams();
@@ -24,15 +24,15 @@ function InventoryDetailsPage(){
                 const warehouseResponse = await axios.get(`${base_url}/api/warehouses//${inventoryResponse.data.warehouse_id}`);
                 setWarehouseName(warehouseResponse.data.warehouse_name);
 
-                setIsLoading(false);
-            } catch (error) {
-                setError(error.message);
-                setIsLoading(false);
-            }
-        };
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setIsLoading(false);
+      }
+    };
 
-        fetchData();
-    }, [inventoryId]);
+    fetchData();
+  }, [inventoryId]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -46,8 +46,6 @@ function InventoryDetailsPage(){
     if (!currentData) {
         return <div>No data available</div>;
     }
-
-    console.log(currentData.status);
 
   return (
     <section className="inventory-details-page">

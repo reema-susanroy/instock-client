@@ -6,8 +6,7 @@ import axios from 'axios'
 import './EditInventory.scss'
 import errorIcon from '../../assets/icons/error-24px.svg';
 
-
-function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
+function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
     const navigate = useNavigate();
 
     const [itemName, setItemName] = useState(inventory.item_name);
@@ -19,12 +18,16 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
     const [warehouses, setWarehouses] = useState([]);
     const [selectedWarehouse, setSelectedWarehouse] = useState(warehouseName);
     const [selectedOption, setSelectedOption] = useState(inventory.status);
-    const [updateSuccess, setUpdateSuccess] = useState("");
-    const [errorMesage, setErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [clickedSave, setClickedSave] = useState(false);
+
     
     let url;
-    if(thisPath==="inventory"){
+    if(flag==="inventory"){
         url=`/inventories`;
+    }
+    else if(flag==="inventory-details"){
+        url=`/inventories/${inventory.id}`;
     }
     else{
         url=`/warehouses/${warehouseId}`;
@@ -52,10 +55,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
     const handleWarehouseChange = (value) => {
         setSelectedWarehouse(value);
     }
-
-    const handleInputChange = () => {
-        setErrorMessage(false);
-    };
     
     useEffect(() => {
         async function fetchCategories() {
@@ -87,14 +86,31 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
         }
         return true;
     }
-
+  
     const updateWarehouse = async (e) => {
         e.preventDefault();
         const Validation = validateInput();
         const validateQuantity = validateQuantities();
+        // const checkWarehouseUpdateId = checkWarehouseSelected();
+        setClickedSave(true);
+
         if (Validation && validateQuantity) {
-            setUpdateSuccess(false);
             try {
+                if (selectedWarehouse !== warehouseName) {
+                    try {
+                        const warehouse = await axios.get(
+                            `http://localhost:5000/api/warehouses/name/${selectedWarehouse}`
+                        );
+                        warehouseId = warehouse.data.id;
+                        if (!Number.isInteger(parseInt(warehouseId, 10))) {
+                            throw new Error("Invalid warehouse ID");
+                        }
+                    }
+                    catch(error){
+                        console.log("Unable to fetch warehouse name from DB: "+ error);
+                    }
+                }
+
                 await axios.put(`http://localhost:5000/api/inventories/${inventory.id}`, {
                     warehouse_id: warehouseId,
                     item_name: itemName,
@@ -107,7 +123,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
             }
             catch (message) {
                 console.log('Unable to do Update inventory item : ' + message);
-                setUpdateSuccess(false)
             }
         }
         else {
@@ -120,6 +135,12 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
         // navigate(`/warehouses/${warehouseId}`)
         navigate(url);
     }
+
+    if(errorMessage){
+        return (
+            <div> Some Error Occured. . .</div>
+        )
+    }
     return (
         <>
             <section className='container'>
@@ -129,20 +150,24 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
                         <Link to={url}>
                             <img className='editInventory__back-arrow' src={backIcon} alt="back-arrow" />
                         </Link>
-                        <h1>Edit Inventory Item</h1>
+                        <h1 className='edit-inventory__title'>Edit Inventory Item</h1>
                     </div>
                     {/* <form onSubmit={handleSubmit}> */}
                     <form >
                         <section className='editInventory__form'>
                             <div className='editInventory__itemDetails'>
-                                <h2 className='edit-warehouse__form-group-one-subtitle'>Item Details</h2>
+                                <h2 className='edit-inventory__subtitle'>Item Details</h2>
                                 <section className='editInventory__itemDetails__items'>
                                     <label className='editInventory__itemDetails__items--label'>Item Name
                                         <input className='editInventory__itemDetails__items--input' type="text" value={itemName}
-                                            onChange={(e) => { handleItemNameChange(e.target.value); handleInputChange(); }} />
-                                        {!itemName && (
-                                            <div className='error'>
-                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                            onChange={(e) => { handleItemNameChange(e.target.value) }} />
+                                        {clickedSave && !itemName && (
+                                            <div className="error">
+                                                <img
+                                                    src={errorIcon}
+                                                    className="error-icon"
+                                                    alt="Error Icon"
+                                                />
                                                 <span className="error-text">This field is required</span>
                                             </div>
                                         )}
@@ -150,38 +175,35 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
 
                                     <label className='editInventory__itemDetails__items--label'>Description
                                         <textarea className= 'editInventory__itemDetails__items--input'  type="text" rows={4} value={description}
-                                            onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} 
+                                            onChange={(e) => { handleDescriptionChange(e.target.value) }} 
                                             />
-                                        {!description && (
-                                            <div className='error'>
-                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                        {clickedSave && !description && (
+                                            <div className="error">
+                                                <img
+                                                    src={errorIcon}
+                                                    className="error-icon"
+                                                    alt="Error Icon"
+                                                />
                                                 <span className="error-text">This field is required</span>
                                             </div>
                                         )}
                                     </label>
                                     <label className='editInventory__itemDetails__items--label'>Category
                                         <select value={selectedCategory} className='editInventory__itemDetails__items--input checkbox'
-                                            onChange={(e) => { handleCategoriesChange(e.target.value); handleInputChange(); }}
+                                            onChange={(e) => { handleCategoriesChange(e.target.value); }}
 
                                         >
-                                            <option className='checkbox__options' value="Please Select">Please Select</option>
                                             {Array.isArray(categories) && categories.map(category => (
                                                 <option className='checkbox__options' key={category} value={category}>{category}</option>
                                             ))}
                                         </select>
-                                        {selectedCategory === "Please Select" && (
-                                            <div className='error'>
-                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
-                                                <span className="error-text">This field is required</span>
-                                            </div>
-                                        )}
                                     </label>
                                 </section>
                             </div>
 
                             <div className='editInventory__itemAvailability'>
                                 <div className='warehouse_details__header-edit'>
-                                    <h2 className='edit-warehouse__form-group-one-subtitle'>Item Availability</h2>
+                                    <h2 className='edit-inventory__subtitle'>Item Availability</h2>
                                 </div>
                                 <label className='editInventory__itemDetails__items--label'>Status
 
@@ -218,7 +240,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
                                                 </label>
                                             </div>
                                         )}
-                                        {selectedOption === 'In Stock' && !quantity && (
+                                        {clickedSave && selectedOption === 'In Stock' && !quantity && (
                                             <div className='error'>
                                                 <img src={errorIcon} className="error-icon" alt='Error Icon' />
                                                 <span className="error-text">This field is required</span>
@@ -230,17 +252,10 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
                                 <label className='editInventory__itemDetails__items--label'>Warehouse
                                     <select value={selectedWarehouse} className='editInventory__itemDetails__items--input checkbox '
                                         onChange={(e) => handleWarehouseChange(e.target.value)}>
-                                        <option className='checkbox__options' value="Please Select">Please Select</option>
                                         {Array.isArray(warehouses) && warehouses.map(warehouse => (
                                             <option key={warehouse} value={warehouse} >{warehouse}</option>
                                         ))}
                                     </select>
-                                    {selectedWarehouse === "Please Select" && (
-                                        <div className='error'>
-                                            <img src={errorIcon} className="error-icon" alt='Error Icon' />
-                                            <span className="error-text">This field is required</span>
-                                        </div>
-                                    )}
                                 </label>
                             </div>
                         </section>

@@ -32,10 +32,10 @@ const cancelDelete = () => {
 const inventory = inventories;
 const warehouseName = warehouse_name
 // const warehouseId = warehouseId
-const thisPath= "inventory";
+const flag= "inventory";
 const editInventory=()=>{
     console.log(inventory,warehouseId,warehouseName)
-    navigate(`/inventories/${inventories.id}/edit`,{ state: { inventory, warehouseName , warehouseId, thisPath} });
+    navigate(`/inventories/${inventories.id}/edit`,{ state: { inventory, warehouseName , warehouseId, flag} });
 
 }
 
