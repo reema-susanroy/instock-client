@@ -1,110 +1,117 @@
 @import "../../styles/partials/global";
 
+.inventory-details-page {
+  background-color: $lightGrey;
+  justify-content: center;
+  margin-top: 8rem;
+  @include tablet {
+    margin-top: 6.4rem;
+  }
+}
+
 .inventory-detail {
-    height: 25rem;
-    font-family: "Titillium Web";
-    margin: 0 1.5rem;
-    box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
-    background-color: $white;
-    position: absolute;
-    top: 8.125rem; 
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
+  background-color: $white;
+  z-index: 2;
+  position: relative;
+  @include margin-mobile;
+  margin-bottom: 4rem;
+  border-radius: 4px;
+  box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
+  @include tablet {
+    @include margin-tablet;
+    
+  }
+  @include desktop {
+    @include margin-desktop;
+  }
+
+  &-title {
+    display: flex;
+    padding: 2rem 1rem 1.5rem 1rem;
+    border-bottom: 1px solid $cloud;
+    display: flex;
+    justify-content: space-between;
+    &__cont {
+      font-weight: 600;
+    }
+    &-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+    &__edit {
+      background-color: $indigo;
+      background-size: cover;
+      border-radius: 1.25rem;
+      height: 2.25rem;
+      width: 2.25rem;
+    }
+
+    &__icon {
+      padding-right: 0.5rem;
+      padding-top: 0.5rem;
+    }
+  }
+
+  &-content {
+    padding: 0 1.5rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
 
     @include tablet {
-        top: 6.35rem;
-        height: 22rem;
+        margin-bottom: 14rem;
+      display: flex;
+      &-left {
+        flex-grow: 1;
+        width: 30%;
+        border-right: 1px solid $cloud;
+        margin: 1.5rem 0;
+        padding-bottom: 1rem;
+      }
+
+      &-right {
+        flex-grow: 2;
+        width: 30%;
+        margin-left: 2rem;
+        margin-top: 1rem;
+      }
     }
 
-    &-title {
-        display:flex;
-        padding: 2rem 1rem 1.5rem 1rem;
-        border-bottom: 1px solid $cloud;
-        display: flex;
-        justify-content: space-between;
-
-        &-wrapper {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-        }
-        &__edit {
-            background-color: $indigo;
-            background-size: cover;
-            border-radius: 1.25rem;
-            height: 2.25rem;
-            width: 2.25rem;
-
-        }
-
-        &__icon {
-            padding-right: 0.5rem;
-            padding-top: 0.5rem;
-        }
+    &__title {
+      padding-top: 1rem;
+      padding-bottom: 0.25rem;
+      
     }
 
-    &-content {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        width: 100%;
+    &-wrapper {
+      display: flex;
 
-        @include tablet {
-            display: flex;
-            &-left {
-                flex-grow: 1;
-                width: 30%;
-                border-right: 1px solid $cloud;
-                margin-top: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
+      &-left {
+        flex-grow: 1;
+      }
 
-            &-right {
-                flex-grow: 2;
-                width: 30%;
-                margin-left: 2rem;
-                margin-top: 1rem;
-
-            }
-
-        }
-
-
-        &__title {
-            padding-top: 1rem;
-            padding-bottom: 0.25rem;
-        }
-
-        &-wrapper {
-            display: flex;
-
-            &-left {
-                flex-grow: 1;
-            }
-
-            &-right {
-                flex-grow: 1;
-            }
-        }
-
-        &__details {
-            &--status {
-                color: #158463;
-                background-color: rgba(21, 132, 99, 0.07);
-                height: 1.5rem;
-                width: 3.8125rem;
-                border-radius: 1.25rem;
-                padding: 0.25rem 0.5rem;
-                font-weight: 600;
-                font-size: 11px;
-                text-align: center;
-            }
-
-            @include tablet {
-                padding-bottom: 2rem;
-            }
-        }
+      &-right {
+        flex-grow: 1;
+      }
     }
-    
+
+    &__details {
+      @include p2;
+      &--status {
+        color: #158463;
+        background-color: rgba(21, 132, 99, 0.07);
+        height: 1.5rem;
+        width: 3.8125rem;
+        border-radius: 1.25rem;
+        padding: 0.25rem 0.5rem;
+        font-weight: 600;
+        font-size: 11px;
+        text-align: center;
+      }
+
+      @include tablet {
+        // padding-bottom: 2rem;
+      }
+    }
+  }
 }
