@@ -9,7 +9,7 @@ function InventoryList({ inventories, handleDeleteInventory }) {
   return (
     <section className="inventory-list-body">
       <section className="warehouse-list-header">
-        <h1 className="warehouse-list-title">Inventories</h1>
+        <h1 className="warehouse-list-title">Inventory</h1>
         <div className="warehouse-list-header__search-bar-container">
           <input
             className="warehouse-list-header__search-bar"

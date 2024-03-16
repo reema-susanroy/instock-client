@@ -11,7 +11,7 @@ function InventoryDetailsPage(){
     const [currentData, setCurrentData] =useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [warehouses, setWarehouses] = useState([]);
+    const [warehouseName, setWarehouseName] = useState(null);
 
 
     useEffect(() => {
@@ -20,8 +20,9 @@ function InventoryDetailsPage(){
                 const inventoryResponse = await axios.get(`${base_url}/api/inventories/${inventoryId}`);
                 setCurrentData(inventoryResponse.data);
                 
-                const warehousesResponse = await axios.get(`${base_url}/api/warehouses`);
-                setWarehouses(warehousesResponse.data);
+                // Fetch warehouse name based on warehouse ID from inventory data
+                const warehouseResponse = await axios.get(`${base_url}/api/warehouses//${inventoryResponse.data.warehouse_id}`);
+                setWarehouseName(warehouseResponse.data.warehouse_name);
 
                 setIsLoading(false);
             } catch (error) {
@@ -46,7 +47,7 @@ function InventoryDetailsPage(){
         return <div>No data available</div>;
     }
 
-    const warehouse = warehouses.find(warehouse => warehouse.id === currentData.warehouse_id);
+    console.log(currentData.status);
 
   return (
     <section className="inventory-details-page">
@@ -64,13 +65,16 @@ function InventoryDetailsPage(){
               {currentData.item_name}
             </h1>
           </div>
-          <Link to={`/inventories/${currentData.id}/edit`}>
-            <img
-              src={editIcon}
-              alt="Edit Icon"
-              className="inventory-detail-title__edit"
-            />
-          </Link>
+          <div className="inventory-detail-title__edit">
+            <Link to={`/inventories/${currentData.id}/edit`}>
+                <img
+                src={editIcon}
+                alt="Edit Icon"
+                className="inventory-detail-title__edit-icon"
+                />{" "}
+                <span className="inventory-detail-title__edit__span">Edit</span>
+            </Link>
+          </div>
         </div>
         <section className="inventory-detail-content">
           <div className="inventory-detail-content-left">
@@ -90,7 +94,7 @@ function InventoryDetailsPage(){
             <div className="inventory-detail-content-wrapper">
               <div className="inventory-detail-content-wrapper-left">
                 <h4 className="inventory-detail-content__title">STATUS:</h4>
-                <p className="inventory-detail-content__details--status">
+                <p className={`inventory-detail-content__details--status ${currentData.status === 'In Stock' ? 'inStock' : 'outStock'}`}>
                   {currentData.status}
                 </p>
               </div>
@@ -103,7 +107,7 @@ function InventoryDetailsPage(){
             </div>
             <h4 className="inventory-detail-content__title">WAREHOUSE:</h4>
             <p className="inventory-detail-content__details">
-              {warehouse.warehouse_name}
+              {warehouseName}
             </p>
           </div>
         </section>
