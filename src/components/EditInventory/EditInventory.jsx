@@ -56,6 +56,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
     const handleInputChange = () => {
         setErrorMessage(false);
     };
+    
     useEffect(() => {
         async function fetchCategories() {
             try {
