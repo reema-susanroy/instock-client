@@ -10,7 +10,7 @@
         justify-content: space-between;
 
         @include tablet{
-            @include margin-tablet;
+            // @include margin-tablet;
         }
         @include desktop{
             padding-top: 2rem;
@@ -45,7 +45,8 @@
         @include tablet{
             width: 40%;
             border-right: 1px solid $cloud;
-            padding-right: 3rem;
+            padding-right: 4rem;
+            padding-left: 0;
         }
     
     }
