@@ -29,7 +29,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
     else{
         url=`/warehouses/${warehouseId}`;
     }
-    console.log('url'+url);
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -73,8 +72,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
 
 
     const validateInput = () => {
-        console.log('1')
-        console.log(warehouseId, itemName, description, selectedCategory, selectedOption, quantity)
         if (!warehouseId || !itemName || !description) {
             return false;
         }
@@ -94,7 +91,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
         e.preventDefault();
         const Validation = validateInput();
         const validateQuantity = validateQuantities();
-        console.log(Validation, validateQuantity)
         if (Validation && validateQuantity) {
             setUpdateSuccess(false);
             try {
