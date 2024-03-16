@@ -92,38 +92,53 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
         }
         return true;
     }
-    const warehouseObj = {
-        "1" : "Manhattan",
-        "2" : "Washington",
-        "3": "Jersey",
-        "4": "SF",
-        "5":"Santa Monica",
-        "6": "Seattle",
-        "7" : "Miami",
-        "8" : "Boston"
-    }
-    const checkWarehouseSelected = () =>{
-        if(selectedWarehouse !== warehouseName){
-            for (const [id, warehouse] of Object.entries(warehouseObj)) {
-                if (warehouse === selectedWarehouse) {
-                    return id;
-                }
-            }
-        }
-        return warehouseId;
-    }
+    // const warehouseObj = {
+    //     "1" : "Manhattan",
+    //     "2" : "Washington",
+    //     "3": "Jersey",
+    //     "4": "SF",
+    //     "5":"Santa Monica",
+    //     "6": "Seattle",
+    //     "7" : "Miami",
+    //     "8" : "Boston"
+    // }
+    // const checkWarehouseSelected = () =>{
+    //     if(selectedWarehouse !== warehouseName){
+    //         for (const [id, warehouse] of Object.entries(warehouseObj)) {
+    //             if (warehouse === selectedWarehouse) {
+    //                 return id;
+    //             }
+    //         }
+    //     }
+    //     return warehouseId;
+    // }
     const updateWarehouse = async (e) => {
         e.preventDefault();
         const Validation = validateInput();
         const validateQuantity = validateQuantities();
-        const checkWarehouseUpdateId = checkWarehouseSelected();
+        // const checkWarehouseUpdateId = checkWarehouseSelected();
         setClickedSave(true);
 
         if (Validation && validateQuantity) {
             setUpdateSuccess(false);
             try {
+                if (selectedWarehouse !== warehouseName) {
+                    try {
+                        const warehouse = await axios.get(
+                            `http://localhost:5000/api/warehouses/name/${selectedWarehouse}`
+                        );
+                        warehouseId = warehouse.data.id;
+                        if (!Number.isInteger(parseInt(warehouseId, 10))) {
+                            throw new Error("Invalid warehouse ID");
+                        }
+                    }
+                    catch(error){
+                        console.log(error)
+                    }
+                }
+
                 await axios.put(`http://localhost:5000/api/inventories/${inventory.id}`, {
-                    warehouse_id: checkWarehouseUpdateId,
+                    warehouse_id: warehouseId,
                     item_name: itemName,
                     description: description,
                     category: selectedCategory,
