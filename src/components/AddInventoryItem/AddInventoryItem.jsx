@@ -97,7 +97,7 @@ function AddInventoryItem( ) {
                     status: stockOption,
                     quantity: String(quantity)
                 });
-                navigate(`/inventory`)
+                navigate(`/inventories`)
             }
             catch (message) {
                 console.log('Unable to do Update inventory item : ' + message);
