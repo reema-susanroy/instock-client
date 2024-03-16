@@ -13,37 +13,25 @@ function InventoryDetailsPage(){
     const [error, setError] = useState(null);
     const [warehouses, setWarehouses] = useState([]);
 
+
     useEffect(() => {
-        const fetchInventoryDetails = async (id) => {
+        const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/inventories/${id}`)
-                console.log(response.data);
-                setCurrentData(response.data); 
+                const inventoryResponse = await axios.get(`${base_url}/api/inventories/${inventoryId}`);
+                setCurrentData(inventoryResponse.data);
+                
+                const warehousesResponse = await axios.get(`${base_url}/api/warehouses`);
+                setWarehouses(warehousesResponse.data);
+
                 setIsLoading(false);
             } catch (error) {
                 setError(error.message);
                 setIsLoading(false);
             }
-            
-        }
+        };
 
-        fetchInventoryDetails(inventoryId);
-
+        fetchData();
     }, [inventoryId]);
-
-    useEffect(() => {
-        const getWarehouses = async() => {
-            try {
-                const response = await axios.get(`${base_url}/api/warehouses`);
-                setWarehouses(response.data);
-            } catch (error) {
-                setError(error.message);
-            }
-        }
-        getWarehouses();
-    }, []);
-
-
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -57,10 +45,8 @@ function InventoryDetailsPage(){
     if (!currentData) {
         return <div>No data available</div>;
     }
-    console.log(warehouses);
-    const warehouse = warehouses.find(warehouse => warehouse.id === currentData.warehouse_id);
 
-    console.log(currentData);
+    const warehouse = warehouses.find(warehouse => warehouse.id === currentData.warehouse_id);
 
     return(
         <body className='inventory-detail'>

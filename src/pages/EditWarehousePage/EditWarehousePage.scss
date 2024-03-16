@@ -11,16 +11,16 @@
     right: 0;
     bottom: 0;
     z-index: 2;
+    height: 57.625rem;
+    
     @include tablet {
         height: 40rem;
         top: 6rem;
-        margin-left: 2.25rem;
-        margin-right: 2.25rem;
+        @include margin-tablet;
     }
 
     @include desktop {
-        margin-left: 8.125rem;
-        margin-right: 8.125rem;
+        @include margin-desktop;
     }
 
     &__title {
@@ -39,7 +39,8 @@
     }
 
     &__details {
-        font-size: h2;
+        box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+        height: 57.625;
         @include tablet {
             padding-top: 1.5rem;
         }
@@ -59,9 +60,12 @@
             flex-direction: column;
             padding-left: 1.5rem;
             padding-right: 1.5rem;
+            border-bottom: 1px solid $cloud;
+            padding-bottom: 1rem;
             @include tablet {
                 flex-grow: 1;
                 border-right: 1px solid $cloud;
+                border-bottom: none;
             }
             
             &-subtitle {
@@ -76,15 +80,23 @@
             }
 
             &-input {
+                font-family: "Titillium Web";
                 margin-bottom: 1rem;
                 border: 1px solid $cloud;
                 border-radius: 1.25rem;
-                font-size: p2;
+                @include p2;
                 font-weight: 400;
                 height: 2.25rem;
                 padding-left: 1rem;
                 &::placeholder {
                     color: $black;
+                }
+
+                &.active {
+                    @include active-input;
+                }
+                &.error {
+                    @include error-input;
                 }
             }
         }
@@ -94,6 +106,7 @@
             flex-direction: column;
             padding-left: 1.5rem;
             padding-right: 1.5rem;
+            background-color: $white;
             @include tablet {
                 flex-grow: 1;
             }
@@ -105,20 +118,27 @@
 
             &-label {
                 @include title-padding;
-                font-size: h3;
                 font-weight: 600;
             }
 
             &-input {
+                font-family: "Titillium Web";
                 margin-bottom: 1rem;
                 border: 1px solid $cloud;
                 border-radius: 1.25rem;
-                font-size: p2;
+                @include p2;
                 font-weight: 400;
                 height: 2.25rem;
                 padding-left: 1rem;
                 &::placeholder {
                     color: $black;
+                }
+
+                &.active {
+                    @include active-input;
+                }
+                &.error {
+                    @include error-input;
                 }
             }
         }
@@ -146,6 +166,9 @@
             border: 1px solid $cloud;
             margin-left: 1.5rem;
             color: $slate;
+            // flex-grow: 1;
+            margin-right: 1rem;
+            width:8.68rem;
             @include tablet {
                 margin-right: 1.5rem;
                 height: 2.375rem;
@@ -165,6 +188,8 @@
             background-color: $indigo;
             color: $white;
             margin-right: 1.5rem;
+            // flex-grow: 1;
+            width:8.68rem;
 
             @include tablet {
                 height: 2.375rem;
