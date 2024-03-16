@@ -5,6 +5,9 @@
     display: flex;
     justify-content: center;
     margin-top: 8rem;
+    @include tablet {
+      margin-top: 7rem;
+    }
 }
 .new-warehouse-body {
   background-color: $white;
@@ -29,7 +32,7 @@
   border-bottom: 1px solid $cloud;
   padding: 1.5rem;
   @include tablet {
-    padding-top: 2rem;
+    padding-top: 1.5rem;
   }
   &__title {
     font-weight: 600;
@@ -132,6 +135,7 @@
 .form-inputs {
   @include tablet {
     display: flex;
+    margin-bottom: 2rem;
   }
     
 }
