@@ -48,9 +48,12 @@
             }
             
         }
-        // &--link {
-            
-        // }
+        &--link {
+            @include tablet {
+                width: 30%;
+                margin-right: -2.4%;
+            }
+        }
     }
     &__link {
         display: flex;
