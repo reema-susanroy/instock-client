@@ -98,13 +98,24 @@ function EditInventory({ inventory, warehouseName, warehouseId , thisPath}) {
         "7" : "Miami",
         "8" : "Boston"
     }
-    const checkWarehouseSelected =() =>{
+    console.log(selectedWarehouse.toLowerCase());
+    const checkWarehouseSelected = async() =>{
         if(selectedWarehouse !== warehouseName){
-            for (const [id, warehouse] of Object.entries(warehouseObj)) {
-                if (warehouse === selectedWarehouse) {
-                    return id;
-                }
+            try{
+            const newId = await axios.get(`http://localhost:5000/api/warehouses/name/${selectedWarehouse.toLowerCase()}`);
+            console.log("newId" +newId)
+            return newId;
             }
+            catch(error){
+                console.log("Couldn't fetch Id for the selected warehouse" + error);
+            }
+            // for (const [id, warehouse] of Object.entries(warehouseObj)) {
+            //     if (warehouse === selectedWarehouse) {
+            //         return id;
+            //     }
+            // }
+            
+
         }
         return warehouseId;
     }
