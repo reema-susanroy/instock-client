@@ -21,6 +21,8 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
     const [selectedOption, setSelectedOption] = useState(inventory.status);
     const [updateSuccess, setUpdateSuccess] = useState("");
     const [errorMesage, setErrorMessage] = useState(false);
+    const [clickedSave, setClickedSave] = useState(false);
+
     
     let url;
     if(flag==="inventory"){
@@ -115,6 +117,8 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
         const Validation = validateInput();
         const validateQuantity = validateQuantities();
         const checkWarehouseUpdateId = checkWarehouseSelected();
+        setClickedSave(true);
+
         if (Validation && validateQuantity) {
             setUpdateSuccess(false);
             try {
@@ -163,9 +167,13 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                     <label className='editInventory__itemDetails__items--label'>Item Name
                                         <input className='editInventory__itemDetails__items--input' type="text" value={itemName}
                                             onChange={(e) => { handleItemNameChange(e.target.value); handleInputChange(); }} />
-                                        {!itemName && (
-                                            <div className='error'>
-                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                        {clickedSave && !itemName && (
+                                            <div className="error">
+                                                <img
+                                                    src={errorIcon}
+                                                    className="error-icon"
+                                                    alt="Error Icon"
+                                                />
                                                 <span className="error-text">This field is required</span>
                                             </div>
                                         )}
@@ -175,9 +183,13 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                         <textarea className= 'editInventory__itemDetails__items--input'  type="text" rows={4} value={description}
                                             onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} 
                                             />
-                                        {!description && (
-                                            <div className='error'>
-                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
+                                        {clickedSave && !description && (
+                                            <div className="error">
+                                                <img
+                                                    src={errorIcon}
+                                                    className="error-icon"
+                                                    alt="Error Icon"
+                                                />
                                                 <span className="error-text">This field is required</span>
                                             </div>
                                         )}
@@ -187,17 +199,10 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                             onChange={(e) => { handleCategoriesChange(e.target.value); handleInputChange(); }}
 
                                         >
-                                            <option className='checkbox__options' value="Please Select">Please Select</option>
                                             {Array.isArray(categories) && categories.map(category => (
                                                 <option className='checkbox__options' key={category} value={category}>{category}</option>
                                             ))}
                                         </select>
-                                        {selectedCategory === "Please Select" && (
-                                            <div className='error'>
-                                                <img src={errorIcon} className="error-icon" alt='Error Icon' />
-                                                <span className="error-text">This field is required</span>
-                                            </div>
-                                        )}
                                     </label>
                                 </section>
                             </div>
@@ -241,7 +246,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                                 </label>
                                             </div>
                                         )}
-                                        {selectedOption === 'In Stock' && !quantity && (
+                                        {clickedSave && selectedOption === 'In Stock' && !quantity && (
                                             <div className='error'>
                                                 <img src={errorIcon} className="error-icon" alt='Error Icon' />
                                                 <span className="error-text">This field is required</span>
@@ -253,17 +258,10 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                 <label className='editInventory__itemDetails__items--label'>Warehouse
                                     <select value={selectedWarehouse} className='editInventory__itemDetails__items--input checkbox '
                                         onChange={(e) => handleWarehouseChange(e.target.value)}>
-                                        <option className='checkbox__options' value="Please Select">Please Select</option>
                                         {Array.isArray(warehouses) && warehouses.map(warehouse => (
                                             <option key={warehouse} value={warehouse} >{warehouse}</option>
                                         ))}
                                     </select>
-                                    {selectedWarehouse === "Please Select" && (
-                                        <div className='error'>
-                                            <img src={errorIcon} className="error-icon" alt='Error Icon' />
-                                            <span className="error-text">This field is required</span>
-                                        </div>
-                                    )}
                                 </label>
                             </div>
                         </section>
