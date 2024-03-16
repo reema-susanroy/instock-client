@@ -6,7 +6,6 @@ import axios from 'axios'
 import './EditInventory.scss'
 import errorIcon from '../../assets/icons/error-24px.svg';
 
-
 function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
     const navigate = useNavigate();
 
@@ -19,8 +18,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
     const [warehouses, setWarehouses] = useState([]);
     const [selectedWarehouse, setSelectedWarehouse] = useState(warehouseName);
     const [selectedOption, setSelectedOption] = useState(inventory.status);
-    const [updateSuccess, setUpdateSuccess] = useState("");
-    const [errorMesage, setErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
     const [clickedSave, setClickedSave] = useState(false);
 
     
@@ -57,10 +55,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
     const handleWarehouseChange = (value) => {
         setSelectedWarehouse(value);
     }
-
-    const handleInputChange = () => {
-        setErrorMessage(false);
-    };
     
     useEffect(() => {
         async function fetchCategories() {
@@ -92,38 +86,33 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
         }
         return true;
     }
-    const warehouseObj = {
-        "1" : "Manhattan",
-        "2" : "Washington",
-        "3": "Jersey",
-        "4": "SF",
-        "5":"Santa Monica",
-        "6": "Seattle",
-        "7" : "Miami",
-        "8" : "Boston"
-    }
-    const checkWarehouseSelected = () =>{
-        if(selectedWarehouse !== warehouseName){
-            for (const [id, warehouse] of Object.entries(warehouseObj)) {
-                if (warehouse === selectedWarehouse) {
-                    return id;
-                }
-            }
-        }
-        return warehouseId;
-    }
+  
     const updateWarehouse = async (e) => {
         e.preventDefault();
         const Validation = validateInput();
         const validateQuantity = validateQuantities();
-        const checkWarehouseUpdateId = checkWarehouseSelected();
+        // const checkWarehouseUpdateId = checkWarehouseSelected();
         setClickedSave(true);
 
         if (Validation && validateQuantity) {
-            setUpdateSuccess(false);
             try {
+                if (selectedWarehouse !== warehouseName) {
+                    try {
+                        const warehouse = await axios.get(
+                            `http://localhost:5000/api/warehouses/name/${selectedWarehouse}`
+                        );
+                        warehouseId = warehouse.data.id;
+                        if (!Number.isInteger(parseInt(warehouseId, 10))) {
+                            throw new Error("Invalid warehouse ID");
+                        }
+                    }
+                    catch(error){
+                        console.log("Unable to fetch warehouse name from DB: "+ error);
+                    }
+                }
+
                 await axios.put(`http://localhost:5000/api/inventories/${inventory.id}`, {
-                    warehouse_id: checkWarehouseUpdateId,
+                    warehouse_id: warehouseId,
                     item_name: itemName,
                     description: description,
                     category: selectedCategory,
@@ -134,7 +123,6 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
             }
             catch (message) {
                 console.log('Unable to do Update inventory item : ' + message);
-                setUpdateSuccess(false)
             }
         }
         else {
@@ -146,6 +134,12 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
         event.preventDefault();
         // navigate(`/warehouses/${warehouseId}`)
         navigate(url);
+    }
+
+    if(errorMessage){
+        return (
+            <div> Some Error Occured. . .</div>
+        )
     }
     return (
         <>
@@ -166,7 +160,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                 <section className='editInventory__itemDetails__items'>
                                     <label className='editInventory__itemDetails__items--label'>Item Name
                                         <input className='editInventory__itemDetails__items--input' type="text" value={itemName}
-                                            onChange={(e) => { handleItemNameChange(e.target.value); handleInputChange(); }} />
+                                            onChange={(e) => { handleItemNameChange(e.target.value) }} />
                                         {clickedSave && !itemName && (
                                             <div className="error">
                                                 <img
@@ -181,7 +175,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
 
                                     <label className='editInventory__itemDetails__items--label'>Description
                                         <textarea className= 'editInventory__itemDetails__items--input'  type="text" rows={4} value={description}
-                                            onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} 
+                                            onChange={(e) => { handleDescriptionChange(e.target.value) }} 
                                             />
                                         {clickedSave && !description && (
                                             <div className="error">
@@ -196,7 +190,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                     </label>
                                     <label className='editInventory__itemDetails__items--label'>Category
                                         <select value={selectedCategory} className='editInventory__itemDetails__items--input checkbox'
-                                            onChange={(e) => { handleCategoriesChange(e.target.value); handleInputChange(); }}
+                                            onChange={(e) => { handleCategoriesChange(e.target.value); }}
 
                                         >
                                             {Array.isArray(categories) && categories.map(category => (
