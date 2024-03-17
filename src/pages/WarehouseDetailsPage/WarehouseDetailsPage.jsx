@@ -23,24 +23,38 @@ function WarehouseDetailsPage() {
     fetchWarehouseDetails(warehouseId);
   }, [warehouseId]);
 
+
+  const fetchWarehouseInventory = async () => {
+    try {
+      // console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
+      const response = await axios.get(
+        `${server_url}/api/warehouses/${warehouseId}/inventories/`
+      );
+      // console.log("inventoryData", response.data);
+      setInventoryData(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchWarehouseInventory = async () => {
-      try {
-        // console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
-        const response = await axios.get(
-          `${server_url}/api/warehouses/${warehouseId}/inventories/`
-        );
-        // console.log("inventoryData", response.data);
-        setInventoryData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setIsLoading(false);
-      }
-    };
     fetchWarehouseInventory(warehouseId);
   }, [warehouseId]);
 
+  const handleDeleteWarehouse = async (id) => {
+    try {
+      await axios.delete(`${server_url}/api/warehouses/${warehouseId}/inventories/${id}`);
+      fetchWarehouseInventory();
+    }
+    catch (error) {
+      console.log("Unable to Delete warehouse : " + error);
+    }
+
+  }
+
+  
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -61,6 +75,7 @@ function WarehouseDetailsPage() {
               inventories={inventoryData}
               warehouseName={currentData.warehouse_name}
               warehouseId={currentData.id}
+              handleDeleteWarehouse={handleDeleteWarehouse}
             />
           </section>
         </div>
