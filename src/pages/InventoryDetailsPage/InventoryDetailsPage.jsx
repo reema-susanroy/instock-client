@@ -4,6 +4,7 @@ import editIcon from "../../assets/icons/edit-24px-white.svg";
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+
 function InventoryDetailsPage() {
 
     const base_url = 'http://localhost:5000';
@@ -12,8 +13,10 @@ function InventoryDetailsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [warehouseName, setWarehouseName] = useState(null);
+    const [warehouseId, setWarehouseId] = useState(null);
 
-
+    const navigate = useNavigate()
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -23,6 +26,7 @@ function InventoryDetailsPage() {
                 // Fetch warehouse name based on warehouse ID from inventory data
                 const warehouseResponse = await axios.get(`${base_url}/api/warehouses//${inventoryResponse.data.warehouse_id}`);
                 setWarehouseName(warehouseResponse.data.warehouse_name);
+                setWarehouseId(warehouseResponse.data.id);
 
         setIsLoading(false);
       } catch (error) {
@@ -47,6 +51,14 @@ function InventoryDetailsPage() {
         return <div>No data available</div>;
     }
 
+    const inventory = currentData;
+    const name = warehouseName
+    const id = warehouseId
+    const thisPath= "inventory";
+    const handleEditInventory=()=>{
+      navigate(`/inventories/${currentData.id}/edit`,{ state: { inventory, name , id, thisPath} });
+    }
+
   return (
     <section className="inventory-details-page">
       <section className="inventory-detail">
@@ -64,14 +76,15 @@ function InventoryDetailsPage() {
             </h1>
           </div>
           <div className="inventory-detail-title__edit">
-            <Link to={`/inventories/${currentData.id}/edit`}>
+            {/* <Link to={`/inventories/${currentData.id}/edit`}> */}
                 <img
                 src={editIcon}
                 alt="Edit Icon"
                 className="inventory-detail-title__edit-icon"
+                onClick={handleEditInventory}
                 />{" "}
                 <span className="inventory-detail-title__edit__span">Edit</span>
-            </Link>
+            {/* </Link> */}
           </div>
         </div>
         <section className="inventory-detail-content">
