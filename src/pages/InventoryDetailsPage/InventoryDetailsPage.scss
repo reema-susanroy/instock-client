@@ -44,12 +44,15 @@
       flex-wrap: nowrap;
     }
     &__edit {
+      cursor: pointer;
       background-color: $indigo;
       background-size: cover;
       border-radius: 1.25rem;
       height: 2.25rem;
       width: 2.25rem;
-      
+      &:hover{
+        background-color: $graphite;
+      }
       @include tablet {
         position: absolute;
         right: 1.5rem;

@@ -12,8 +12,8 @@ function InventoryDetailsPage() {
     const [currentData, setCurrentData] =useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [warehouseName, setWarehouseName] = useState(null);
-    const [warehouseId, setWarehouseId] = useState(null);
+    const [warehousesName, setWarehousesName] = useState(null);
+    const [warehousesId, setWarehousesId] = useState(null);
 
     const navigate = useNavigate()
     
@@ -25,8 +25,8 @@ function InventoryDetailsPage() {
                 
                 // Fetch warehouse name based on warehouse ID from inventory data
                 const warehouseResponse = await axios.get(`${base_url}/api/warehouses//${inventoryResponse.data.warehouse_id}`);
-                setWarehouseName(warehouseResponse.data.warehouse_name);
-                setWarehouseId(warehouseResponse.data.id);
+                setWarehousesName(warehouseResponse.data.warehouse_name);
+                setWarehousesId(warehouseResponse.data.id);
 
         setIsLoading(false);
       } catch (error) {
@@ -51,12 +51,13 @@ function InventoryDetailsPage() {
         return <div>No data available</div>;
     }
 
+  
     const inventory = currentData;
-    const name = warehouseName
-    const id = warehouseId
-    const thisPath= "inventory";
-    const handleEditInventory=()=>{
-      navigate(`/inventories/${currentData.id}/edit`,{ state: { inventory, name , id, thisPath} });
+    const warehouseName = warehousesName
+    const warehouseId = warehousesId
+    const flag = "inventory-details";
+    const handleEditInventory = () => {
+      navigate(`/inventories/${currentData.id}/edit`, { state: { inventory, warehouseName, warehouseId, flag } });
     }
 
   return (
@@ -75,13 +76,13 @@ function InventoryDetailsPage() {
               {currentData.item_name}
             </h1>
           </div>
-          <div className="inventory-detail-title__edit">
+          <div className="inventory-detail-title__edit" onClick={handleEditInventory}>
             {/* <Link to={`/inventories/${currentData.id}/edit`}> */}
                 <img
                 src={editIcon}
                 alt="Edit Icon"
                 className="inventory-detail-title__edit-icon"
-                onClick={handleEditInventory}
+                
                 />{" "}
                 <span className="inventory-detail-title__edit__span">Edit</span>
             {/* </Link> */}
@@ -118,7 +119,7 @@ function InventoryDetailsPage() {
             </div>
             <h4 className="inventory-detail-content__title">WAREHOUSE:</h4>
             <p className="inventory-detail-content__details">
-              {warehouseName}
+              {warehousesName}
             </p>
           </div>
         </section>
