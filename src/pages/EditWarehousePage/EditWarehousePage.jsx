@@ -165,7 +165,7 @@ function EditWarehousePage() {
 
   const handleCancel = (event) => {
     event.preventDefault();
-    navigate(`/warehouses/${warehouseId}`);
+    navigate(`/warehouses/`);
   };
 
   if (errorMessage) {
