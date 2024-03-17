@@ -40,8 +40,8 @@ function WarehouseDetailsPage() {
   };
 
   useEffect(() => {
-    fetchWarehouseInventory(warehouseId);
-  }, [warehouseId]);
+    fetchWarehouseInventory();
+  });
 
   const handleDeleteWarehouse = async (id) => {
     try {

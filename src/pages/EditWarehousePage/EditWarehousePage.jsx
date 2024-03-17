@@ -172,7 +172,7 @@ function EditWarehousePage() {
     return <div>{errorMessage}</div>;
   }
 
-  if (!formData) {
+  if (!formData || isLoading === true) {
     return <div>Loading...</div>;
   }
 

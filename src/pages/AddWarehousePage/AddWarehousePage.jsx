@@ -210,6 +210,14 @@ function AddWarehousePage() {
     setActiveField(null);
   };
 
+  if(isLoading){
+      return <div>Loading...</div>;
+  }
+
+
+  if(error){
+    return <div>Error Occured</div>
+  }
   return (
     <section className="new-warehouse-page">
       <section className="new-warehouse-body">

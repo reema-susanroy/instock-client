@@ -4,7 +4,7 @@ import { ReactComponent as ChevronIcon } from "../../assets/icons/chevron_right-
 import { ReactComponent as DeleteIcon } from "../../assets/icons/delete_outline-24px.svg";
 import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 import { useState } from "react";
-import EditInventory from "../EditInventory/EditInventory";
+// import EditInventory from "../EditInventory/EditInventory";
 import { ReactComponent as CloseIcon } from "../../assets/icons/close-24px.svg"
 
 

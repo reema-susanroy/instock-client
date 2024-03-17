@@ -11,7 +11,7 @@ function InventoriesPage() {
 
   useEffect(() => {
     getInventoriesList();
-  }, []);
+  });
 
   const getInventoriesList = async () => {
     try {
