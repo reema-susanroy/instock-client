@@ -52,7 +52,6 @@ function AddWarehousePage() {
   const addWarehouse = async (event) => {
     event.preventDefault();
     const formData = formRef.current;
-    console.log(formData);
     const warehousesData = {
       warehouse_name: formData["warehouse-name"].value,
       address: formData["street-address"].value,
@@ -64,9 +63,7 @@ function AddWarehousePage() {
       contact_email: formData["email"].value,
     };
 
-    console.log(warehousesData);
     try {
-      console.log("Sending warehouse data to server:", warehousesData);
       const warehouse = await axios.post(
         "http://localhost:5000/api/warehouses",
         JSON.stringify(warehousesData), // Convert to JSON,
@@ -76,7 +73,6 @@ function AddWarehousePage() {
           },
         }
       );
-      console.log("Warehouse data sent successfully:", warehouse.data);
       setWarehouses([...warehouses, warehouse.data]);
       //   setSubmitSuccess(true);
     } catch (error) {
@@ -153,9 +149,9 @@ function AddWarehousePage() {
 
     // Proceed with form submission
     setIsLoading(true);
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
+    // for (const pair of formData.entries()) {
+    //   console.log(pair[0] + ": " + pair[1]);
+    // }
 
     // Add warehouse
     await addWarehouse(event);
