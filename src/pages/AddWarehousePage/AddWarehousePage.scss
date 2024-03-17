@@ -13,6 +13,7 @@
   background-color: $white;
   z-index: 2;
   // height: 57.625rem;
+  width: 100%;
   
   @include margin-mobile;
   border-radius: 4px;
@@ -53,6 +54,9 @@
 .new-warehouse-details {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid $cloud;
+  display: flex;
+    flex-direction: column;
+    width: 100%;
   @include tablet {
     padding: 0 2rem;
     border-bottom: none;
@@ -73,7 +77,7 @@
     border-radius: 1.25rem;
     border: 1px solid $cloud;
     padding: 0.6rem 1rem;
-    width: 100%;
+    // width: 20rem;
     height: 2.25rem;
     color: $slate;
     &::placeholder {
@@ -89,6 +93,9 @@
   &--bottom {
     border: none;
     padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     @include tablet {
         border-left: 1px solid $cloud;
     }
