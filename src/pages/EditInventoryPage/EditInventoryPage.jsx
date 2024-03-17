@@ -1,5 +1,4 @@
 import EditInventory from '../../components/EditInventory/EditInventory';
-import './EditInventoryPage.scss';
 import { useLocation } from "react-router-dom";
 
 

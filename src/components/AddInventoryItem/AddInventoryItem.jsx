@@ -1,4 +1,3 @@
-import "./AddInventoryItem.scss";
 import backIcon from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -143,7 +142,7 @@ function AddInventoryItem() {
                 <label className="editInventory__itemDetails__items--label">
                   Item Name
                   <input
-                    className={`editInventory__itemDetails__items--input ${(errorMessage && !itemName) ? 'error' : ''}`}
+                    className="editInventory__itemDetails__items--input"
                     type="text"
                     onChange={(e) => {
                       handleItemNameChange(e.target.value);
@@ -164,7 +163,7 @@ function AddInventoryItem() {
                 <label className="editInventory__itemDetails__items--label">
                   Description
                   <textarea
-                    className={`editInventory__itemDetails__items--input ${(errorMessage && !description) ? 'error' : ''}`}
+                    className="editInventory__itemDetails__items--input"
                     type="text"
                     rows={4}
                     placeholder="Please enter a brief item description..."
@@ -187,7 +186,7 @@ function AddInventoryItem() {
                   Category
                   <select
                     value={selectedCategory}
-                    className={`editInventory__itemDetails__items--input ${(errorMessage && !selectedCategory) ? 'error' : ''} checkbox`}
+                    className="editInventory__itemDetails__items--input checkbox"
                     onChange={(e) => {
                       handleCategoriesChange(e.target.value);
                     }}
@@ -282,7 +281,7 @@ function AddInventoryItem() {
                         Quantity
                         <input
                           type="number"
-                          className={`editInventory__itemDetails__items--input ${(errorMessage && !quantity) ? 'error' : ''}`}
+                          className="editInventory__itemDetails__items--input"
                           value={quantity}
                           onChange={(e) => setQuantity(e.target.value)}
                         />
@@ -306,7 +305,7 @@ function AddInventoryItem() {
                 Warehouse
                 <select
                   value={selectedWarehouse}
-                  className={`editInventory__itemDetails__items--input ${(errorMessage && !selectedWarehouse) ? 'error' : ''} checkbox`}
+                  className="editInventory__itemDetails__items--input checkbox"
                   onChange={(e) => handleWarehouseChange(e.target.value)}
                 >
                   <option value="" disabled selected>
@@ -347,6 +346,11 @@ function AddInventoryItem() {
               Save
             </button>
           </section>
+          {errorMessage ? (
+            <p className="form_validation">All fields are required</p>
+          ) : (
+            " "
+          )}
         </form>
       </div>
     </section>

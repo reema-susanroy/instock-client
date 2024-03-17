@@ -1,5 +1,4 @@
 import WarehouseInventoryItem from '../WarehouseInventoryItem/WarehouseInventoryItem';
-import './WarehouseInventoryList.scss';
 import { ReactComponent as SortIcon } from '../../assets/icons/sort-24px.svg';
 
 function WarehouseInventoryList({ inventories, warehouseName , warehouseId, handleDeleteWarehouse}) {
