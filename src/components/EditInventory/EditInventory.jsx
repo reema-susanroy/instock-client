@@ -20,7 +20,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
     const [selectedWarehouse, setSelectedWarehouse] = useState(warehouseName);
     const [selectedOption, setSelectedOption] = useState(inventory.status);
     const [updateSuccess, setUpdateSuccess] = useState("");
-    const [errorMesage, setErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
     const [clickedSave, setClickedSave] = useState(false);
 
     
@@ -165,7 +165,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                 <h2 className='edit-warehouse__form-group-one-subtitle'>Item Details</h2>
                                 <section className='editInventory__itemDetails__items'>
                                     <label className='editInventory__itemDetails__items--label'>Item Name
-                                        <input className='editInventory__itemDetails__items--input' type="text" value={itemName}
+                                        <input className={`editInventory__itemDetails__items--input ${(errorMessage && !itemName) ? 'error' : ''}`} type="text" value={itemName}
                                             onChange={(e) => { handleItemNameChange(e.target.value); handleInputChange(); }} />
                                         {clickedSave && !itemName && (
                                             <div className="error">
@@ -180,7 +180,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                     </label>
 
                                     <label className='editInventory__itemDetails__items--label'>Description
-                                        <textarea className= 'editInventory__itemDetails__items--input'  type="text" rows={4} value={description}
+                                        <textarea className= {`editInventory__itemDetails__items--input ${(errorMessage && !description) ? 'error' : ''}`}  type="text" rows={4} value={description}
                                             onChange={(e) => { handleDescriptionChange(e.target.value); handleInputChange(); }} 
                                             />
                                         {clickedSave && !description && (
@@ -195,7 +195,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                         )}
                                     </label>
                                     <label className='editInventory__itemDetails__items--label'>Category
-                                        <select value={selectedCategory} className='editInventory__itemDetails__items--input checkbox'
+                                        <select value={selectedCategory} className={`editInventory__itemDetails__items--input ${(errorMessage && !selectedCategory) ? 'error' : ''}  checkbox`}
                                             onChange={(e) => { handleCategoriesChange(e.target.value); handleInputChange(); }}
 
                                         >
@@ -239,7 +239,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                                 <label className='editInventory__itemDetails__items--radio-quantity-label'> Quantity
                                                     <input
                                                         type="number"
-                                                        className='editInventory__itemDetails__items--input'
+                                                        className={`editInventory__itemDetails__items--input ${(errorMessage && !selectedOption) ? 'error' : ''}`}
                                                         value={quantity}
                                                         onChange={(e) => setQuantity(e.target.value)}
                                                     />
@@ -256,7 +256,7 @@ function EditInventory({ inventory, warehouseName, warehouseId , flag}) {
                                 </label>
 
                                 <label className='editInventory__itemDetails__items--label'>Warehouse
-                                    <select value={selectedWarehouse} className='editInventory__itemDetails__items--input checkbox '
+                                    <select value={selectedWarehouse} className={`editInventory__itemDetails__items--input ${(errorMessage && !selectedWarehouse) ? 'error' : ''} checkbox`}
                                         onChange={(e) => handleWarehouseChange(e.target.value)}>
                                         {Array.isArray(warehouses) && warehouses.map(warehouse => (
                                             <option key={warehouse} value={warehouse} >{warehouse}</option>
