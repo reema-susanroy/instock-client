@@ -131,6 +131,7 @@
         height: 2.25rem;
         border-radius: 20px;
         background-color: $indigo;
+        color: $white;
         @include tablet {
             width: 8.625rem;
         }
