@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
 import validator from "validator";
-// import errorIcon from "../../assets/icons/error-24px.svg";
 import FormErrorMessage from "../../components/FormErrorMessage/FormErrorMessage";
 import FormErrorMessageEmail from "../../components/FormErrorMessageEmail/FormErrorMessageEmail";
 import FormErrorMessagePhone from "../../components/FormErrorMessagePhone/FormErrorMessagePhone";

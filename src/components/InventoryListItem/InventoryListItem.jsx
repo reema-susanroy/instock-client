@@ -31,7 +31,6 @@ const cancelDelete = () => {
 }
 const inventory = inventories;
 const warehouseName = warehouse_name
-// const warehouseId = warehouseId
 const flag= "inventory";
 const editInventory=()=>{
     console.log(inventory,warehouseId,warehouseName)

@@ -391,7 +391,6 @@ function AddWarehousePage() {
             </button>
             <button
               className="button-section__add"
-              // onClick={handleSubmit}
               type="submit"
             >
               + Add Warehouse
