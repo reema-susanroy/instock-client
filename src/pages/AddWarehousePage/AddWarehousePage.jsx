@@ -241,7 +241,7 @@ function AddWarehousePage() {
                 id="warehouse-name"
                 className={`new-warehouse-details__input ${
                   activeField === "warehouse-name" ? "active" : ""
-                }`}
+                } ${warehouseNameError ? 'error' : ''}`}
                 placeholder="Warehouse Name"
                 // When this input is focused on, handleFocus function is called with argument
                 // 'warehouse-name' (field name) and updates state to show that this field is now active
@@ -263,7 +263,7 @@ function AddWarehousePage() {
                 id="street-address"
                 className={`new-warehouse-details__input ${
                   activeField === "street-address" ? "active" : ""
-                }`}
+                } ${addressError ? 'error' : ''}`}
                 placeholder="Street Address"
                 onFocus={() => handleFocus("street-address")}
                 onBlur={handleBlur}
@@ -278,7 +278,7 @@ function AddWarehousePage() {
                 id="city"
                 className={`new-warehouse-details__input ${
                   activeField === "city" ? "active" : ""
-                }`}
+                } ${cityError ? 'error' : ''}`}
                 placeholder="City"
                 onFocus={() => handleFocus("city")}
                 onBlur={handleBlur}
@@ -293,7 +293,7 @@ function AddWarehousePage() {
                 id="country"
                 className={`new-warehouse-details__input ${
                   activeField === "country" ? "active" : ""
-                }`}
+                } ${countryError ? 'error' : ''}`}
                 placeholder="Country"
                 onFocus={() => handleFocus("country")}
                 onBlur={handleBlur}
@@ -314,7 +314,7 @@ function AddWarehousePage() {
                 id="contact-name"
                 className={`new-warehouse-details__input ${
                   activeField === "contact-name" ? "active" : ""
-                }`}
+                } ${contactNameError ? 'error' : ''}`}
                 placeholder="Contact Name"
                 onFocus={() => handleFocus("contact-name")}
                 onBlur={handleBlur}
@@ -334,7 +334,7 @@ function AddWarehousePage() {
                 id="position"
                 className={`new-warehouse-details__input ${
                   activeField === "position" ? "active" : ""
-                }`}
+                } ${contactPositionError ? 'error' : ''}`}
                 placeholder="Position"
                 onFocus={() => handleFocus("position")}
                 onBlur={handleBlur}
@@ -354,7 +354,7 @@ function AddWarehousePage() {
                 id="phone-number"
                 className={`new-warehouse-details__input ${
                   activeField === "phone-number" ? "active" : ""
-                }`}
+                } ${phoneError ? 'error' : ''}`}
                 placeholder="Phone Number"
                 onFocus={() => handleFocus("phone-number")}
                 onBlur={handleBlur}
@@ -369,7 +369,7 @@ function AddWarehousePage() {
                 id="email"
                 className={`new-warehouse-details__input ${
                   activeField === "email" ? "active" : ""
-                }`}
+                } ${emailError ? 'error' : ''}`}
                 placeholder="Email"
                 onFocus={() => handleFocus("email")}
                 onBlur={handleBlur}

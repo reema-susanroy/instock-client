@@ -4,3 +4,22 @@
 @import "typography";
 
 
+.warehouse-list-item:hover {
+    background-color: rgba(46, 102, 229, 0.1);
+  }
+  
+  .editInventory__itemDetails__items--input:active {
+    background-color: $indigo;
+  }
+  
+  .editInventory__itemDetails__items--input:error {
+    background-color: $red;
+  }
+  
+  .checkbox:error {
+    background-color: $red;
+  }
+
+  .new-warehouse-details__input:error {
+    background-color: $red;
+  }

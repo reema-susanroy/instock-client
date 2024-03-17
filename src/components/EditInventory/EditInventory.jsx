@@ -133,9 +133,6 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
     navigate(url);
   };
 
-  if (errorMessage) {
-    return <div> Some Error Occured. . .</div>;
-  }
   return (
     <>
       <section className="container">
@@ -159,7 +156,7 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
                   <label className="editInventory__itemDetails__items--label">
                     Item Name
                     <input
-                      className="editInventory__itemDetails__items--input"
+                      className={`editInventory__itemDetails__items--input ${(errorMessage && !itemName) ? 'error' : ''}`}
                       type="text"
                       value={itemName}
                       onChange={(e) => {
@@ -183,7 +180,7 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
                   <label className="editInventory__itemDetails__items--label">
                     Description
                     <textarea
-                      className="editInventory__itemDetails__items--input"
+                      className= {`editInventory__itemDetails__items--input ${(errorMessage && !description) ? 'error' : ''}`}
                       type="text"
                       rows={4}
                       value={description}
@@ -208,7 +205,7 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
                     Category
                     <select
                       value={selectedCategory}
-                      className="editInventory__itemDetails__items--input checkbox"
+                      className={`editInventory__itemDetails__items--input ${(errorMessage && !selectedCategory) ? 'error' : ''}  checkbox`}
                       onChange={(e) => {
                         handleCategoriesChange(e.target.value);
                       }}
@@ -280,7 +277,7 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
                           Quantity
                           <input
                             type="number"
-                            className="editInventory__itemDetails__items--input"
+                            className={`editInventory__itemDetails__items--input ${(errorMessage && !quantity) ? 'error' : ''}`}
                             value={quantity}
                             onChange={(e) => setQuantity(e.target.value)}
                           />
@@ -308,7 +305,7 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
                   Warehouse
                   <select
                     value={selectedWarehouse}
-                    className="editInventory__itemDetails__items--input checkbox "
+                    className={`editInventory__itemDetails__items--input ${(errorMessage && !selectedWarehouse) ? 'error' : ''} checkbox`}
                     onChange={(e) => handleWarehouseChange(e.target.value)}
                   >
                     {Array.isArray(warehouses) &&
