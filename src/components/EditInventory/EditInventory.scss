@@ -1,8 +1,13 @@
 @use '../../styles//partials/global' as *;
 
+
 .container {
   height: 80rem;
   position: relative;
+  margin-top: 8rem;
+  @include tablet {
+    margin-top: -1rem;
+  }
 }
 
 .editInventory {
@@ -31,6 +36,16 @@
   }
 }
 
+.edit-inventory {
+  &__title {
+  font-weight: 600;
+  }
+  &__subtitle {
+    font-weight: 600;
+    padding-bottom: 1rem;
+  }
+}
+
 .editInventory__itemDetails {
   display: flex;
   flex-direction: column;
@@ -53,6 +68,7 @@
       padding: .5rem 0;
       gap: .2rem;
       font-weight: 600;
+      @include h3;
     }
 
     &--input {
@@ -165,6 +181,9 @@
   padding: 2rem 1rem;
   align-items: center;
   gap: .2rem;
+  @include desktop {
+    padding-left: 2rem;
+  }
 
 }
 
@@ -188,3 +207,4 @@
     outline-color: $red;
   }
 }
+

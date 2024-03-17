@@ -347,11 +347,6 @@ function AddInventoryItem() {
               Save
             </button>
           </section>
-          {errorMessage ? (
-            <p className="form_validation">All fields are required</p>
-          ) : (
-            " "
-          )}
         </form>
       </div>
     </section>

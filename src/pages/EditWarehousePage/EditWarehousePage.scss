@@ -1,27 +1,46 @@
 @import "../../styles/partials/global";
 
+.edit-warehouse-page {
+    height: 63rem;
+  position: relative;
+  margin-top: 8rem;
+  @include tablet {
+    margin-top: -1rem;
+  }
+  }
+  .container {
+    height: 80rem;
+    position: relative;
+    margin-top: 8rem;
+    @include tablet {
+      margin-top: -1rem;
+    }
+  }
+
 .edit-warehouse {
     font-family: "Titillium Web";
-    margin: 0 1.5rem;
-    box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
-    background-color: $white;
-    position: absolute;
-    top: 8.125rem; 
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    height: 57.625rem;
-    
-    @include tablet {
-        height: 40rem;
-        top: 6rem;
-        @include margin-tablet;
-    }
+  margin: 0 1.5rem;
+  box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+  background-color: $white;
+  position: absolute;
+  // top: 8.125rem;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  border-radius: 4px;
 
-    @include desktop {
-        @include margin-desktop;
-    }
+  @include tablet {
+    // height: 40rem;
+    // top: 7rem;
+    margin-top: 7rem;
+    margin-left: 2.25rem;
+    margin-right: 2.25rem;
+  }
+
+  @include desktop {
+   margin: 7rem auto 0;
+   max-width: 63.75rem;
+  }
 
     &__title {
         display: flex;
@@ -34,6 +53,7 @@
 
         &-display {
             font-size: h1;
+            font-weight: 600;
         }
 
     }
@@ -66,11 +86,13 @@
                 flex-grow: 1;
                 border-right: 1px solid $cloud;
                 border-bottom: none;
+                width: 100%;
             }
             
             &-subtitle {
                 padding-top: 1.5rem;
                 padding-bottom: 2rem;
+                font-weight: 600;
             }
 
             &-label {
@@ -109,6 +131,7 @@
             background-color: $white;
             @include tablet {
                 flex-grow: 1;
+                width: 100%;
             }
 
             &-subtitle {
