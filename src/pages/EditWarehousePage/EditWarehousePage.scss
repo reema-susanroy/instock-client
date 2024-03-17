@@ -86,6 +86,7 @@
                 flex-grow: 1;
                 border-right: 1px solid $cloud;
                 border-bottom: none;
+                width: 100%;
             }
             
             &-subtitle {
@@ -130,6 +131,7 @@
             background-color: $white;
             @include tablet {
                 flex-grow: 1;
+                width: 100%;
             }
 
             &-subtitle {
