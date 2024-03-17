@@ -123,6 +123,10 @@
             
             max-width: 4.5rem;
         }
+        &:hover {
+          border-color: $indigo;
+          color: $indigo;
+        }
         
     }
     &__add {
