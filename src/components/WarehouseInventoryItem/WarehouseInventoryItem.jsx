@@ -55,7 +55,7 @@ function InventoryItem({ inventory, warehouseName, warehouseId, handleDeleteWare
                 </div>
                 <div className="warehouse-item warehouse-item__contact warehouse-item__contact--wide">
                     <h4 className="warehouse-item-title__mobile">STATUS</h4>
-                    <p2 className={ status === "In Stock" ? "inStock" : "outStock"}>{status}</p2>
+                    <p className={ status === "In Stock" ? "inStock" : "outStock"}>{status}</p>
                 </div>
                 <div className="warehouse-item warehouse-item__mobile">
                     <h4 className="warehouse-item-title__mobile">CATEGORY</h4>

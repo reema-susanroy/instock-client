@@ -33,7 +33,6 @@ const inventory = inventories;
 const warehouseName = warehouse_name
 const flag= "inventory";
 const editInventory=()=>{
-    console.log(inventory,warehouseId,warehouseName)
     navigate(`/inventories/${inventories.id}/edit`,{ state: { inventory, warehouseName , warehouseId, flag} });
 
 }
