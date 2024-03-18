@@ -2,7 +2,6 @@ import InventoryListItem from "../InventoryListItem/InventoryListItem";
 import "./InventoryList.scss";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-24px.svg";
 import { ReactComponent as SortIcon } from "../../assets/icons/sort-24px.svg";
-// import { ReactComponent as EditIcon } from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 
 function InventoryList({ inventories, handleDeleteInventory }) {

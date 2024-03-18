@@ -16,7 +16,6 @@ function WarehouseDetailsPage() {
   useEffect(() => {
     const fetchWarehouseDetails = async (id) => {
       const response = await axios.get(`${server_url}/api/warehouses/${id}`);
-      // console.log(response.data);
       setCurrentData(response.data);
     };
 
@@ -26,11 +25,9 @@ function WarehouseDetailsPage() {
 
   const fetchWarehouseInventory = async () => {
     try {
-      // console.log("url", `${server_url}/api/warehouses/${warehouseId}/inventories/ \n`);
       const response = await axios.get(
         `${server_url}/api/warehouses/${warehouseId}/inventories/`
       );
-      // console.log("inventoryData", response.data);
       setInventoryData(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -40,8 +37,8 @@ function WarehouseDetailsPage() {
   };
 
   useEffect(() => {
-    fetchWarehouseInventory(warehouseId);
-  }, [warehouseId]);
+    fetchWarehouseInventory();
+  });
 
   const handleDeleteWarehouse = async (id) => {
     try {
@@ -62,8 +59,6 @@ function WarehouseDetailsPage() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-  console.log(currentData);
 
   return (
     <>

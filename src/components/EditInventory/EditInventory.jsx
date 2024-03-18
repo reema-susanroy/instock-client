@@ -88,7 +88,6 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
     e.preventDefault();
     const Validation = validateInput();
     const validateQuantity = validateQuantities();
-    // const checkWarehouseUpdateId = checkWarehouseSelected();
     setClickedSave(true);
 
     if (Validation && validateQuantity) {
@@ -129,7 +128,6 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
 
   const cancelEdit = (event) => {
     event.preventDefault();
-    // navigate(`/warehouses/${warehouseId}`)
     navigate(url);
   };
 
@@ -147,7 +145,6 @@ function EditInventory({ inventory, warehouseName, warehouseId, flag }) {
             </Link>
             <h1 className="edit-inventory__title">Edit Inventory Item</h1>
           </div>
-          {/* <form onSubmit={handleSubmit}> */}
           <form>
             <section className="editInventory__form">
               <div className="editInventory__itemDetails">

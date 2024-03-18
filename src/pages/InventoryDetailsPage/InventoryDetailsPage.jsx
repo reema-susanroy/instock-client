@@ -77,15 +77,12 @@ function InventoryDetailsPage() {
             </h1>
           </div>
           <div className="inventory-detail-title__edit" onClick={handleEditInventory}>
-            {/* <Link to={`/inventories/${currentData.id}/edit`}> */}
                 <img
                 src={editIcon}
                 alt="Edit Icon"
                 className="inventory-detail-title__edit-icon"
-                
                 />{" "}
                 <span className="inventory-detail-title__edit__span">Edit</span>
-            {/* </Link> */}
           </div>
         </div>
         <section className="inventory-detail-content">

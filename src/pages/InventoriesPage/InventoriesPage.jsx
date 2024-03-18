@@ -1,4 +1,3 @@
-import "./InventoriesPage.scss";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -11,7 +10,7 @@ function InventoriesPage() {
 
   useEffect(() => {
     getInventoriesList();
-  }, []);
+  });
 
   const getInventoriesList = async () => {
     try {
