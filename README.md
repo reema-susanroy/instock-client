@@ -26,5 +26,5 @@ A responsive collaborative project to develop warehouse inventories react web ap
 ![delete-popup](./public/images/instock4.png)
 
 # Install with npm
-npm install
-npm start
+- npm install
+- npm start
